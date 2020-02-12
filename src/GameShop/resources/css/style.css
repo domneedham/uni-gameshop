@@ -1,0 +1,13 @@
+BorderPane{
+    -fx-padding: 10 10 10 10;
+}
+GridPane{
+    -fx-padding: 10 10 10 10;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+HBox{
+    -fx-alignment: center;
+    -fx-padding: 10 10 10 10;
+    -fx-spacing: 30;
+}
