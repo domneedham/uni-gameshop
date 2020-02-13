@@ -9,11 +9,12 @@ public class Game implements ProductInterface {
     private double cost;
     private boolean inForRepair;
 
-    public Game(String name, Console console, double cost) {
+    public Game(String name, Console console, double cost, boolean inForRepair) {
         id = String.format("%s%d", idPrefix, idSeed);
         this.name = name;
         this.console = console;
         this.cost = cost;
+        this.inForRepair = inForRepair;
         idSeed++;
     }
 

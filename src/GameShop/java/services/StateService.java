@@ -32,9 +32,10 @@ public class StateService {
         ConsoleForm[] forms = {ConsoleForm.STANDARD, ConsoleForm.HANDHELD, ConsoleForm.STANDARD};
         double[] costs = { 15, 10, 15};
         int[] bits = {256, 128, 128};
+        boolean[] repair = {false, false, true};
 
         for(int i = 0; i < names.length; i++){
-            Console con = new Console(names[i], forms[i], costs[i], bits[i]);
+            Console con = new Console(names[i], forms[i], costs[i], bits[i], repair[i]);
             consoles.add(con);
         }
     }
@@ -43,9 +44,10 @@ public class StateService {
     private void populateGames(){
         String[] names = {"Just Dance", "Animal Crossing", "Italian Job"};
         double[] costs = {5, 2.5, 4};
+        boolean[] repair = {false, false, true};
 
         for(int i = 0; i < names.length; i++){
-            Game g = new Game(names[i], consoles.get(i), costs[i]);
+            Game g = new Game(names[i], consoles.get(i), costs[i], repair[i]);
             games.add(g);
         }
     }

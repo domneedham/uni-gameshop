@@ -10,12 +10,13 @@ public class Console implements ProductInterface {
     private int bit;
     private boolean inForRepair;
 
-    public Console(String name, ConsoleForm form, double cost, int bit) {
+    public Console(String name, ConsoleForm form, double cost, int bit, boolean inForRepair) {
         id = String.format("%s%d", idPrefix, idSeed);
         this.name = name;
         this.form = form;
         this.cost = cost;
         this.bit = bit;
+        this.inForRepair = inForRepair;
         idSeed++;
     }
 

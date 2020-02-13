@@ -14,8 +14,10 @@
         <center>
             <VBox>
                 <ScrollPane>
-                    <ListView />
+                    <ListView fx:id="games"/>
                 </ScrollPane>
+                <CheckBox text="Show All Games" onAction="#updateList"
+                          fx:id="showAll" selected="false"/>
             </VBox>
         </center>
         <bottom>
