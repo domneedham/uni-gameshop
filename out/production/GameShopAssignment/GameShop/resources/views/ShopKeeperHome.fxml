@@ -6,17 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GameShop.java.controllers.ShopKeeperHomeController"
-            prefHeight="400.0" prefWidth="600.0">
-    <BorderPane>
-        <top>
-            <Button text="Sign Out" onAction="#handleSignOut" />
-        </top>
-        <center>
-            <Button text="Create Rental" onAction="#handleCreateRental" />
-        </center>
-    </BorderPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.ShopKeeperHomeController">
 
-</AnchorPane>
+    <top>
+        <HBox>
+            <Label text="Shop Keeper Home" styleClass="PageHeader" />
+        </HBox>
+    </top>
+    <center>
+        <HBox>
+            <Button text="Create Rental" onAction="#handleCreateRental" />
+            <Button text="Sign Out" onAction="#handleSignOut" />
+        </HBox>
+    </center>
+</BorderPane>

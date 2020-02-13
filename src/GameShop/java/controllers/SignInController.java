@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -26,9 +27,22 @@ public class SignInController implements Initializable {
     private PasswordField password;
 
     @FXML
+    // set text to show error if sign is wrong
+    private Label signInError;
+
+    @FXML
+    private void clearForm() {
+        username.clear();
+        password.clear();
+        signInError.setText("");
+    }
+
+    @FXML
     private void handleSignIn(ActionEvent event) throws IOException {
         if (username.getText().equals(adminUsername) && password.getText().equals(adminPassword)) {
             router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
+        } else {
+            signInError.setText("Incorrect sign in details");
         }
     }
 

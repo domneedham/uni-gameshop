@@ -30,4 +30,9 @@ public class HomeController implements Initializable {
     private void handleViewConsoles(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.VIEW_CONSOLES, event);
     }
+
+    @FXML
+    private void handleQuitApplication() {
+        System.exit(0);
+    }
 }

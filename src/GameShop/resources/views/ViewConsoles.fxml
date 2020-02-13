@@ -6,22 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GameShop.java.controllers.ViewConsolesController"
-            prefHeight="400.0" prefWidth="600.0">
-    <BorderPane>
-        <center>
-            <VBox>
-                <ScrollPane>
-                    <ListView fx:id="consoles"/>
-                </ScrollPane>
-                <CheckBox text="Show All Consoles" onAction="#updateList"
-                          fx:id="showAll" selected="false"/>
-            </VBox>
-        </center>
-        <bottom>
-            <Button text="Go Home" onAction="#handleGoHome" />
-        </bottom>
-    </BorderPane>
-</AnchorPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.ViewConsolesController">
+    <top>
+        <HBox>
+            <Label text="View All Consoles" styleClass="PageHeader" />
+        </HBox>
+    </top>
+    <center>
+        <VBox>
+            <ScrollPane>
+                <ListView fx:id="consoles"/>
+            </ScrollPane>
+            <CheckBox text="Show All Consoles" onAction="#updateList"
+                      fx:id="showAll" selected="false" styleClass="ShowAllCB"/>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox>
+            <Button text="Main Menu" onAction="#handleGoHome" />
+        </HBox>
+    </bottom>
+</BorderPane>

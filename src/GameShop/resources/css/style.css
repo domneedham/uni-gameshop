@@ -1,13 +1,32 @@
-BorderPane{
+BorderPane {
     -fx-padding: 10 10 10 10;
 }
-GridPane{
+GridPane {
     -fx-padding: 10 10 10 10;
     -fx-hgap: 10;
     -fx-vgap: 10;
 }
-HBox{
+HBox {
     -fx-alignment: center;
     -fx-padding: 10 10 10 10;
     -fx-spacing: 30;
+}
+
+ScrollPane {
+    -fx-fit-to-width: true;
+    -fx-pref-width: 500;
+}
+
+.PageHeader {
+    -fx-alignment: center;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.ErrorLabel {
+    -fx-text-fill: red;
+}
+
+.ShowAllCB {
+    -fx-padding: 10 0 0 0;
 }
