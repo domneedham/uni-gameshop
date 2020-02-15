@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.ViewCustomersController">
+    <top>
+        <HBox>
+            <Label text="All Customers" styleClass="PageHeader" />
+        </HBox>
+    </top>
+    <center>
+        <VBox>
+            <ScrollPane>
+                <TableView fx:id="customers">
+                    <columns>
+                        <TableColumn text="Game ID">
+                            <cellValueFactory>
+                                <!-- Customer.getId() -->
+                                <PropertyValueFactory property="id" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Forename">
+                            <cellValueFactory>
+                                <!-- Customer.getForename() -->
+                                <PropertyValueFactory property="forename" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Surname">
+                            <cellValueFactory>
+                                <!-- Customer.getSurname() -->
+                                <PropertyValueFactory property="surname" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Email">
+                            <cellValueFactory>
+                                <!-- Customer.getEmail() -->
+                                <PropertyValueFactory property="email" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Telephone Number">
+                            <cellValueFactory>
+                                <!-- Game.getTelNumber() -->
+                                <PropertyValueFactory property="telNumber" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </ScrollPane>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox>
+            <Button text="Main Menu" onAction="#handleGoHome" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
