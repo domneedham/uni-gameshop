@@ -55,6 +55,12 @@ public class StateService {
             Game g = new Game(names[i], consoles.get(i), costs[i], repair[i]);
             games.add(g);
         }
+        Game newGame = new Game("Fifa 98", consoles.get(0), 5, false);
+        Game newGame2 = new Game("Fifa 99", consoles.get(0), 5, false);
+        Game newGame3 = new Game("Fifa 00", consoles.get(0), 5, false);
+        games.add(newGame);
+        games.add(newGame2);
+        games.add(newGame3);
     }
 
     // create dummy objects for customers, like reading from a DB

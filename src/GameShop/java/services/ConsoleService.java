@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ConsoleService {
     private static ConsoleRepository repo = new ConsoleRepository();
 
-    public static ArrayList<Console> getAllConsoles() { return  repo.getAllConsoles(); }
+    public static ArrayList<Console> getAllConsoles() { return repo.getAllConsoles(); }
 
     public static ArrayList<Console> getAvailableConsoles() { return repo.getAvailableConsoles(); }
 

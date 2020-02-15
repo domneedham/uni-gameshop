@@ -6,13 +6,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GameShop.java.controllers.CreateRentalController"
-            prefHeight="400.0" prefWidth="600.0">
-    <BorderPane>
-        <bottom>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.CreateRentalController">
+    <top>
+        <HBox>
+            <Label text="Create Rental" styleClass="PageHeader" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox>
+            <HBox>
+                <Label text="Customer" />
+                <ChoiceBox fx:id="customerChoiceBox" />
+            </HBox>
+            <HBox>
+                <Label text="Console" />
+                <ChoiceBox fx:id="consoleChoiceBox" onAction="#handleConsoleChange" />
+            </HBox>
+            <HBox>
+                <Label text="Game (CTRL+CLICK to select many)" />
+                <TableView fx:id="gameTableView" >
+                    <columns>
+                        <TableColumn text="Game ID">
+                            <cellValueFactory>
+                                <!-- Game.getId() -->
+                                <PropertyValueFactory property="id" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Title">
+                            <cellValueFactory>
+                                <!-- Game.getName() -->
+                                <PropertyValueFactory property="name" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button text="TEST" onAction="#logGames" />
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox>
             <Button text="Go Back" onAction="#handleGoBack" />
-        </bottom>
-    </BorderPane>
-</AnchorPane>
+        </HBox>
+    </bottom>
+
+</BorderPane>
