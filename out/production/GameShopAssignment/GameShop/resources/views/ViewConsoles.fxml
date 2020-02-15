@@ -37,7 +37,7 @@
                                 <PropertyValueFactory property="form" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn text="Bits">
+                        <TableColumn text="Bit">
                             <cellValueFactory>
                                 <!-- Console.getBit() -->
                                 <PropertyValueFactory property="bit" />

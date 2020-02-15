@@ -19,7 +19,7 @@
             <ScrollPane>
                 <TableView fx:id="customers">
                     <columns>
-                        <TableColumn text="Customer ID">
+                        <TableColumn text="Game ID">
                             <cellValueFactory>
                                 <!-- Customer.getId() -->
                                 <PropertyValueFactory property="id" />

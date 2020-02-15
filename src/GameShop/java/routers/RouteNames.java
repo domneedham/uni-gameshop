@@ -6,5 +6,6 @@ public enum RouteNames {
     VIEW_GAMES,
     VIEW_CONSOLES,
     SHOP_KEEPER_HOME,
-    CREATE_RENTAL
+    CREATE_RENTAL,
+    VIEW_CUSTOMERS,
 }

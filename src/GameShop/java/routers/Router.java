@@ -22,6 +22,7 @@ public class Router {
         put(RouteNames.VIEW_CONSOLES, VIEW_PATH + "ViewConsoles.fxml");
         put(RouteNames.SHOP_KEEPER_HOME, VIEW_PATH + "ShopKeeperHome.fxml");
         put(RouteNames.CREATE_RENTAL, VIEW_PATH + "CreateRental.fxml");
+        put(RouteNames.VIEW_CUSTOMERS, VIEW_PATH + "ViewCustomers.fxml");
     }};
 
     public final void changeRoute(RouteNames route, ActionEvent event) throws IOException {
