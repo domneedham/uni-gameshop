@@ -57,6 +57,11 @@ public class Game implements ProductInterface {
         return console;
     }
 
+    // used for JAVA FXML tables to show formatted data
+    public String getFXMLConsoleName() { return console.getName(); }
+    public String getFXMLAvailable() { return inForRepair ? "No" : "Yes" ;}
+    public String getFXMLFormattedCost() { return String.format("£%.2f", cost); }
+
     @Override
     public String toString() {
         return "Game{" +

@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,11 +20,9 @@ import java.util.ResourceBundle;
 public class ViewConsolesController implements Initializable {
     private final Router router = new Router();
 
-    @FXML
-    private ListView<Console> consoles;
+    @FXML private TableView<Console> consoles;
 
-    @FXML
-    private CheckBox showAll;
+    @FXML private CheckBox showAll;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

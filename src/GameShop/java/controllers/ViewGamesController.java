@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,11 +20,9 @@ import java.util.ResourceBundle;
 public class ViewGamesController implements Initializable {
     private final Router router = new Router();
 
-    @FXML
-    private ListView<Game> games;
+    @FXML private TableView<Game> games;
 
-    @FXML
-    private CheckBox showAll;
+    @FXML private CheckBox showAll;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,13 +40,13 @@ public class ViewGamesController implements Initializable {
     }
 
     private void showGames() {
-        ObservableList items;
+        ObservableList<Game> items;
         if (showAll.isSelected()) {
             items = FXCollections.observableArrayList(GameService.getAllGames());
         } else {
             items = FXCollections.observableArrayList(GameService.getAvailableGames());
         }
 
-        games.setItems(items);
+        games.getItems().setAll(items);
     }
 }

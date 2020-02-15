@@ -55,9 +55,7 @@ public class Console implements ProductInterface {
         this.inForRepair = inForRepair;
     }
 
-    public ConsoleForm getForm() {
-        return form;
-    }
+    public ConsoleForm getForm() { return form; }
 
     public void setForm(ConsoleForm form) {
         this.form = form;
@@ -70,6 +68,10 @@ public class Console implements ProductInterface {
     public void setBit(int bit) {
         this.bit = bit;
     }
+
+    // used for JAVA FXML tables to show formatted data
+    public String getFXMLAvailable() { return inForRepair ? "No" : "Yes" ; }
+    public String getFXMLFormattedCost() { return String.format("£%.2f", cost); }
 
     @Override
     public String toString() {

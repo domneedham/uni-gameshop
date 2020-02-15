@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameShop.java.controllers.ViewGamesController">
     <top>
@@ -16,7 +17,40 @@
     <center>
         <VBox>
             <ScrollPane>
-                <ListView fx:id="games"/>
+                <TableView fx:id="games">
+                    <columns>
+                        <TableColumn text="Game ID">
+                            <cellValueFactory>
+                                <!-- Game.getId() -->
+                                <PropertyValueFactory property="id" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Title">
+                            <cellValueFactory>
+                                <!-- Game.getName() -->
+                                <PropertyValueFactory property="name" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Console">
+                            <cellValueFactory>
+                                <!-- Game.getFXMLConsoleName() -->
+                                <PropertyValueFactory property="FXMLConsoleName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Cost">
+                            <cellValueFactory>
+                                <!-- Game.getFXMLFormattedCost() -->
+                                <PropertyValueFactory property="FXMLFormattedCost" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Available">
+                            <cellValueFactory>
+                                <!-- Game.getFXMLAvailable() -->
+                                <PropertyValueFactory property="FXMLAvailable" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
             </ScrollPane>
             <CheckBox text="Show All Games" onAction="#updateList"
                       fx:id="showAll" selected="false" styleClass="ShowAllCB"/>
