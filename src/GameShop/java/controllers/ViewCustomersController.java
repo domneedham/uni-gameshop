@@ -27,8 +27,8 @@ public class ViewCustomersController implements Initializable {
     }
 
     @FXML
-    private void handleGoHome(ActionEvent event) throws IOException {
-        router.changeRoute(RouteNames.HOME, event);
+    private void handleGoBack(ActionEvent event) throws IOException {
+        router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
     }
 
     private void showCustomers() {

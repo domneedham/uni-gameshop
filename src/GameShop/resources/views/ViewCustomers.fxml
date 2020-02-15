@@ -56,7 +56,7 @@
     </center>
     <bottom>
         <HBox>
-            <Button text="Main Menu" onAction="#handleGoHome" />
+            <Button text="Go Back" onAction="#handleGoBack" />
         </HBox>
     </bottom>
 
