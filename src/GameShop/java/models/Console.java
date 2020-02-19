@@ -69,10 +69,6 @@ public class Console implements ProductInterface {
         this.bit = bit;
     }
 
-    // used for JAVA FXML tables to show formatted data
-    public String getFXMLAvailable() { return inForRepair ? "No" : "Yes" ; }
-    public String getFXMLFormattedCost() { return String.format("£%.2f", cost); }
-
     @Override
     public String toString() {
         return "Console{" +

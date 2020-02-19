@@ -19,36 +19,11 @@
             <ScrollPane>
                 <TableView fx:id="games">
                     <columns>
-                        <TableColumn text="Game ID">
-                            <cellValueFactory>
-                                <!-- Game.getId() -->
-                                <PropertyValueFactory property="id" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Title">
-                            <cellValueFactory>
-                                <!-- Game.getName() -->
-                                <PropertyValueFactory property="name" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Console">
-                            <cellValueFactory>
-                                <!-- Game.getFXMLConsoleName() -->
-                                <PropertyValueFactory property="FXMLConsoleName" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Cost">
-                            <cellValueFactory>
-                                <!-- Game.getFXMLFormattedCost() -->
-                                <PropertyValueFactory property="FXMLFormattedCost" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Available">
-                            <cellValueFactory>
-                                <!-- Game.getFXMLAvailable() -->
-                                <PropertyValueFactory property="FXMLAvailable" />
-                            </cellValueFactory>
-                        </TableColumn>
+                        <TableColumn text="Game ID" fx:id="idColumn" />
+                        <TableColumn text="Title" fx:id="nameColumn" />
+                        <TableColumn text="Console" fx:id="consoleColumn" />
+                        <TableColumn text="Cost" fx:id="costColumn" />
+                        <TableColumn text="Available" fx:id="availableColumn" />
                     </columns>
                 </TableView>
             </ScrollPane>

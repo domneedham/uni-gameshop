@@ -1,6 +1,7 @@
 package GameShop.java.repositories;
 
 import GameShop.App;
+import GameShop.java.models.Console;
 import GameShop.java.models.Game;
 
 import java.util.ArrayList;
@@ -47,5 +48,12 @@ public class GameRepository {
             }
         }
     }
+
+    // used for JAVA FXML tables to show formatted data
+    public String getFXMLId(Game game) { return game.getId(); }
+    public String getFXMLName(Game game) { return game.getName(); }
+    public String getFXMLConsoleName(Game game) { return game.getConsole().getName(); }
+    public String getFXMLAvailable(Game game) { return game.isInForRepair() ? "No" : "Yes" ;}
+    public String getFXMLFormattedCost(Game game) { return String.format("£%.2f", game.getCost()); }
 
 }
