@@ -3,6 +3,7 @@ package GameShop.java.controllers;
 import GameShop.java.models.Console;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
+import GameShop.java.services.ConsoleFXMLTableService;
 import GameShop.java.services.ConsoleService;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -40,12 +41,12 @@ public class ViewConsolesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleService.getName(val.getValue())));
-        formColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleService.getForm(val.getValue())));
-        bitColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleService.getBit(val.getValue())));
-        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleService.getAvailable(val.getValue())));
-        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleService.getFormattedCost(val.getValue())));
+        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getId(val.getValue())));
+        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getName(val.getValue())));
+        formColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getForm(val.getValue())));
+        bitColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getBit(val.getValue())));
+        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getAvailable(val.getValue())));
+        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getFormattedCost(val.getValue())));
         showConsoles();
 
     }

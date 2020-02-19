@@ -48,15 +48,10 @@ public class ConsoleRepository {
         }
     }
 
-    // used for JAVA FXML tables to show formatted data
-    public String getFXMLId(Console console) { return console.getId(); }
-    public String getFXMLName(Console console) { return console.getName(); }
-    public String getFXMLForm(Console console) {
-        String name = console.getForm().toString();
-        name = name.toLowerCase();
-        return name;
-    }
-    public String getFXMLBit(Console console) { return String.valueOf(console.getBit()); }
-    public String getFXMLAvailable(Console console) { return console.isInForRepair() ? "No" : "Yes" ; }
-    public String getFXMLFormattedCost(Console console) { return String.format("£%.2f", console.getCost()); }
+    public String getId(Console console) { return console.getId(); }
+    public String getName(Console console) { return console.getName(); }
+    public String getForm(Console console) { return console.getForm().toString(); }
+    public int getBit(Console console) { return console.getBit(); }
+    public boolean isInForRepair(Console console) { return console.isInForRepair(); }
+    public double getCost(Console console) { return console.getCost(); }
 }

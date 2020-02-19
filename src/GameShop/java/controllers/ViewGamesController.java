@@ -4,6 +4,7 @@ import GameShop.java.models.Game;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.ConsoleService;
+import GameShop.java.services.GameFXMLTableService;
 import GameShop.java.services.GameService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -35,11 +36,11 @@ public class ViewGamesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameService.getName(val.getValue())));
-        consoleColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameService.getConsoleName(val.getValue())));
-        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameService.getCost(val.getValue())));
-        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameService.getAvailable(val.getValue())));
+        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getId(val.getValue())));
+        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getName(val.getValue())));
+        consoleColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getConsoleName(val.getValue())));
+        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getCost(val.getValue())));
+        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getAvailable(val.getValue())));
         showGames();
     }
 

@@ -49,11 +49,10 @@ public class GameRepository {
         }
     }
 
-    // used for JAVA FXML tables to show formatted data
-    public String getFXMLId(Game game) { return game.getId(); }
-    public String getFXMLName(Game game) { return game.getName(); }
-    public String getFXMLConsoleName(Game game) { return game.getConsole().getName(); }
-    public String getFXMLAvailable(Game game) { return game.isInForRepair() ? "No" : "Yes" ;}
-    public String getFXMLFormattedCost(Game game) { return String.format("£%.2f", game.getCost()); }
+    public String getId(Game game) { return game.getId(); }
+    public String getName(Game game) { return game.getName(); }
+    public Console getConsole(Game game) { return game.getConsole(); }
+    public boolean isInForRepair (Game game) { return game.isInForRepair();}
+    public double getCost(Game game) { return game.getCost(); }
 
 }
