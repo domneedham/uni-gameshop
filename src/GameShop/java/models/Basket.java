@@ -45,7 +45,6 @@ public class Basket {
         Basket.games.clear();
     }
 
-
     public static String logBasket() {
         return console.toString() + "\n" + customer.toString() + "\n" + games.toString() + "\n" + consoleRequired;
     }

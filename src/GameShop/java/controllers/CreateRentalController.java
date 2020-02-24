@@ -119,10 +119,14 @@ public class CreateRentalController implements Initializable {
                             Game game = getTableView().getItems().get(getIndex());
                             if (Basket.gameInBasket(game)) {
                                 Basket.removeGame(game);
-                                btn.setText("Add");
+                                if (!Basket.gameInBasket(game)) {
+                                    btn.setText("Add");
+                                }
                             } else {
                                 Basket.addGame(game);
-                                btn.setText("Remove");
+                                if (Basket.gameInBasket(game)) {
+                                    btn.setText("Remove");
+                                }
                             }
 
                         });
