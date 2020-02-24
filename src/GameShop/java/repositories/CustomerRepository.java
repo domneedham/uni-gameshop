@@ -1,12 +1,13 @@
 package GameShop.java.repositories;
 
 import GameShop.App;
+import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 
 import java.util.ArrayList;
 
 public class CustomerRepository {
-    public ArrayList<Customer> getAllCustomers() { return App.state.getCustomers(); };
+    public ArrayList<Customer> getAllCustomers() { return App.state.getCustomers(); }
 
     public Customer getById(int id) {
         for (Customer c: getAllCustomers()) {
@@ -38,4 +39,9 @@ public class CustomerRepository {
         }
     }
 
+    public int getId(Customer customer) { return customer.getId(); }
+    public String getForename(Customer customer) { return customer.getForename(); }
+    public String getSurname(Customer customer) { return customer.getSurname(); }
+    public String getEmail(Customer customer) { return customer.getEmail(); }
+    public String getTelNumber(Customer customer) { return customer.getTelNumber(); }
 }

@@ -6,7 +6,7 @@ import GameShop.java.repositories.CustomerRepository;
 import java.util.ArrayList;
 
 public class CustomerService {
-    private static CustomerRepository repo = new CustomerRepository();
+    protected static CustomerRepository repo = new CustomerRepository();
 
     public static ArrayList<Customer> getAllCustomers() { return  repo.getAllCustomers(); }
 

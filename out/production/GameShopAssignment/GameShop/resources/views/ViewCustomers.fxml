@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameShop.java.controllers.ViewCustomersController">
     <top>
@@ -17,38 +13,13 @@
     <center>
         <VBox>
             <ScrollPane>
-                <TableView fx:id="customers">
+                <TableView fx:id="customerTableView">
                     <columns>
-                        <TableColumn text="Customer ID">
-                            <cellValueFactory>
-                                <!-- Customer.getId() -->
-                                <PropertyValueFactory property="id" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Forename">
-                            <cellValueFactory>
-                                <!-- Customer.getForename() -->
-                                <PropertyValueFactory property="forename" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Surname">
-                            <cellValueFactory>
-                                <!-- Customer.getSurname() -->
-                                <PropertyValueFactory property="surname" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Email">
-                            <cellValueFactory>
-                                <!-- Customer.getEmail() -->
-                                <PropertyValueFactory property="email" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Telephone Number">
-                            <cellValueFactory>
-                                <!-- Game.getTelNumber() -->
-                                <PropertyValueFactory property="telNumber" />
-                            </cellValueFactory>
-                        </TableColumn>
+                        <TableColumn text="Customer ID" fx:id="idColumn" />
+                        <TableColumn text="Forename" fx:id="forenameColumn" />
+                        <TableColumn text="Surname" fx:id="surnameColumn" />
+                        <TableColumn text="Email" fx:id="emailColumn" />
+                        <TableColumn text="Telephone Number" fx:id="telephoneColumn" />
                     </columns>
                 </TableView>
             </ScrollPane>

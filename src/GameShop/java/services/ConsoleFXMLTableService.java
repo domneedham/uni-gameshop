@@ -8,7 +8,7 @@ public class ConsoleFXMLTableService extends ConsoleService {
     public static String getName(Console console) { return repo.getName(console); }
     public static String getForm(Console console) {
         // Capitalises first word only instead of all caps like from enum
-        var form = repo.getForm(console).toLowerCase();
+        String form = repo.getForm(console).toLowerCase();
         return form.substring(0, 1).toUpperCase() + form.substring(1);
     }
     public static String getBit(Console console) { return String.valueOf(repo.getBit(console)); }

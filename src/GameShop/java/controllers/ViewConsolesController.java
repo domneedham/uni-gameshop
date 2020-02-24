@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 public class ViewConsolesController implements Initializable {
     private final Router router = new Router();
 
-    @FXML private TableView<Console> consoles;
+    @FXML private TableView<Console> consoleTableView;
 
     @FXML private CheckBox showAll;
 
@@ -41,14 +41,14 @@ public class ViewConsolesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getName(val.getValue())));
-        formColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getForm(val.getValue())));
-        bitColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getBit(val.getValue())));
-        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getAvailable(val.getValue())));
-        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getFormattedCost(val.getValue())));
+        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getId(val.getValue())));
+        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getName(val.getValue())));
+        formColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getForm(val.getValue())));
+        bitColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getBit(val.getValue())));
+        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getAvailable(val.getValue())));
+        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getFormattedCost(val.getValue())));
         showConsoles();
-
     }
 
     @FXML
@@ -61,13 +61,13 @@ public class ViewConsolesController implements Initializable {
     }
 
     private void showConsoles() {
-        ObservableList items;
+        ObservableList<Console> items;
         if (showAll.isSelected()) {
             items = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
         } else {
             items = FXCollections.observableArrayList(ConsoleService.getAvailableConsoles());
         }
 
-        consoles.setItems(items);
+        consoleTableView.setItems(items);
     }
 }

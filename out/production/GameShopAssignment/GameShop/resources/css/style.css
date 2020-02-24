@@ -12,9 +12,22 @@ HBox {
     -fx-spacing: 30;
 }
 
+VBox {
+    -fx-alignment: center;
+}
+
 ScrollPane {
     -fx-fit-to-width: true;
     -fx-pref-width: 500;
+}
+
+TableView {
+    -fx-fit-to-width: true;
+    -fx-pref-width: 500;
+}
+
+TabelColumn {
+    -fx-pref-width: 200;
 }
 
 .PageHeader {
@@ -25,6 +38,7 @@ ScrollPane {
 
 .ErrorLabel {
     -fx-text-fill: red;
+    -fx-padding: 10 0 0 0;
 }
 
 .ShowAllCB {

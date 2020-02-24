@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameShop.java.controllers.ViewGamesController">
     <top>
@@ -17,7 +13,7 @@
     <center>
         <VBox>
             <ScrollPane>
-                <TableView fx:id="games">
+                <TableView fx:id="gameTableView">
                     <columns>
                         <TableColumn text="Game ID" fx:id="idColumn" />
                         <TableColumn text="Title" fx:id="nameColumn" />
@@ -28,7 +24,7 @@
                 </TableView>
             </ScrollPane>
             <CheckBox text="Show All Games" onAction="#updateList"
-                      fx:id="showAll" selected="false" styleClass="ShowAllCB"/>
+                      fx:id="showAll" styleClass="ShowAllCB"/>
         </VBox>
     </center>
     <bottom>

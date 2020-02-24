@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class ViewGamesController implements Initializable {
     private final Router router = new Router();
 
-    @FXML private TableView<Game> games;
+    @FXML private TableView<Game> gameTableView;
 
     @FXML private CheckBox showAll;
 
@@ -36,11 +36,13 @@ public class ViewGamesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getName(val.getValue())));
-        consoleColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getConsoleName(val.getValue())));
-        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getCost(val.getValue())));
-        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(GameFXMLTableService.getAvailable(val.getValue())));
+        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getId(val.getValue())));
+        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getName(val.getValue())));
+        consoleColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getConsoleName(val.getValue())));
+        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getCost(val.getValue())));
+        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getAvailable(val.getValue())));
         showGames();
     }
 
@@ -62,6 +64,6 @@ public class ViewGamesController implements Initializable {
             items = FXCollections.observableArrayList(GameService.getAvailableGames());
         }
 
-        games.getItems().setAll(items);
+        gameTableView.getItems().setAll(items);
     }
 }
