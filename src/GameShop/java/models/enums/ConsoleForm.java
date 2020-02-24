@@ -1,4 +1,4 @@
-package GameShop.java.models;
+package GameShop.java.models.enums;
 
 public enum ConsoleForm {
     STANDARD,

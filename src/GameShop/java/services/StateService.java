@@ -1,7 +1,7 @@
 package GameShop.java.services;
 
 import GameShop.java.models.Console;
-import GameShop.java.models.ConsoleForm;
+import GameShop.java.models.enums.ConsoleForm;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 

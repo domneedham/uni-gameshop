@@ -1,6 +1,8 @@
 package GameShop.java.models;
 
-public class Game implements ProductInterface {
+import GameShop.java.models.interfaces.IProduct;
+
+public class Game implements IProduct {
     private final String idPrefix = "GA";
     private static int idSeed = 1000;
     private String id;

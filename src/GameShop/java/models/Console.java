@@ -1,6 +1,9 @@
 package GameShop.java.models;
 
-public class Console implements ProductInterface {
+import GameShop.java.models.enums.ConsoleForm;
+import GameShop.java.models.interfaces.IProduct;
+
+public class Console implements IProduct {
     private final String idPrefix = "CO";
     private static int idSeed = 1000;
     private String id;
