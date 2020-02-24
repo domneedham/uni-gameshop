@@ -19,37 +19,28 @@
         <VBox>
             <HBox>
                 <Label text="Customer" />
-                <ChoiceBox fx:id="customerChoiceBox" />
+                <ChoiceBox fx:id="customerChoiceBox" onAction="#handleCustomerChange"/>
             </HBox>
             <HBox>
                 <Label text="Console" />
                 <ChoiceBox fx:id="consoleChoiceBox" onAction="#handleConsoleChange" />
+                <CheckBox fx:id="consoleRequired" text="Console Required?" onAction="#handleConsoleRequiredChange"/>
             </HBox>
-            <HBox>
-                <Label text="Game (CTRL+CLICK to select many)" />
+
+            <HBox fx:id="gameTableWrapper" visible="false">
                 <TableView fx:id="gameTableView" >
                     <columns>
-                        <TableColumn text="Game ID">
-                            <cellValueFactory>
-                                <!-- Game.getId() -->
-                                <PropertyValueFactory property="id" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Title">
-                            <cellValueFactory>
-                                <!-- Game.getName() -->
-                                <PropertyValueFactory property="name" />
-                            </cellValueFactory>
-                        </TableColumn>
+                        <TableColumn text="Game ID" fx:id="idColumn" />
+                        <TableColumn text="Title" fx:id="nameColumn" />
                     </columns>
                 </TableView>
-                <Button text="TEST" onAction="#logGames" />
             </HBox>
         </VBox>
     </center>
 
     <bottom>
         <HBox>
+            <Button fx:id="reviewRentalButton" onAction="#reviewRental" text="Review the Rental" />
             <Button text="Go Back" onAction="#handleGoBack" />
         </HBox>
     </bottom>

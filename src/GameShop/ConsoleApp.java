@@ -14,11 +14,11 @@ public class ConsoleApp {
         Game creed = new Game("Assassins Creed", console, 15, false);
         Game cod = new Game("Call of Duty", console, 5, false);
         Rental newRental = new Rental(new Date(), me);
-        newRental.addConsoleToRental(console);
+        newRental.setConsole(console);
         // should not work as more than 1 console is not allowed
-        newRental.addConsoleToRental(console);
+        newRental.setConsole(console);
         // should not work as more than 1 console is not allowed
-        newRental.addConsoleToRental(console1);
+        newRental.setConsole(console1);
         newRental.addGameToRental(gta);
         // should not work as the same game is not allowed
         newRental.addGameToRental(gta);

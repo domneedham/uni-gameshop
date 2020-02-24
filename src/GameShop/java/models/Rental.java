@@ -5,20 +5,27 @@ import java.util.Date;
 
 public class Rental {
     private final int MAX_RENTAL_GAMES = 3;
-    private final int MAX_RENTAL_CONSOLES = 1;
-    private int consolesRented = 0;
-    private int gamesRented = 0;
 
     private static int idSeed = 1000;
     private int id;
     private Date dateRented;
     private Customer customer;
-    private ArrayList<String> rentalItems = new ArrayList();
+    private Console console;
+    private ArrayList<Game> games = new ArrayList<>();
 
     public Rental(Date dateRented, Customer customer) {
         id = idSeed;
         this.dateRented = dateRented;
         this.customer = customer;
+        idSeed++;
+    }
+
+    public Rental(Date dateRented, Customer customer, Console console, ArrayList<Game> games) {
+        id = idSeed;
+        this.dateRented = dateRented;
+        this.customer = customer;
+        this.console = console;
+        this.games = games;
         idSeed++;
     }
 
@@ -42,22 +49,22 @@ public class Rental {
         this.customer = customer;
     }
 
-    public int[] getRentalItems() {
-        return new int[rentalItems.size()];
+    public int[] getGamesRented() {
+        return new int[games.size()];
     }
 
     public void addGameToRental(Game game) {
-        if (gamesRented < MAX_RENTAL_GAMES && !rentalItems.contains(game.getId())) {
-            rentalItems.add(game.getId());
-            gamesRented++;
+        if (games.size() <= MAX_RENTAL_GAMES) {
+            games.add(game);
         }
     }
 
-    public void addConsoleToRental(Console console) {
-        if (consolesRented < MAX_RENTAL_CONSOLES && !rentalItems.contains(console.getId())) {
-            rentalItems.add(console.getId());
-            consolesRented++;
-        }
+    public void removeGameFromRental(Game game) {
+        games.remove(game);
+    }
+
+    public void setConsole(Console console) {
+        this.console = console;
     }
 
     @Override
@@ -66,9 +73,8 @@ public class Rental {
                 "id=" + id +
                 ", dateRented=" + dateRented +
                 ", customer=" + customer +
-                ", rentalItems=" + rentalItems +
-                ", consolesRented=" + consolesRented +
-                ", gamesRented=" + gamesRented +
+                ", rentalItems=" + games +
+                ", console=" + console +
                 '}';
     }
 }
