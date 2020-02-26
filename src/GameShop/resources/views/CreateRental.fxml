@@ -28,6 +28,7 @@
                     <columns>
                         <TableColumn text="Game ID" fx:id="idColumn" />
                         <TableColumn text="Title" fx:id="nameColumn" />
+                        <TableColumn text="Add to Basket" fx:id="buttonColumn" />
                     </columns>
                 </TableView>
             </HBox>

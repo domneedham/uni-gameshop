@@ -9,6 +9,30 @@ public class Basket {
     private static Console console;
     private static ArrayList<Game> games = new ArrayList<>();
 
+    public static boolean isBasketPopulated() {
+        if (customer != null && console != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static Customer getCustomer() {
+        return customer;
+    }
+
+    public static boolean isConsoleRequired() {
+        return consoleRequired;
+    }
+
+    public static Console getConsole() {
+        return console;
+    }
+
+    public static ArrayList<Game> getGames() {
+        return games;
+    }
+
     public static void setCustomer(Customer customer) {
         Basket.customer = customer;
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.ViewBasketController">
+    <top>
+        <HBox>
+            <Label text="Basket" styleClass="PageHeader" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox>
+            <HBox>
+                <Label text="Customer" />
+            </HBox>
+
+            <HBox>
+                <Label text="Console" />
+            </HBox>
+
+            <HBox>
+                <Label text="Games" />
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button text="Go Back" onAction="#handleGoBack" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

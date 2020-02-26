@@ -35,6 +35,7 @@ public class CreateRentalController implements Initializable {
 
     @FXML private TableColumn<Game, String> idColumn;
     @FXML private TableColumn<Game, String> nameColumn;
+    @FXML private TableColumn<Game, Button> buttonColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -50,6 +51,18 @@ public class CreateRentalController implements Initializable {
         addButtonToTable();
         getCustomers();
         getConsoles();
+
+        if (Basket.isBasketPopulated()) { fillDefaults(); }
+
+    }
+
+    private void fillDefaults() {
+        customerChoiceBox.getSelectionModel().select(Basket.getCustomer());
+        consoleChoiceBox.getSelectionModel().select(Basket.getConsole());
+        consoleRequired.setSelected(Basket.isConsoleRequired());
+
+        // TODO
+        // set button text to remove where needed
     }
 
     private void getCustomers() {
@@ -58,8 +71,8 @@ public class CreateRentalController implements Initializable {
     }
 
     private void getConsoles() {
-        ObservableList<Console> items = FXCollections.observableArrayList(ConsoleService.getAvailableConsoles());
-        consoleChoiceBox.getItems().setAll(items);
+        ObservableList<Console> consoles = FXCollections.observableArrayList(ConsoleService.getAvailableConsoles());
+        consoleChoiceBox.getItems().setAll(consoles);
     }
 
     private void getGames() {
@@ -95,25 +108,23 @@ public class CreateRentalController implements Initializable {
     }
 
     @FXML
-    private void reviewRental() {
+    private void reviewRental(ActionEvent event) throws IOException {
         if (customerChoiceBox.getSelectionModel().isEmpty()) {
             System.out.println("Add a customer to the rental");
         } else if (consoleChoiceBox.getSelectionModel().isEmpty()) {
             System.out.println("Add a console to the rental");
         } else {
-            System.out.println(Basket.logBasket());
+            router.changeRoute(RouteNames.VIEW_BASKET, event);
         }
-
     }
 
     private void addButtonToTable() {
-        TableColumn<Game, Void> buttonColumn = new TableColumn<>("Add to Basket");
-
-        Callback<TableColumn<Game, Void>, TableCell<Game, Void>> cellFactory = new Callback<>() {
+        Callback<TableColumn<Game, Button>, TableCell<Game, Button>> cellFactory = new Callback<>() {
             @Override
-            public TableCell<Game, Void> call(final TableColumn<Game, Void> param) {
+            public TableCell<Game, Button> call(final TableColumn<Game, Button> param) {
                 return new TableCell<>() {
                     private final Button btn = new Button("Add");
+
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Game game = getTableView().getItems().get(getIndex());
@@ -128,12 +139,11 @@ public class CreateRentalController implements Initializable {
                                     btn.setText("Remove");
                                 }
                             }
-
                         });
                     }
 
                     @Override
-                    public void updateItem(Void item, boolean empty) {
+                    public void updateItem(Button item, boolean empty) {
                         super.updateItem(item, empty);
                         if (empty) {
                             setGraphic(null);
@@ -146,6 +156,5 @@ public class CreateRentalController implements Initializable {
         };
 
         buttonColumn.setCellFactory(cellFactory);
-        gameTableView.getColumns().add(buttonColumn);
     }
 }
