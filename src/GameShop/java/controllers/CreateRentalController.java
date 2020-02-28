@@ -28,7 +28,6 @@ public class CreateRentalController implements Initializable {
 
     @FXML private ChoiceBox<Customer> customerChoiceBox;
     @FXML private ChoiceBox<Console> consoleChoiceBox;
-    @FXML private Button reviewRentalButton;
     @FXML private HBox gameTableWrapper;
     @FXML private TableView<Game> gameTableView;
     @FXML private CheckBox consoleRequired;
@@ -45,18 +44,21 @@ public class CreateRentalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setupTable();
+        getCustomers();
+        getConsoles();
+        if (Basket.isBasketPopulated()) { fillDefaults(); }
+
+    }
+
+    private void setupTable() {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        addButtonToTable();
         // TODO
         // change these from read only
         // which may remove needed to call addButtonToTable() in getGames method
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CreateRentalFXMLService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CreateRentalFXMLService.getName(val.getValue())));
-        addButtonToTable();
-        getCustomers();
-        getConsoles();
-
-        if (Basket.isBasketPopulated()) { fillDefaults(); }
-
+        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getId(val.getValue())));
+        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getName(val.getValue())));
     }
 
     private void fillDefaults() {
@@ -95,7 +97,7 @@ public class CreateRentalController implements Initializable {
     }
 
     @FXML
-    private void handleConsoleChange() throws InterruptedException {
+    private void handleConsoleChange() {
         if (!gameTableWrapper.isVisible()) {
             gameTableWrapper.setVisible(true);
         }

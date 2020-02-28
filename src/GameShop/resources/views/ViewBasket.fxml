@@ -3,6 +3,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.scene.text.Text?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameShop.java.controllers.ViewBasketController">
     <top>
@@ -15,14 +17,27 @@
         <VBox>
             <HBox>
                 <Label text="Customer" />
+                <Text fx:id="customer" />
             </HBox>
 
             <HBox>
                 <Label text="Console" />
+                <Text fx:id="console" />
+            </HBox>
+
+            <HBox>
+                <Label text="Console Required" />
+                <Text fx:id="consoleRequired" />
             </HBox>
 
             <HBox>
                 <Label text="Games" />
+                <TableView fx:id="gameTableView">
+                    <columns>
+                        <TableColumn text="Game ID" fx:id="idColumn" />
+                        <TableColumn text="Title" fx:id="nameColumn" />
+                    </columns>
+                </TableView>
             </HBox>
         </VBox>
     </center>
