@@ -23,7 +23,7 @@
                 <CheckBox fx:id="consoleRequired" text="Console Required?" onAction="#handleConsoleRequiredChange"/>
             </HBox>
 
-            <HBox fx:id="gameTableWrapper" visible="false">
+            <HBox fx:id="gameTableWrapper">
                 <TableView fx:id="gameTableView" >
                     <columns>
                         <TableColumn text="Game ID" fx:id="idColumn" />

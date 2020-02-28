@@ -46,30 +46,30 @@ public class Basket {
     }
 
     public static void addGame(Game game) {
-        if (!Basket.games.contains(game) && Basket.games.size() < MAX_GAMES) {
-            Basket.games.add(game);
+        if (!games.contains(game) && games.size() < MAX_GAMES) {
+            games.add(game);
         }
     }
 
     public static void removeGame(Game game) {
-        Basket.games.remove(game);
+        games.remove(game);
     }
+
+    public static void removeGame(ArrayList<Game> games) { Basket.games.removeAll(games); }
 
     public static void clearBasket() {
-        Basket.customer = null;
-        Basket.console = null;
-        Basket.games.clear();
+        customer = null;
+        console = null;
+        games.clear();
     }
 
-    public static boolean gameInBasket(Game game) {
-        return Basket.games.contains(game);
-    }
+    public static boolean gameInBasket(Game game) { return games.contains(game); }
 
     public static void clearGames() {
-        Basket.games.clear();
+        games.clear();
     }
 
     public static String logBasket() {
-        return console.toString() + "\n" + customer.toString() + "\n" + games.toString() + "\n" + consoleRequired;
+        return console.toString() + "\n" + customer.toString() + "\n" + games.toString() + "\n" + consoleRequired + "\n";
     }
 }

@@ -46,6 +46,9 @@ public class CreateRentalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        // TODO
+        // change these from read only
+        // which may remove needed to call addButtonToTable() in getGames method
         idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CreateRentalFXMLService.getId(val.getValue())));
         nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CreateRentalFXMLService.getName(val.getValue())));
         addButtonToTable();
@@ -60,9 +63,6 @@ public class CreateRentalController implements Initializable {
         customerChoiceBox.getSelectionModel().select(Basket.getCustomer());
         consoleChoiceBox.getSelectionModel().select(Basket.getConsole());
         consoleRequired.setSelected(Basket.isConsoleRequired());
-
-        // TODO
-        // set button text to remove where needed
     }
 
     private void getCustomers() {
@@ -85,6 +85,8 @@ public class CreateRentalController implements Initializable {
             }
         }
         gameTableView.getItems().setAll(items);
+        // fixes button displaying remove if item not in basket anyway
+        addButtonToTable();
     }
 
     @FXML
@@ -93,12 +95,20 @@ public class CreateRentalController implements Initializable {
     }
 
     @FXML
-    private void handleConsoleChange() {
+    private void handleConsoleChange() throws InterruptedException {
         if (!gameTableWrapper.isVisible()) {
             gameTableWrapper.setVisible(true);
         }
         Basket.setConsole(consoleChoiceBox.getSelectionModel().getSelectedItem());
-        Basket.clearGames();
+
+        ArrayList<Game> games = Basket.getGames();
+        ArrayList<Game> gamesToRemove = new ArrayList<>();
+        for (Game game : games) {
+            if (game.getConsole() != Basket.getConsole()) {
+                gamesToRemove.add(game);
+            }
+        }
+        Basket.removeGame(gamesToRemove);
         getGames();
     }
 
@@ -124,7 +134,6 @@ public class CreateRentalController implements Initializable {
             public TableCell<Game, Button> call(final TableColumn<Game, Button> param) {
                 return new TableCell<>() {
                     private final Button btn = new Button("Add");
-
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Game game = getTableView().getItems().get(getIndex());
@@ -148,6 +157,10 @@ public class CreateRentalController implements Initializable {
                         if (empty) {
                             setGraphic(null);
                         } else {
+                            Game game = param.getTableView().getItems().get(getIndex());
+                            if (Basket.gameInBasket(game)) {
+                                btn.setText("Remove");
+                            }
                             setGraphic(btn);
                         }
                     }
