@@ -129,6 +129,10 @@ public class CreateRentalController implements Initializable {
             System.out.println("Add a customer to the rental");
         } else if (consoleChoiceBox.getSelectionModel().isEmpty()) {
             System.out.println("Add a console to the rental");
+        } else if (datePicker.getValue() == null) {
+            System.out.println("You need to pick a date");
+        } else if (Basket.getGames().isEmpty() && !consoleRequired.isSelected()) {
+            System.out.println("You need to add games or choose to rent the console");
         } else {
             router.changeRoute(RouteNames.VIEW_BASKET, event);
         }
