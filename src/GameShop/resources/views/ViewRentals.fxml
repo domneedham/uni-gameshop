@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.ViewRentalsController">
+
+    <top>
+        <HBox>
+            <Label text="View Rentals" styleClass="PageHeader" />
+        </HBox>
+    </top>
+
+    <center>
+
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button text="Go Back" onAction="#handleGoBack" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

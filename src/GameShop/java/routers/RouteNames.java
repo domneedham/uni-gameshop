@@ -8,5 +8,6 @@ public enum RouteNames {
     SHOP_KEEPER_HOME,
     CREATE_RENTAL,
     VIEW_BASKET,
-    VIEW_CUSTOMERS
+    VIEW_CUSTOMERS,
+    VIEW_RENTALS
 }

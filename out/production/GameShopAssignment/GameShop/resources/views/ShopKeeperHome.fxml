@@ -17,6 +17,7 @@
     <center>
         <HBox>
             <Button text="Create Rental" onAction="#handleCreateRental" />
+            <Button text="View Rentals" onAction="#handleViewRentals" />
             <Button text="View All Customers" onAction="#handleViewCustomers" />
             <Button text="Sign Out" onAction="#handleSignOut" />
         </HBox>

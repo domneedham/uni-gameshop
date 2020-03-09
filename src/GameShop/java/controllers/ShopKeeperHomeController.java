@@ -25,6 +25,11 @@ public class ShopKeeperHomeController implements Initializable {
     }
 
     @FXML
+    private void handleViewRentals(ActionEvent event) throws IOException {
+        router.changeRoute(RouteNames.VIEW_RENTALS, event);
+    }
+
+    @FXML
     private void handleViewCustomers(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.VIEW_CUSTOMERS, event);
     }
