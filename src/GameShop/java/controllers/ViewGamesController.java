@@ -3,7 +3,6 @@ package GameShop.java.controllers;
 import GameShop.java.models.Game;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.ConsoleService;
 import GameShop.java.services.GameFXMLTableService;
 import GameShop.java.services.GameService;
 import javafx.beans.property.ReadOnlyObjectWrapper;

@@ -1,7 +1,6 @@
 package GameShop.java.repositories;
 
 import GameShop.App;
-import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 
 import java.util.ArrayList;

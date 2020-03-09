@@ -1,7 +1,6 @@
 package GameShop.java.services;
 
 import GameShop.java.models.Game;
-import GameShop.java.services.GameService;
 
 public class GameFXMLTableService extends GameService {
     public static String getId(Game game) { return repo.getId(game); }

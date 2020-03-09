@@ -1,7 +1,6 @@
 package GameShop.java.services;
 
 import GameShop.java.models.Console;
-import GameShop.java.services.ConsoleService;
 
 public class ConsoleFXMLTableService extends ConsoleService {
     public static String getId(Console console) { return repo.getId(console); }

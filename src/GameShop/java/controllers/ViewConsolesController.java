@@ -5,9 +5,7 @@ import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.ConsoleFXMLTableService;
 import GameShop.java.services.ConsoleService;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,11 +13,8 @@ import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
