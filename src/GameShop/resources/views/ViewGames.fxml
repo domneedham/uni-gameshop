@@ -24,7 +24,7 @@
                 </TableView>
             </ScrollPane>
             <CheckBox text="Show All Games" onAction="#updateList"
-                      fx:id="showAll" styleClass="ShowAllCB"/>
+                      fx:id="showAll" styleClass="ShowAllCB" />
         </VBox>
     </center>
     <bottom>

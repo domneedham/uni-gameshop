@@ -18,14 +18,14 @@
                         <TableColumn text="Console ID" fx:id="idColumn" />
                         <TableColumn text="Title" fx:id="nameColumn" />
                         <TableColumn text="Form" fx:id="formColumn" />
-                        <TableColumn text="Bit" fx:id="bitColumn"/>
+                        <TableColumn text="Bit" fx:id="bitColumn" />
                         <TableColumn text="Cost" fx:id="costColumn" />
                         <TableColumn text="Available" fx:id="availableColumn" />
                     </columns>
                 </TableView>
             </ScrollPane>
             <CheckBox text="Show All Consoles" onAction="#updateList"
-                      fx:id="showAll" styleClass="ShowAllCB"/>
+                      fx:id="showAll" styleClass="ShowAllCB" />
         </VBox>
     </center>
     <bottom>

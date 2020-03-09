@@ -20,7 +20,10 @@
             <HBox>
                 <Label text="Console" />
                 <ChoiceBox fx:id="consoleChoiceBox" onAction="#handleConsoleChange" />
-                <CheckBox fx:id="consoleRequired" text="Console Required?" onAction="#handleConsoleRequiredChange"/>
+            </HBox>
+            <HBox>
+                <Label text="Console Required" />
+                <CheckBox fx:id="consoleRequired" onAction="#handleConsoleRequiredChange" />
             </HBox>
             <HBox>
                 <Label text="Rental Start Date" />

@@ -13,12 +13,12 @@
     <center>
         <VBox>
             <HBox>
-                <Label text="Username:"/>
-                <TextField promptText="Enter your username" fx:id="username"/>
+                <Label text="Username:" />
+                <TextField promptText="Enter your username" fx:id="username" />
             </HBox>
             <HBox>
-                <Label text="Password:"/>
-                <PasswordField promptText="Enter your password" fx:id="password"/>
+                <Label text="Password:" />
+                <PasswordField promptText="Enter your password" fx:id="password" />
             </HBox>
             <HBox>
                 <Label fx:id="signInError" styleClass="ErrorLabel" />
@@ -31,7 +31,7 @@
     </center>
     <bottom>
         <HBox>
-            <Button text="Main Menu" onAction="#handleGoHome"/>
+            <Button text="Main Menu" onAction="#handleGoHome" />
         </HBox>
     </bottom>
 </BorderPane>

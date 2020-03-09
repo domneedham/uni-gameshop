@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.HBox?>
 
 <BorderPane fx:controller="GameShop.java.controllers.HomeController"
-          xmlns:fx="http://javafx.com/fxml" >
+          xmlns:fx="http://javafx.com/fxml">
     <top>
         <HBox>
-            <Label text="Main Menu" styleClass="PageHeader"/>
+            <Label text="Main Menu" styleClass="PageHeader" />
         </HBox>
     </top>
 
