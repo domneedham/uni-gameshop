@@ -1,14 +1,16 @@
 package GameShop.java.repositories;
 
+import GameShop.App;
 import GameShop.java.models.Rental;
 
 import java.util.ArrayList;
 
 public class RentalRepository {
-    private ArrayList<Rental> rentals = new ArrayList<>();
+    public ArrayList<Rental> getAllRentals() { return App.state.getRentals(); };
 
     public void addRental(Rental rental) {
-        rentals.add(rental);
-        System.out.println(rentals);
+        if (!getAllRentals().contains(rental)) {
+            getAllRentals().add(rental);
+        }
     }
 }

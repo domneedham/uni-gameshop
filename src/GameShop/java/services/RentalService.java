@@ -9,11 +9,13 @@ import GameShop.java.repositories.RentalRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class CreateRentalService {
+public class RentalService {
     protected static RentalRepository repo = new RentalRepository();
 
     public static void createRental(LocalDate date, Customer customer, Console console, ArrayList<Game> games) {
         Rental rental = new Rental(date, customer, console, games);
         repo.addRental(rental);
     }
+
+    public static ArrayList<Rental> getRentals() { return repo.getAllRentals(); }
 }

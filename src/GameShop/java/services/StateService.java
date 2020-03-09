@@ -1,10 +1,12 @@
 package GameShop.java.services;
 
 import GameShop.java.models.Console;
+import GameShop.java.models.Rental;
 import GameShop.java.models.enums.ConsoleForm;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class StateService {
@@ -12,6 +14,7 @@ public class StateService {
     private final static ArrayList<Game> games = new ArrayList<>();
     private final static ArrayList<Console> consoles = new ArrayList<>();
     private final static ArrayList<Customer> customers = new ArrayList<>();
+    private final static ArrayList<Rental> rentals = new ArrayList<>();
 
     // On initialisation, populate lists with dummy data
     // Create consoles first, so games can use consoles
@@ -19,6 +22,7 @@ public class StateService {
         populateConsoles();
         populateGames();
         populateCustomers();
+        populateRentals();
     }
 
     public ArrayList<Game> getGames(){
@@ -30,6 +34,8 @@ public class StateService {
     }
 
     public ArrayList<Customer> getCustomers() { return customers; }
+
+    public ArrayList<Rental> getRentals() { return rentals; }
 
     // create dummy objects for consoles, like reading from a DB
     private void populateConsoles() {
@@ -74,6 +80,20 @@ public class StateService {
             Customer c = new Customer(firstNames[i], surnames[i], emails[i], numbers[i]);
             customers.add(c);
         }
+    }
+
+    // create dummy objects for rentals, like reading from a DB
+    private void populateRentals() {
+        ArrayList<Game> games1 = new ArrayList<>();
+        games1.add(this.games.get(4));
+        games1.add(this.games.get(5));
+        Rental r1 = new Rental(LocalDate.of(2020, 03, 03), customers.get(0), consoles.get(0), games1);
+        rentals.add(r1);
+
+        ArrayList<Game> games2 = new ArrayList<>();
+        games2.add(this.games.get(2));
+        Rental r2 = new Rental(LocalDate.of(2020, 03, 03), customers.get(1), consoles.get(1), games2);
+        rentals.add(r2);
     }
 
     @Override

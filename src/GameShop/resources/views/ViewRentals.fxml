@@ -13,7 +13,9 @@
     </top>
 
     <center>
-
+        <ScrollPane>
+            <ListView fx:id="rentalListView" />
+        </ScrollPane>
     </center>
 
     <bottom>

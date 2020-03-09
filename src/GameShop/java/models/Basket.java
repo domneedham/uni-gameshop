@@ -1,6 +1,6 @@
 package GameShop.java.models;
 
-import GameShop.java.services.CreateRentalService;
+import GameShop.java.services.RentalService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class Basket {
     }
 
     public static void submitBasket() {
-        CreateRentalService.createRental(date, customer, console, games);
+        RentalService.createRental(date, customer, console, games);
         clearBasket();
     }
 }
