@@ -1,9 +1,19 @@
 package GameShop.java.services;
 
-import GameShop.java.repositories.CreateRentalRepository;
+import GameShop.java.models.Console;
+import GameShop.java.models.Customer;
+import GameShop.java.models.Game;
+import GameShop.java.models.Rental;
+import GameShop.java.repositories.RentalRepository;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CreateRentalService {
-    protected static CreateRentalRepository repo = new CreateRentalRepository();
+    protected static RentalRepository repo = new RentalRepository();
 
-    public static void createRental() { repo.createRental(); }
+    public static void createRental(LocalDate date, Customer customer, Console console, ArrayList<Game> games) {
+        Rental rental = new Rental(date, customer, console, games);
+        repo.addRental(rental);
+    }
 }

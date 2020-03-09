@@ -31,6 +31,7 @@ public class CreateRentalController implements Initializable {
     @FXML private HBox gameTableWrapper;
     @FXML private TableView<Game> gameTableView;
     @FXML private CheckBox consoleRequired;
+    @FXML private DatePicker datePicker;
 
     @FXML private TableColumn<Game, String> idColumn;
     @FXML private TableColumn<Game, String> nameColumn;
@@ -118,6 +119,9 @@ public class CreateRentalController implements Initializable {
     private void handleCustomerChange() {
         Basket.setCustomer(customerChoiceBox.getSelectionModel().getSelectedItem());
     }
+
+    @FXML
+    private void handleDateChange() {Basket.setDate(datePicker.getValue()) ;}
 
     @FXML
     private void reviewRental(ActionEvent event) throws IOException {

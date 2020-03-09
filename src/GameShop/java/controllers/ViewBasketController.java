@@ -24,6 +24,7 @@ public class ViewBasketController implements Initializable {
     @FXML private Text customer;
     @FXML private Text console;
     @FXML private Text consoleRequired;
+    @FXML private Text dateText;
     @FXML private TableView<Game> gameTableView;
     @FXML private TableColumn<Game, String> idColumn;
     @FXML private TableColumn<Game, String> nameColumn;
@@ -39,6 +40,12 @@ public class ViewBasketController implements Initializable {
         populateData();
     }
 
+    @FXML
+    private void submitRental(ActionEvent event) throws IOException {
+        Basket.submitBasket();
+        router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
+    }
+
     private void setupGameTable() {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getId(val.getValue())));
@@ -49,6 +56,7 @@ public class ViewBasketController implements Initializable {
         customer.setText(CreateRentalFXMLService.formatCustomer(Basket.getCustomer()));
         console.setText(CreateRentalFXMLService.formatConsole(Basket.getConsole()));
         consoleRequired.setText(CreateRentalFXMLService.formatConsoleRequired(Basket.isConsoleRequired()));
+        dateText.setText(Basket.getDate().toString());
         gameTableView.getItems().setAll(Basket.getGames());
     }
 }

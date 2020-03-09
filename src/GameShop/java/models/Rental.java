@@ -1,26 +1,26 @@
 package GameShop.java.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Rental {
     private final int MAX_RENTAL_GAMES = 3;
 
     private static int idSeed = 1000;
     private int id;
-    private Date dateRented;
+    private LocalDate dateRented;
     private Customer customer;
     private Console console;
     private ArrayList<Game> games = new ArrayList<>();
 
-    public Rental(Date dateRented, Customer customer) {
+    public Rental(LocalDate dateRented, Customer customer) {
         id = idSeed;
         this.dateRented = dateRented;
         this.customer = customer;
         idSeed++;
     }
 
-    public Rental(Date dateRented, Customer customer, Console console, ArrayList<Game> games) {
+    public Rental(LocalDate dateRented, Customer customer, Console console, ArrayList<Game> games) {
         id = idSeed;
         this.dateRented = dateRented;
         this.customer = customer;
@@ -33,11 +33,11 @@ public class Rental {
         return id;
     }
 
-    public Date getDateRented() {
+    public LocalDate getDateRented() {
         return dateRented;
     }
 
-    public void setDateRented(Date dateRented) {
+    public void setDateRented(LocalDate dateRented) {
         this.dateRented = dateRented;
     }
 

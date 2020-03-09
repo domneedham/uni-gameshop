@@ -22,6 +22,10 @@
                 <ChoiceBox fx:id="consoleChoiceBox" onAction="#handleConsoleChange" />
                 <CheckBox fx:id="consoleRequired" text="Console Required?" onAction="#handleConsoleRequiredChange"/>
             </HBox>
+            <HBox>
+                <Label text="Rental Start Date" />
+                <DatePicker fx:id="datePicker" onAction="#handleDateChange" />
+            </HBox>
 
             <HBox fx:id="gameTableWrapper">
                 <TableView fx:id="gameTableView" >

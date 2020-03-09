@@ -1,5 +1,8 @@
 package GameShop.java.models;
 
+import GameShop.java.services.CreateRentalService;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Basket {
@@ -8,6 +11,7 @@ public class Basket {
     private static boolean consoleRequired = false;
     private static Console console;
     private static ArrayList<Game> games = new ArrayList<>();
+    private static LocalDate date;
 
     public static boolean isBasketPopulated() {
         if (customer != null && console != null) {
@@ -33,6 +37,8 @@ public class Basket {
         return games;
     }
 
+    public static LocalDate getDate() { return date; }
+
     public static void setCustomer(Customer customer) {
         Basket.customer = customer;
     }
@@ -44,6 +50,8 @@ public class Basket {
     public static void setConsole(Console console) {
         Basket.console = console;
     }
+
+    public static void setDate(LocalDate date) { Basket.date = date; }
 
     public static void addGame(Game game) {
         if (!games.contains(game) && games.size() < MAX_GAMES) {
@@ -61,6 +69,7 @@ public class Basket {
         customer = null;
         console = null;
         games.clear();
+        date = null;
     }
 
     public static boolean gameInBasket(Game game) { return games.contains(game); }
@@ -69,7 +78,8 @@ public class Basket {
         games.clear();
     }
 
-    public static String logBasket() {
-        return console.toString() + "\n" + customer.toString() + "\n" + games.toString() + "\n" + consoleRequired + "\n";
+    public static void submitBasket() {
+        CreateRentalService.createRental(date, customer, console, games);
+        clearBasket();
     }
 }
