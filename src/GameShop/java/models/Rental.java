@@ -69,12 +69,9 @@ public class Rental {
 
     @Override
     public String toString() {
-        return "Rental{" +
-                "id=" + id +
-                ", dateRented=" + dateRented +
-                ", customer=" + customer +
-                ", rentalItems=" + games +
-                ", console=" + console +
-                '}';
+        return "Rented on: " + dateRented +
+                ", Customer: " + customer +
+                ", Console: " + console +
+                ", Games: " + games;
     }
 }

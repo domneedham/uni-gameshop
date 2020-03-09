@@ -74,13 +74,6 @@ public class Console implements IProduct {
 
     @Override
     public String toString() {
-        return "Console{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", form='" + form + '\'' +
-                ", cost=" + cost +
-                ", bit=" + bit +
-                ", inForRepair=" + inForRepair +
-                '}';
+        return "Name: " + name;
     }
 }

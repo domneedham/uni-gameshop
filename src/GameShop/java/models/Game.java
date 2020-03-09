@@ -61,12 +61,6 @@ public class Game implements IProduct {
 
     @Override
     public String toString() {
-        return "Game{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", console='" + console + '\'' +
-                ", cost=" + cost +
-                ", inForRepair=" + inForRepair +
-                '}';
+        return "Name: " + name;
     }
 }
