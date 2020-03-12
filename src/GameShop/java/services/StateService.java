@@ -99,7 +99,8 @@ public class StateService {
     @Override
     public String toString() {
         return "Games: " + games +
-                "\nConsoles: " + consoles;
+                "\nConsoles: " + consoles +
+                "\nRentals" + rentals;
     }
 
 }

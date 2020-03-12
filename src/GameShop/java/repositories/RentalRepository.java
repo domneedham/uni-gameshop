@@ -12,6 +12,5 @@ public class RentalRepository {
         if (!getAllRentals().contains(rental)) {
             getAllRentals().add(rental);
         }
-        System.out.println(getAllRentals());
     }
 }

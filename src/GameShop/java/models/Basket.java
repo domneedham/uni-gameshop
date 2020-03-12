@@ -79,7 +79,7 @@ public class Basket {
     }
 
     public static void submitBasket() {
-        RentalService.createRental(date, customer, console, games);
+        RentalService.createRental(date, customer, console, new ArrayList<>(games));
         clearBasket();
     }
 }
