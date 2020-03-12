@@ -49,9 +49,7 @@ public class Rental {
         this.customer = customer;
     }
 
-    public int[] getGamesRented() {
-        return new int[games.size()];
-    }
+    public ArrayList<Game> getGames() { return games; }
 
     public void addGameToRental(Game game) {
         if (games.size() <= MAX_RENTAL_GAMES) {

@@ -4,6 +4,8 @@ import GameShop.java.models.Rental;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.RentalService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +27,12 @@ public class ViewRentalsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        rentalListView.getItems().setAll(RentalService.getRentals());
+        showRentals();
+    }
+
+    private void showRentals() {
+        ObservableList<Rental> rentals;
+        rentals = FXCollections.observableArrayList(RentalService.getRentals());
+        rentalListView.getItems().setAll(rentals);
     }
 }
