@@ -1,6 +1,5 @@
 package GameShop.java.controllers;
 
-import GameShop.java.models.Basket;
 import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
@@ -39,7 +38,7 @@ public class CreateRentalController implements Initializable {
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
-        Basket.clearBasket();
+        BasketService.clearBasket();
         router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
     }
 
@@ -48,7 +47,7 @@ public class CreateRentalController implements Initializable {
         setupTable();
         getCustomers();
         getConsoles();
-        if (Basket.isBasketPopulated()) { fillDefaults(); }
+        if (BasketService.isBasketPopulated()) { fillDefaults(); }
 
     }
 
@@ -63,9 +62,9 @@ public class CreateRentalController implements Initializable {
     }
 
     private void fillDefaults() {
-        customerChoiceBox.getSelectionModel().select(Basket.getCustomer());
-        consoleChoiceBox.getSelectionModel().select(Basket.getConsole());
-        consoleRequired.setSelected(Basket.isConsoleRequired());
+        customerChoiceBox.getSelectionModel().select(BasketService.getCustomer());
+        consoleChoiceBox.getSelectionModel().select(BasketService.getConsole());
+        consoleRequired.setSelected(BasketService.isConsoleRequired());
     }
 
     private void getCustomers() {
@@ -94,7 +93,7 @@ public class CreateRentalController implements Initializable {
 
     @FXML
     private void handleConsoleRequiredChange() {
-        Basket.setConsoleRequired(consoleRequired.isSelected());
+        BasketService.setConsoleRequired(consoleRequired.isSelected());
     }
 
     @FXML
@@ -102,26 +101,26 @@ public class CreateRentalController implements Initializable {
         if (!gameTableWrapper.isVisible()) {
             gameTableWrapper.setVisible(true);
         }
-        Basket.setConsole(consoleChoiceBox.getSelectionModel().getSelectedItem());
+        BasketService.setConsole(consoleChoiceBox.getSelectionModel().getSelectedItem());
 
-        ArrayList<Game> games = Basket.getGames();
+        ArrayList<Game> games = BasketService.getGames();
         ArrayList<Game> gamesToRemove = new ArrayList<>();
         for (Game game : games) {
-            if (game.getConsole() != Basket.getConsole()) {
+            if (game.getConsole() != BasketService.getConsole()) {
                 gamesToRemove.add(game);
             }
         }
-        Basket.removeGame(gamesToRemove);
+        BasketService.removeGame(gamesToRemove);
         getGames();
     }
 
     @FXML
     private void handleCustomerChange() {
-        Basket.setCustomer(customerChoiceBox.getSelectionModel().getSelectedItem());
+        BasketService.setCustomer(customerChoiceBox.getSelectionModel().getSelectedItem());
     }
 
     @FXML
-    private void handleDateChange() {Basket.setDate(datePicker.getValue()) ;}
+    private void handleDateChange() { BasketService.setDate(datePicker.getValue()) ;}
 
     @FXML
     private void reviewRental(ActionEvent event) throws IOException {
@@ -131,7 +130,7 @@ public class CreateRentalController implements Initializable {
             System.out.println("Add a console to the rental");
         } else if (datePicker.getValue() == null) {
             System.out.println("You need to pick a date");
-        } else if (Basket.getGames().isEmpty() && !consoleRequired.isSelected()) {
+        } else if (BasketService.getGames().isEmpty() && !consoleRequired.isSelected()) {
             System.out.println("You need to add games or choose to rent the console");
         } else {
             router.changeRoute(RouteNames.VIEW_BASKET, event);
@@ -147,14 +146,14 @@ public class CreateRentalController implements Initializable {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Game game = getTableView().getItems().get(getIndex());
-                            if (Basket.gameInBasket(game)) {
-                                Basket.removeGame(game);
-                                if (!Basket.gameInBasket(game)) {
+                            if (BasketService.gameInBasket(game)) {
+                                BasketService.removeGame(game);
+                                if (!BasketService.gameInBasket(game)) {
                                     btn.setText("Add");
                                 }
                             } else {
-                                Basket.addGame(game);
-                                if (Basket.gameInBasket(game)) {
+                                BasketService.addGame(game);
+                                if (BasketService.gameInBasket(game)) {
                                     btn.setText("Remove");
                                 }
                             }
@@ -168,7 +167,7 @@ public class CreateRentalController implements Initializable {
                             setGraphic(null);
                         } else {
                             Game game = param.getTableView().getItems().get(getIndex());
-                            if (Basket.gameInBasket(game)) {
+                            if (BasketService.gameInBasket(game)) {
                                 btn.setText("Remove");
                             }
                             setGraphic(btn);

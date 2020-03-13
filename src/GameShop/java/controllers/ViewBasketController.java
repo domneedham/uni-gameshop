@@ -1,9 +1,9 @@
 package GameShop.java.controllers;
 
-import GameShop.java.models.Basket;
 import GameShop.java.models.Game;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
+import GameShop.java.services.BasketService;
 import GameShop.java.services.CreateRentalFXMLService;
 import GameShop.java.services.GameFXMLTableService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -42,7 +42,7 @@ public class ViewBasketController implements Initializable {
 
     @FXML
     private void submitRental(ActionEvent event) throws IOException {
-        Basket.submitBasket();
+        BasketService.submitBasket();
         router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
     }
 
@@ -53,10 +53,10 @@ public class ViewBasketController implements Initializable {
     }
 
     private void populateData() {
-        customer.setText(CreateRentalFXMLService.formatCustomer(Basket.getCustomer()));
-        console.setText(CreateRentalFXMLService.formatConsole(Basket.getConsole()));
-        consoleRequired.setText(CreateRentalFXMLService.formatConsoleRequired(Basket.isConsoleRequired()));
-        dateText.setText(Basket.getDate().toString());
-        gameTableView.getItems().setAll(Basket.getGames());
+        customer.setText(CreateRentalFXMLService.formatCustomer(BasketService.getCustomer()));
+        console.setText(CreateRentalFXMLService.formatConsole(BasketService.getConsole()));
+        consoleRequired.setText(CreateRentalFXMLService.formatConsoleRequired(BasketService.isConsoleRequired()));
+        dateText.setText(BasketService.getDate().toString());
+        gameTableView.getItems().setAll(BasketService.getGames());
     }
 }

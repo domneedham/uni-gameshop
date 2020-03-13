@@ -6,14 +6,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Basket {
-    private static int MAX_GAMES = 3;
-    private static Customer customer;
-    private static boolean consoleRequired = false;
-    private static Console console;
-    private static ArrayList<Game> games = new ArrayList<>();
-    private static LocalDate date;
+    private int MAX_GAMES = 3;
+    private Customer customer;
+    private boolean consoleRequired = false;
+    private Console console;
+    private ArrayList<Game> games = new ArrayList<>();
+    private LocalDate date;
 
-    public static boolean isBasketPopulated() {
+    public boolean isBasketPopulated() {
         if (customer != null && console != null) {
             return true;
         } else {
@@ -21,64 +21,64 @@ public class Basket {
         }
     }
 
-    public static Customer getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public static boolean isConsoleRequired() {
+    public boolean isConsoleRequired() {
         return consoleRequired;
     }
 
-    public static Console getConsole() {
+    public Console getConsole() {
         return console;
     }
 
-    public static ArrayList<Game> getGames() {
+    public ArrayList<Game> getGames() {
         return games;
     }
 
-    public static LocalDate getDate() { return date; }
+    public LocalDate getDate() { return date; }
 
-    public static void setCustomer(Customer customer) {
-        Basket.customer = customer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public static void setConsoleRequired(boolean required) {
-        Basket.consoleRequired = required;
+    public void setConsoleRequired(boolean required) {
+        this.consoleRequired = required;
     }
 
-    public static void setConsole(Console console) {
-        Basket.console = console;
+    public void setConsole(Console console) {
+        this.console = console;
     }
 
-    public static void setDate(LocalDate date) { Basket.date = date; }
+    public void setDate(LocalDate date) { this.date = date; }
 
-    public static void addGame(Game game) {
+    public void addGame(Game game) {
         if (!games.contains(game) && games.size() < MAX_GAMES) {
             games.add(game);
         }
     }
 
-    public static void removeGame(Game game) {
+    public void removeGame(Game game) {
         games.remove(game);
     }
 
-    public static void removeGame(ArrayList<Game> games) { Basket.games.removeAll(games); }
+    public void removeGame(ArrayList<Game> games) { this.games.removeAll(games); }
 
-    public static void clearBasket() {
+    public void clearBasket() {
         customer = null;
         console = null;
         games.clear();
         date = null;
     }
 
-    public static boolean gameInBasket(Game game) { return games.contains(game); }
+    public boolean gameInBasket(Game game) { return games.contains(game); }
 
-    public static void clearGames() {
+    public void clearGames() {
         games.clear();
     }
 
-    public static void submitBasket() {
+    public void submitBasket() {
         RentalService.createRental(date, customer, console, new ArrayList<>(games));
         clearBasket();
     }

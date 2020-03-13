@@ -1,10 +1,7 @@
 package GameShop.java.services;
 
-import GameShop.java.models.Console;
-import GameShop.java.models.Rental;
+import GameShop.java.models.*;
 import GameShop.java.models.enums.ConsoleForm;
-import GameShop.java.models.Customer;
-import GameShop.java.models.Game;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ public class StateService {
     private final static ArrayList<Console> consoles = new ArrayList<>();
     private final static ArrayList<Customer> customers = new ArrayList<>();
     private final static ArrayList<Rental> rentals = new ArrayList<>();
+    private final static Basket basket = new Basket();
 
     // On initialisation, populate lists with dummy data
     // Create consoles first, so games can use consoles
@@ -36,6 +34,8 @@ public class StateService {
     public ArrayList<Customer> getCustomers() { return customers; }
 
     public ArrayList<Rental> getRentals() { return rentals; }
+
+    public Basket getBasket() { return basket; }
 
     // create dummy objects for consoles, like reading from a DB
     private void populateConsoles() {
@@ -100,7 +100,8 @@ public class StateService {
     public String toString() {
         return "Games: " + games +
                 "\nConsoles: " + consoles +
-                "\nRentals" + rentals;
+                "\nRentals: " + rentals +
+                "\nBasket: " + basket;
     }
 
 }
