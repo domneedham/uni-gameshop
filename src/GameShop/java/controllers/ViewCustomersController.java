@@ -1,11 +1,9 @@
 package GameShop.java.controllers;
 
-import GameShop.java.models.Customer;
+import GameShop.java.models.adaptors.CustomerTableAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.CustomerFXMLTableService;
 import GameShop.java.services.CustomerService;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,24 +19,26 @@ import java.util.ResourceBundle;
 public class ViewCustomersController implements Initializable {
     private final Router router = new Router();
 
-    @FXML private TableView<Customer> customerTableView;
-    @FXML private TableColumn<Customer, String> idColumn;
-    @FXML private TableColumn<Customer, String> forenameColumn;
-    @FXML private TableColumn<Customer, String> surnameColumn;
-    @FXML private TableColumn<Customer, String> emailColumn;
-    @FXML private TableColumn<Customer, String> telephoneColumn;
+    @FXML private TableView customerTableView;
+    @FXML private TableColumn idColumn;
+    @FXML private TableColumn forenameColumn;
+    @FXML private TableColumn surnameColumn;
+    @FXML private TableColumn emailColumn;
+    @FXML private TableColumn telephoneColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        customerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CustomerFXMLTableService.getId(val.getValue())));
-        forenameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CustomerFXMLTableService.getForename(val.getValue())));
-        surnameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CustomerFXMLTableService.getSurname(val.getValue())));
-        emailColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CustomerFXMLTableService.getEmail(val.getValue())));
-        telephoneColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(CustomerFXMLTableService.getTelephone(val.getValue())));
+        setupTable();
         showCustomers();
+    }
 
+    private void setupTable() {
+        customerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        CustomerTableAdaptor.setIdValues(idColumn);
+        CustomerTableAdaptor.setForenameValues(forenameColumn);
+        CustomerTableAdaptor.setSurnameValues(surnameColumn);
+        CustomerTableAdaptor.setEmailValues(emailColumn);
+        CustomerTableAdaptor.setTelephoneValues(telephoneColumn);
     }
 
     @FXML
@@ -47,7 +47,7 @@ public class ViewCustomersController implements Initializable {
     }
 
     private void showCustomers() {
-        ObservableList<Customer> items = FXCollections.observableArrayList(CustomerService.getAllCustomers());
+        ObservableList items = FXCollections.observableArrayList(CustomerService.getAllCustomers());
         customerTableView.getItems().setAll(items);
     }
 }

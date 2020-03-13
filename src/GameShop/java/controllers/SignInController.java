@@ -18,7 +18,7 @@ public class SignInController implements Initializable {
     private Router router = new Router();
 
     private final String adminUsername = "admin";
-    private final String adminPassword = "iamadmin";
+    private final String adminPassword = "admin";
 
     @FXML
     private TextField username;

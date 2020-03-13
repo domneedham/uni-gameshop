@@ -1,6 +1,5 @@
 package GameShop.java.controllers;
 
-import GameShop.java.models.Rental;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.RentalService;
@@ -18,7 +17,7 @@ import java.util.ResourceBundle;
 public class ViewRentalsController implements Initializable {
     private Router router = new Router();
 
-    @FXML private ListView<Rental> rentalListView;
+    @FXML private ListView rentalListView;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -31,8 +30,7 @@ public class ViewRentalsController implements Initializable {
     }
 
     private void showRentals() {
-        ObservableList<Rental> rentals;
-        rentals = FXCollections.observableArrayList(RentalService.getRentals());
+        ObservableList rentals = FXCollections.observableArrayList(RentalService.getRentals());;
         rentalListView.getItems().setAll(rentals);
     }
 }

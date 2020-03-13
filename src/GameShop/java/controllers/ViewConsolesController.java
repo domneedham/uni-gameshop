@@ -1,11 +1,9 @@
 package GameShop.java.controllers;
 
-import GameShop.java.models.Console;
+import GameShop.java.models.adaptors.ConsoleTableAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.ConsoleFXMLTableService;
 import GameShop.java.services.ConsoleService;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,27 +21,31 @@ import java.util.ResourceBundle;
 public class ViewConsolesController implements Initializable {
     private final Router router = new Router();
 
-    @FXML private TableView<Console> consoleTableView;
+    @FXML private TableView consoleTableView;
 
     @FXML private CheckBox showAll;
 
-    @FXML private TableColumn<Console, String> idColumn;
-    @FXML private TableColumn<Console, String> nameColumn;
-    @FXML private TableColumn<Console, String> formColumn;
-    @FXML private TableColumn<Console, String> bitColumn;
-    @FXML private TableColumn<Console, String> availableColumn;
-    @FXML private TableColumn<Console, String> costColumn;
+    @FXML private TableColumn idColumn;
+    @FXML private TableColumn nameColumn;
+    @FXML private TableColumn formColumn;
+    @FXML private TableColumn bitColumn;
+    @FXML private TableColumn availableColumn;
+    @FXML private TableColumn costColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getName(val.getValue())));
-        formColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getForm(val.getValue())));
-        bitColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getBit(val.getValue())));
-        availableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getAvailable(val.getValue())));
-        costColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getFormattedCost(val.getValue())));
+        setupTable();
         showConsoles();
+    }
+
+    private void setupTable() {
+        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        ConsoleTableAdaptor.setIdValues(idColumn);
+        ConsoleTableAdaptor.setNameValues(nameColumn);
+        ConsoleTableAdaptor.setFormValues(formColumn);
+        ConsoleTableAdaptor.setBitValues(bitColumn);
+        ConsoleTableAdaptor.setAvailableValues(availableColumn);
+        ConsoleTableAdaptor.setCostValues(costColumn);
     }
 
     @FXML
@@ -56,7 +58,7 @@ public class ViewConsolesController implements Initializable {
     }
 
     private void showConsoles() {
-        ObservableList<Console> items;
+        ObservableList items;
         if (showAll.isSelected()) {
             items = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
         } else {

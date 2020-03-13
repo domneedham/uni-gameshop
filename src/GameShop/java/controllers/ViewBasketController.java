@@ -1,12 +1,10 @@
 package GameShop.java.controllers;
 
-import GameShop.java.models.Game;
+import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.BasketService;
 import GameShop.java.services.CreateRentalFXMLService;
-import GameShop.java.services.GameFXMLTableService;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,9 +23,9 @@ public class ViewBasketController implements Initializable {
     @FXML private Text console;
     @FXML private Text consoleRequired;
     @FXML private Text dateText;
-    @FXML private TableView<Game> gameTableView;
-    @FXML private TableColumn<Game, String> idColumn;
-    @FXML private TableColumn<Game, String> nameColumn;
+    @FXML private TableView gameTableView;
+    @FXML private TableColumn idColumn;
+    @FXML private TableColumn nameColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -48,8 +46,8 @@ public class ViewBasketController implements Initializable {
 
     private void setupGameTable() {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        idColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getId(val.getValue())));
-        nameColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(GameFXMLTableService.getName(val.getValue())));
+        GameTableAdaptor.setIdVales(idColumn);
+        GameTableAdaptor.setNameValues(nameColumn);
     }
 
     private void populateData() {
