@@ -34,6 +34,16 @@ public class ShopKeeperHomeController implements Initializable {
         router.changeRoute(RouteNames.VIEW_CUSTOMERS, event);
     }
 
+    @FXML
+    private void handleEditGames(ActionEvent event) throws IOException {
+        router.changeRoute(RouteNames.EDIT_GAMES, event);
+    }
+
+    @FXML
+    private void handleEditConsoles(ActionEvent event) throws IOException {
+        router.changeRoute(RouteNames.EDIT_CONSOLES, event);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {}
 }

@@ -9,5 +9,7 @@ public enum RouteNames {
     CREATE_RENTAL,
     VIEW_BASKET,
     VIEW_CUSTOMERS,
-    VIEW_RENTALS
+    VIEW_RENTALS,
+    EDIT_GAMES,
+    EDIT_CONSOLES
 }

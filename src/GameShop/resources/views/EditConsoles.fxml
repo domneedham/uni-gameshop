@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.EditConsolesController">
+    <top>
+        <HBox>
+            <Label text="View All Consoles" styleClass="PageHeader" />
+        </HBox>
+    </top>
+    <center>
+        <VBox>
+            <ScrollPane>
+                <TableView fx:id="consoleTableView">
+                    <columns>
+                        <TableColumn text="Console ID" fx:id="idColumn" />
+                        <TableColumn text="Title" fx:id="nameColumn" />
+                        <TableColumn text="Form" fx:id="formColumn" />
+                        <TableColumn text="Bit" fx:id="bitColumn" />
+                        <TableColumn text="Cost" fx:id="costColumn" />
+                        <TableColumn text="Available" fx:id="availableColumn" />
+                        <TableColumn text="Edit Console" fx:id="editConsoleColumn" />
+                    </columns>
+                </TableView>
+            </ScrollPane>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox>
+            <Button text="Main Menu" onAction="#handleGoHome" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

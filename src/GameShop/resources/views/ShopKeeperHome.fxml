@@ -12,11 +12,17 @@
         </HBox>
     </top>
     <center>
-        <HBox>
-            <Button text="Create Rental" onAction="#handleCreateRental" />
-            <Button text="View Rentals" onAction="#handleViewRentals" />
-            <Button text="View All Customers" onAction="#handleViewCustomers" />
-            <Button text="Sign Out" onAction="#handleSignOut" />
-        </HBox>
+        <VBox>
+            <HBox>
+                <Button text="Create Rental" onAction="#handleCreateRental" />
+                <Button text="View Rentals" onAction="#handleViewRentals" />
+                <Button text="View All Customers" onAction="#handleViewCustomers" />
+                <Button text="Sign Out" onAction="#handleSignOut" />
+            </HBox>
+            <HBox>
+                <Button text="Edit Games" onAction="#handleEditGames" />
+                <Button text="Edit Consoles" onAction="#handleEditConsoles" />
+            </HBox>
+        </VBox>
     </center>
 </BorderPane>

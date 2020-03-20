@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.EditGamesController">
+    <top>
+        <HBox>
+            <Label text="All Games" styleClass="PageHeader" />
+        </HBox>
+    </top>
+    <center>
+        <VBox>
+            <ScrollPane>
+                <TableView fx:id="gameTableView">
+                    <columns>
+                        <TableColumn text="Game ID" fx:id="idColumn" />
+                        <TableColumn text="Title" fx:id="nameColumn" />
+                        <TableColumn text="Console" fx:id="consoleColumn" />
+                        <TableColumn text="Cost" fx:id="costColumn" />
+                        <TableColumn text="Available" fx:id="availableColumn" />
+                        <TableColumn text="Edit Game" fx:id="editGameColumn" />
+                    </columns>
+                </TableView>
+            </ScrollPane>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox>
+            <Button text="Main Menu" onAction="#handleGoHome" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -25,6 +25,8 @@ public class Router {
         put(RouteNames.VIEW_BASKET, VIEW_PATH + "ViewBasket.fxml");
         put(RouteNames.VIEW_CUSTOMERS, VIEW_PATH + "ViewCustomers.fxml");
         put(RouteNames.VIEW_RENTALS, VIEW_PATH + "ViewRentals.fxml");
+        put(RouteNames.EDIT_GAMES, VIEW_PATH + "EditGames.fxml");
+        put(RouteNames.EDIT_CONSOLES, VIEW_PATH + "EditConsoles.fxml");
     }};
 
     public final void changeRoute(RouteNames route, ActionEvent event) throws IOException {
