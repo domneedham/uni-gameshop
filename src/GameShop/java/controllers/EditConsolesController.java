@@ -1,6 +1,7 @@
 package GameShop.java.controllers;
 
 import GameShop.java.models.adaptors.ConsoleTableAdaptor;
+import GameShop.java.models.adaptors.EditConsolesAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.ConsoleService;
@@ -42,6 +43,7 @@ public class EditConsolesController implements Initializable {
         ConsoleTableAdaptor.setBitValues(bitColumn);
         ConsoleTableAdaptor.setAvailableValues(availableColumn);
         ConsoleTableAdaptor.setCostValues(costColumn);
+        addButtonsToTable();
     }
 
     @FXML
@@ -52,5 +54,9 @@ public class EditConsolesController implements Initializable {
     private void showConsoles() {
         ObservableList items = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
         consoleTableView.setItems(items);
+    }
+
+    private void addButtonsToTable() {
+        EditConsolesAdaptor.addButtonToTable(editConsoleColumn, router);
     }
 }

@@ -11,5 +11,6 @@ public enum RouteNames {
     VIEW_CUSTOMERS,
     VIEW_RENTALS,
     EDIT_GAMES,
-    EDIT_CONSOLES
+    EDIT_CONSOLES,
+    EDIT_CONSOLE
 }

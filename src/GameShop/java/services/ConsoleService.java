@@ -21,4 +21,8 @@ public class ConsoleService {
     public static void removeConsole(Console console) { repo.removeConsole(console); }
 
     public static void modifyConsole(Console console) { repo.modifyConsole(console); }
+
+    public static void modifyConsoleName(String id, String name) { repo.modifyConsoleName(id, name); }
+
+    public static void modifyInForRepair(String id, boolean inForRepair) { repo.modifyInForRepair(id, inForRepair); }
 }

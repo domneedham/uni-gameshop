@@ -1,5 +1,6 @@
 package GameShop.java.routers;
 
+import GameShop.java.controllers.IControllerCommunication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,6 +28,7 @@ public class Router {
         put(RouteNames.VIEW_RENTALS, VIEW_PATH + "ViewRentals.fxml");
         put(RouteNames.EDIT_GAMES, VIEW_PATH + "EditGames.fxml");
         put(RouteNames.EDIT_CONSOLES, VIEW_PATH + "EditConsoles.fxml");
+        put(RouteNames.EDIT_CONSOLE, VIEW_PATH + "EditConsole.fxml");
     }};
 
     public final void changeRoute(RouteNames route, ActionEvent event) throws IOException {
@@ -38,5 +40,19 @@ public class Router {
         root.getStylesheets().add(getClass().getResource(CSS_FILE).toExternalForm());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+    }
+
+    public final void changeRouteActivated(RouteNames route, ActionEvent event, String id) throws IOException {
+        String sceneRoute = routes.get(route);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneRoute));
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 1080, 720);
+        root.getStylesheets().add(getClass().getResource(CSS_FILE).toExternalForm());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+
+        IControllerCommunication control = loader.getController();
+        control.passId(id);
     }
 }
