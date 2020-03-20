@@ -63,6 +63,8 @@ public class BasketService {
 
     public static void clearGames() { repo.clearGames(); }
 
+    public static boolean maxGamesInBasket() { return repo.maxGamesInBasket(); }
+
     public static void submitBasket() {
         repo.submitBasket();
         clearBasket();

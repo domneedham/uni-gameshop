@@ -62,4 +62,6 @@ public class BasketRepository {
         getBasket().submitBasket();
         clearBasket();
     }
+
+    public boolean maxGamesInBasket() { return getBasket().maxGamesInBasket(); }
 }

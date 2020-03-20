@@ -1,5 +1,6 @@
 package GameShop.java.models.adaptors;
 
+import GameShop.java.general.AlertBox;
 import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
@@ -7,10 +8,7 @@ import GameShop.java.services.BasketService;
 import GameShop.java.services.GameService;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
@@ -63,11 +61,19 @@ public class CreateRentalAdaptor {
                                 BasketService.removeGame(game);
                                 if (!BasketService.gameInBasket(game)) {
                                     btn.setText("Add");
+                                } else {
+                                    AlertBox.showMessage(Alert.AlertType.ERROR, "Failed to remove game from the basket");
                                 }
                             } else {
+                                if (BasketService.maxGamesInBasket()) {
+                                    AlertBox.showMessage(Alert.AlertType.ERROR, "Max games already in the basket");
+                                    return;
+                                }
                                 BasketService.addGame(game);
                                 if (BasketService.gameInBasket(game)) {
                                     btn.setText("Remove");
+                                } else {
+                                    AlertBox.showMessage(Alert.AlertType.ERROR, "Failed to add game to the basket");
                                 }
                             }
                         });

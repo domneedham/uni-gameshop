@@ -74,6 +74,8 @@ public class Basket {
 
     public boolean gameInBasket(Game game) { return games.contains(game); }
 
+    public boolean maxGamesInBasket() { return games.size() >= MAX_GAMES; }
+
     public void clearGames() {
         games.clear();
     }

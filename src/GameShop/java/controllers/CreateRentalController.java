@@ -1,5 +1,6 @@
 package GameShop.java.controllers;
 
+import GameShop.java.general.AlertBox;
 import GameShop.java.models.adaptors.CreateRentalAdaptor;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.routers.RouteNames;
@@ -110,13 +111,13 @@ public class CreateRentalController implements Initializable {
     @FXML
     private void reviewRental(ActionEvent event) throws IOException {
         if (customerChoiceBox.getSelectionModel().isEmpty()) {
-            System.out.println("Add a customer to the rental");
+            AlertBox.showMessage(Alert.AlertType.ERROR, "Add a customer to the rental");
         } else if (consoleChoiceBox.getSelectionModel().isEmpty()) {
-            System.out.println("Add a console to the rental");
+            AlertBox.showMessage(Alert.AlertType.ERROR, "Add a console to the rental");
         } else if (datePicker.getValue() == null) {
-            System.out.println("You need to pick a date");
+            AlertBox.showMessage(Alert.AlertType.ERROR, "You need to pick a date");
         } else if (BasketService.getGames().isEmpty() && !consoleRequired.isSelected()) {
-            System.out.println("You need to add games or choose to rent the console");
+            AlertBox.showMessage(Alert.AlertType.ERROR, "You need to add games or choose to rent the console");
         } else {
             router.changeRoute(RouteNames.VIEW_BASKET, event);
         }
