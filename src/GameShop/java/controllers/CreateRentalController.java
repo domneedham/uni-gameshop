@@ -44,7 +44,6 @@ public class CreateRentalController implements Initializable {
         getCustomers();
         getConsoles();
         if (BasketService.isBasketPopulated()) { fillDefaults(); }
-
     }
 
     private void setupTable() {
@@ -88,8 +87,14 @@ public class CreateRentalController implements Initializable {
         if (!gameTableWrapper.isVisible()) {
             gameTableWrapper.setVisible(true);
         }
+
+        // if the console is wanted - clear the games from the basket when it changes
+        // as you can't rent games for more than one console if the console is being rented
+        if (consoleRequired.isSelected()) {
+            BasketService.removeGame(CreateRentalAdaptor.getGamesToRemoveFromBasket());
+        }
+
         BasketService.setConsole(CreateRentalAdaptor.getConsole(consoleChoiceBox));
-        BasketService.removeGame(CreateRentalAdaptor.getGamesToRemoveFromBasket());
         getGames();
     }
 
