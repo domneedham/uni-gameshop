@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="GameShop.java.controllers.EditGameController">
+    <top>
+        <HBox>
+            <Label text="View All Games" styleClass="PageHeader" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox>
+            <HBox>
+                <Label text="Game ID" />
+                <Text fx:id="idText" />
+            </HBox>
+            <HBox>
+                <Label text="Name" />
+                <TextField fx:id="nameTextField" />
+            </HBox>
+            <HBox>
+                <Label text="In For Repair?" />
+                <CheckBox fx:id="inForRepairCheckBox" />
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button text="Go Back" onAction="#handleGoBack" />
+            <Button text="Save Changes" onAction="#handleSaveChanges" />
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,5 +1,6 @@
 package GameShop.java.controllers;
 
+import GameShop.java.models.adaptors.EditGamesAdaptor;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
@@ -40,6 +41,7 @@ public class EditGamesController implements Initializable {
         GameTableAdaptor.setConsoleValues(consoleColumn);
         GameTableAdaptor.setAvailableValues(availableColumn);
         GameTableAdaptor.setCostValues(costColumn);
+        addButtonsToTable();
     }
 
     @FXML
@@ -50,5 +52,9 @@ public class EditGamesController implements Initializable {
     private void showGames() {
         ObservableList items = FXCollections.observableArrayList(GameService.getAllGames());
         gameTableView.getItems().setAll(items);
+    }
+
+    private void addButtonsToTable() {
+        EditGamesAdaptor.addButtonToTable(editGameColumn, router);
     }
 }

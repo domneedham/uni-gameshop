@@ -27,6 +27,7 @@ public class Router {
         put(RouteNames.VIEW_CUSTOMERS, VIEW_PATH + "ViewCustomers.fxml");
         put(RouteNames.VIEW_RENTALS, VIEW_PATH + "ViewRentals.fxml");
         put(RouteNames.EDIT_GAMES, VIEW_PATH + "EditGames.fxml");
+        put(RouteNames.EDIT_GAME, VIEW_PATH + "EditGame.fxml");
         put(RouteNames.EDIT_CONSOLES, VIEW_PATH + "EditConsoles.fxml");
         put(RouteNames.EDIT_CONSOLE, VIEW_PATH + "EditConsole.fxml");
     }};

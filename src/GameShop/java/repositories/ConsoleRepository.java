@@ -48,22 +48,6 @@ public class ConsoleRepository {
         }
     }
 
-    public void modifyConsoleName(String id, String name) {
-        for (Console c: getAllConsoles()) {
-            if (c.getId().equals(id)) {
-                c.setName(name);
-            }
-        }
-    }
-
-    public void modifyInForRepair(String id, boolean inForRepair) {
-        for (Console c: getAllConsoles()) {
-            if (c.getId().equals(id)) {
-                c.setInForRepair(inForRepair);
-            }
-        }
-    }
-
     public String getId(Console console) { return console.getId(); }
     public String getName(Console console) { return console.getName(); }
     public String getForm(Console console) { return console.getForm().toString(); }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class GameService {
     protected static GameRepository repo = new GameRepository();
 
-    public static ArrayList<Game> getAllGames() { return  repo.getAllGames(); }
+    public static ArrayList<Game> getAllGames() { return repo.getAllGames(); }
 
     public static ArrayList<Game> getAvailableGames() { return repo.getAvailableGames(); }
 
@@ -20,5 +20,9 @@ public class GameService {
 
     public static void removeGame(Game game) { repo.removeGame(game); }
 
-    public static void modifyGame(Game game) { repo.modifyGame(game); }
+    public static void modifyGame(Game game, String newName, boolean inForRepair) {
+        game.setName(newName);
+        game.setInForRepair(inForRepair);
+        repo.modifyGame(game);
+    }
 }
