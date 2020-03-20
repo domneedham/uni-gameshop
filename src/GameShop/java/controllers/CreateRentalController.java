@@ -57,6 +57,7 @@ public class CreateRentalController implements Initializable {
         customerChoiceBox.getSelectionModel().select(BasketService.getCustomer());
         consoleChoiceBox.getSelectionModel().select(BasketService.getConsole());
         consoleRequired.setSelected(BasketService.isConsoleRequired());
+        datePicker.setValue(BasketService.getDate());
     }
 
     private void getCustomers() {
