@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Basket {
-    private int MAX_GAMES = 3;
+    private int MAX_GAMES = Rental.getMaxGames();
     private Customer customer;
     private boolean consoleRequired = false;
     private Console console;
@@ -14,7 +14,7 @@ public class Basket {
     private LocalDate date;
 
     public boolean isBasketPopulated() {
-        if (customer != null && console != null) {
+        if (customer != null && console != null & date != null && (consoleRequired || !consoleRequired && games.size() > 0)) {
             return true;
         } else {
             return false;
@@ -70,11 +70,14 @@ public class Basket {
         console = null;
         games.clear();
         date = null;
+        consoleRequired = false;
     }
 
     public boolean gameInBasket(Game game) { return games.contains(game); }
 
     public boolean maxGamesInBasket() { return games.size() >= MAX_GAMES; }
+
+    public int numberOfGamesInBasket() { return games.size(); }
 
     public void clearGames() {
         games.clear();

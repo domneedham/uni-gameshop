@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Rental {
-    private final int MAX_RENTAL_GAMES = 3;
+    private static final int MAX_RENTAL_GAMES = 3;
 
     private static int idSeed = 1000;
     private int id;
@@ -28,6 +28,8 @@ public class Rental {
         this.games = games;
         idSeed++;
     }
+
+    public static int getMaxGames() { return MAX_RENTAL_GAMES; }
 
     public int getId() {
         return id;
