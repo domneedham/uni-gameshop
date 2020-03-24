@@ -2,11 +2,11 @@ package GameShop.java.services;
 
 import GameShop.java.models.Customer;
 
-public class CustomerFXMLTableService extends CustomerService {
-    public static String getId(Customer customer) { return String.format("%d", repo.getId(customer)); }
-    public static String getForename(Customer customer) { return repo.getForename(customer); }
-    public static String getSurname(Customer customer) { return repo.getSurname(customer); }
-    public static String getEmail(Customer customer) { return repo.getEmail(customer); }
-    public static String getTelephone(Customer customer) { return repo.getTelNumber(customer); }
+public class CustomerFXMLTableService {
+    public static String getId(Customer customer) { return String.format("%d", customer.getId()); }
+    public static String getForename(Customer customer) { return customer.getForename(); }
+    public static String getSurname(Customer customer) { return customer.getSurname(); }
+    public static String getEmail(Customer customer) { return customer.getEmail(); }
+    public static String getTelephone(Customer customer) { return customer.getTelNumber(); }
 
 }

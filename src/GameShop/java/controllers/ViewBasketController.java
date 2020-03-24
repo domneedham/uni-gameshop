@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewBasketController implements Initializable {
-    private Router router = new Router();
+    private final Router router = new Router();
 
     @FXML private Text customer, console, consoleRequired, dateText;
     @FXML private TableView gameTableView;

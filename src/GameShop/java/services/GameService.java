@@ -7,7 +7,7 @@ import GameShop.java.repositories.GameRepository;
 import java.util.ArrayList;
 
 public class GameService {
-    protected static GameRepository repo = new GameRepository();
+    protected static final GameRepository repo = new GameRepository();
 
     public static ArrayList<Game> getAllGames() { return repo.getAllGames(); }
 

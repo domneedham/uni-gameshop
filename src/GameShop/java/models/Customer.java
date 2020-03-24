@@ -2,7 +2,7 @@ package GameShop.java.models;
 
 public class Customer {
     private static int idSeed = 1000;
-    private int id;
+    private final int id;
     private String forename;
     private String surname;
     private String email;
@@ -55,6 +55,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Name: " + forename + " " + surname;
+        return forename + " " + surname;
     }
 }

@@ -7,7 +7,7 @@ import GameShop.java.models.Rental;
 import java.util.ArrayList;
 
 public class RentalRepository {
-    public ArrayList<Rental> getAllRentals() { return App.state.getRentals(); };
+    public ArrayList<Rental> getAllRentals() { return App.state.getRentals(); }
 
     public ArrayList<Rental> getRentalsForCustomer(Customer customer) {
         ArrayList<Rental> customerRentals = new ArrayList<>();

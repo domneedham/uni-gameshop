@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CreateRentalController implements Initializable {
-    private Router router = new Router();
+    private final Router router = new Router();
 
     @FXML private ChoiceBox customerChoiceBox, consoleChoiceBox;
     @FXML private HBox gameTableWrapper;
@@ -99,8 +99,11 @@ public class CreateRentalController implements Initializable {
         if (consoleRequired.isSelected()) {
             BasketService.removeGame(CreateRentalAdaptor.getGamesToRemoveFromBasket());
         }
-
         BasketService.setConsole(CreateRentalAdaptor.getConsole(consoleChoiceBox));
+        // if the console is unavailable, uncheck the required box as it can not be rented
+        if (!CreateRentalAdaptor.isConsoleAvailable(consoleChoiceBox)) {
+            consoleRequired.setSelected(false);
+        }
         getGames();
     }
 

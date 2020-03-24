@@ -53,7 +53,7 @@ class RentalTest {
 
         Assertions.assertEquals(this.date, this.rental.getDateRented());
         Assertions.assertEquals(this.customer, this.rental.getCustomer());
-        Assertions.assertEquals(null, this.rental.getConsole());
+        Assertions.assertNull(this.rental.getConsole());
         Assertions.assertEquals(this.games, this.rental.getGames());
     }
 }

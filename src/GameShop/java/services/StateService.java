@@ -85,9 +85,9 @@ public class StateService {
     // create dummy objects for rentals, like reading from a DB
     private void populateRentals() {
         ArrayList<Game> games1 = new ArrayList<>();
-        games1.add(this.games.get(4));
-        games1.add(this.games.get(5));
-        Rental r1 = new Rental(LocalDate.of(2020, 03, 03), customers.get(0), consoles.get(0), games1);
+        games1.add(games.get(4));
+        games1.add(games.get(5));
+        Rental r1 = new Rental(LocalDate.of(2020, 3, 3), customers.get(0), consoles.get(0), games1);
         rentals.add(r1);
 
 //        ArrayList<Game> games2 = new ArrayList<>();

@@ -7,7 +7,7 @@ import GameShop.java.models.Game;
 import java.util.ArrayList;
 
 public class GameRepository {
-    public ArrayList<Game> getAllGames() { return App.state.getGames(); };
+    public ArrayList<Game> getAllGames() { return App.state.getGames(); }
 
     public ArrayList<Game> getAvailableGames() {
         ArrayList<Game> availableGames = new ArrayList<>();
@@ -55,9 +55,7 @@ public class GameRepository {
     }
 
     public void removeGame(Game game) {
-        if (getAllGames().contains(game)) {
-            getAllGames().remove(game);
-        }
+        getAllGames().remove(game);
     }
 
     public void modifyGame(Game game) {
@@ -68,11 +66,4 @@ public class GameRepository {
             }
         }
     }
-
-    public String getId(Game game) { return game.getId(); }
-    public String getName(Game game) { return game.getName(); }
-    public Console getConsole(Game game) { return game.getConsole(); }
-    public boolean isInForRepair (Game game) { return game.isInForRepair();}
-    public double getCost(Game game) { return game.getCost(); }
-    public boolean isAvailable(Game game) { return game.isAvailable(); }
 }

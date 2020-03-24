@@ -1,6 +1,5 @@
 package GameShop.java.models;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,12 +7,12 @@ public class Rental {
     private static final int MAX_RENTAL_GAMES = 3;
 
     private static int idSeed = 1000;
-    private int id;
+    private final int id;
     private LocalDate dateRented;
     private LocalDate dateDue;
     private Customer customer;
     private Console console;
-    private ArrayList<Game> games = new ArrayList<>();
+    private ArrayList<Game> games;
     private boolean returned;
 
     public Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) {

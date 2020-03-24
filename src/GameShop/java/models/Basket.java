@@ -2,12 +2,11 @@ package GameShop.java.models;
 
 import GameShop.java.services.RentalService;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Basket {
-    private int MAX_GAMES = Rental.getMaxGames();
+    private final int MAX_GAMES = Rental.getMaxGames();
     private Customer customer;
     private boolean consoleRequired = false;
     private Console console;

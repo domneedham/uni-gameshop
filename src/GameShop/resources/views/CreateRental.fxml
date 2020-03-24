@@ -44,7 +44,7 @@
 
     <bottom>
         <HBox>
-            <Button fx:id="reviewRentalButton" onAction="#reviewRental" text="Review the Rental" />
+            <Button onAction="#reviewRental" text="Review the Rental" />
             <Button text="Go Back" onAction="#handleGoBack" />
         </HBox>
     </bottom>

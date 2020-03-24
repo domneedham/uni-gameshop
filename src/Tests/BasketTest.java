@@ -175,9 +175,9 @@ class BasketTest {
         Assertions.assertTrue(this.basket.isBasketPopulated());
 
         this.basket.clearBasket();
-        Assertions.assertEquals(null, this.basket.getConsole());
-        Assertions.assertEquals(null, this.basket.getCustomer());
-        Assertions.assertEquals(null, this.basket.getDate());
+        Assertions.assertNull(this.basket.getConsole());
+        Assertions.assertNull(this.basket.getCustomer());
+        Assertions.assertNull(this.basket.getDate());
         Assertions.assertEquals(0, this.basket.numberOfGamesInBasket());
         Assertions.assertFalse(this.basket.isConsoleRequired());
         Assertions.assertFalse(this.basket.isBasketPopulated());

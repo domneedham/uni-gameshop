@@ -6,7 +6,7 @@ import GameShop.java.repositories.ConsoleRepository;
 import java.util.ArrayList;
 
 public class ConsoleService {
-    protected static ConsoleRepository repo = new ConsoleRepository();
+    protected static final ConsoleRepository repo = new ConsoleRepository();
 
     public static ArrayList<Console> getAllConsoles() { return repo.getAllConsoles(); }
 

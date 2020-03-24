@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewRentalsController implements Initializable {
-    private Router router = new Router();
+    private final Router router = new Router();
 
     @FXML private HBox customerChoiceWrapper;
 

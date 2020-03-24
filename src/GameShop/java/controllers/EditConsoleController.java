@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EditConsoleController implements Initializable, IControllerCommunication {
-    private Router router = new Router();
+    private final Router router = new Router();
 
     @FXML Text idText;
     @FXML TextField nameTextField;

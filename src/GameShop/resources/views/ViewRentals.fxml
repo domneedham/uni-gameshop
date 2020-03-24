@@ -16,7 +16,7 @@
         <VBox>
             <HBox>
                 <Label text="Specific Customer?" />
-                <CheckBox fx:id="specificCustomer" selected="false" onAction="#handleSpecificCustomerToggle" />
+                <CheckBox fx:id="specificCustomer" onAction="#handleSpecificCustomerToggle" />
             </HBox>
             <HBox fx:id="customerChoiceWrapper" visible="false">
                 <Label text="Customer" />

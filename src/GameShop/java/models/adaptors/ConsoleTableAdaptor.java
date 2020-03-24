@@ -11,22 +11,22 @@ public class ConsoleTableAdaptor {
     }
 
     public static void setNameValues(TableColumn<Console, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getName(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getName(val.getValue())));
     }
 
     public static void setFormValues(TableColumn<Console, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getForm(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getForm(val.getValue())));
     }
 
     public static void setBitValues(TableColumn<Console, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getBit(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getBit(val.getValue())));
     }
 
     public static void setAvailableValues(TableColumn<Console, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getAvailable(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getAvailable(val.getValue())));
     }
 
     public static void setCostValues(TableColumn<Console, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(ConsoleFXMLTableService.getFormattedCost(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(ConsoleFXMLTableService.getFormattedCost(val.getValue())));
     }
 }

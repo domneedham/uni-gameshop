@@ -14,7 +14,7 @@
         <VBox>
             <HBox>
                 <Label text="Specific Console?" />
-                <CheckBox fx:id="specificConsole" selected="false" onAction="#handleSpecificConsoleToggle" />
+                <CheckBox fx:id="specificConsole" onAction="#handleSpecificConsoleToggle" />
             </HBox>
             <HBox fx:id="consoleChoiceWrapper" visible="false">
                 <Label text="Console" />

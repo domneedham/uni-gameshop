@@ -27,6 +27,10 @@ public class CreateRentalAdaptor {
         return getConsole(choiceBox).getId();
     }
 
+    public static boolean isConsoleAvailable(ChoiceBox<Console> choiceBox) {
+        return getConsole(choiceBox).isAvailable();
+    }
+
     public static void getGamesForConsole(ObservableList<Game> items, String consoleId) {
         ArrayList<Game> allGames = GameService.getAvailableGames();
         for (Game g: allGames) {

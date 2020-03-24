@@ -15,10 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignInController implements Initializable {
-    private Router router = new Router();
-
-    private final String adminUsername = "admin";
-    private final String adminPassword = "admin";
+    private final Router router = new Router();
 
     @FXML
     private TextField username;
@@ -39,6 +36,8 @@ public class SignInController implements Initializable {
 
     @FXML
     private void handleSignIn(ActionEvent event) throws IOException {
+        String adminPassword = "admin";
+        String adminUsername = "admin";
         if (username.getText().equals(adminUsername) && password.getText().equals(adminPassword)) {
             router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
         } else {

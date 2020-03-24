@@ -37,10 +37,4 @@ public class CustomerRepository {
             }
         }
     }
-
-    public int getId(Customer customer) { return customer.getId(); }
-    public String getForename(Customer customer) { return customer.getForename(); }
-    public String getSurname(Customer customer) { return customer.getSurname(); }
-    public String getEmail(Customer customer) { return customer.getEmail(); }
-    public String getTelNumber(Customer customer) { return customer.getTelNumber(); }
 }

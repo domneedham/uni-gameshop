@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     // Creates a public object that holds current state of the application (mocking a DB)
     // Can be accessed by any class in the application via App.state
-    public static StateService state = new StateService();
+    public static final StateService state = new StateService();
 
     @Override
     public void start(Stage primaryStage) throws Exception {

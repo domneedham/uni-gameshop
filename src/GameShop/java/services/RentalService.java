@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RentalService {
-    protected static RentalRepository repo = new RentalRepository();
+    protected static final RentalRepository repo = new RentalRepository();
 
     public static void createRentalWithConsole(LocalDate date, Customer customer, Console console, ArrayList<Game> games) {
         Rental rental = new Rental(date, customer, console, games);

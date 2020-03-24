@@ -6,7 +6,7 @@ import GameShop.java.models.Console;
 import java.util.ArrayList;
 
 public class ConsoleRepository {
-    public ArrayList<Console> getAllConsoles() { return App.state.getConsoles(); };
+    public ArrayList<Console> getAllConsoles() { return App.state.getConsoles(); }
 
     public ArrayList<Console> getAvailableConsoles() {
         ArrayList<Console> availableConsoles = new ArrayList<>();
@@ -34,9 +34,7 @@ public class ConsoleRepository {
     }
 
     public void removeConsole(Console console) {
-        if (getAllConsoles().contains(console)) {
-            getAllConsoles().remove(console);
-        }
+        getAllConsoles().remove(console);
     }
 
     public void modifyConsole(Console console) {
@@ -47,12 +45,4 @@ public class ConsoleRepository {
             }
         }
     }
-
-    public String getId(Console console) { return console.getId(); }
-    public String getName(Console console) { return console.getName(); }
-    public String getForm(Console console) { return console.getForm().toString(); }
-    public int getBit(Console console) { return console.getBit(); }
-    public boolean isInForRepair(Console console) { return console.isInForRepair(); }
-    public double getCost(Console console) { return console.getCost(); }
-    public boolean isAvailable(Console console) { return console.isAvailable(); }
 }

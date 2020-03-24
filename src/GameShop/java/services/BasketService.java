@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BasketService {
-    private static BasketRepository repo = new BasketRepository();
+    private static final BasketRepository repo = new BasketRepository();
 
     public static boolean isBasketPopulated() {
         return repo.getBasket().isBasketPopulated();

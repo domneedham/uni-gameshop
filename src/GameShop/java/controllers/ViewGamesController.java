@@ -2,12 +2,10 @@ package GameShop.java.controllers;
 
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.models.adaptors.ViewGamesAdaptor;
-import GameShop.java.models.adaptors.ViewRentalAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.ConsoleService;
 import GameShop.java.services.GameService;
-import GameShop.java.services.RentalService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
