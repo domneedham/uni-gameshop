@@ -64,7 +64,7 @@ public class CreateRentalController implements Initializable {
     }
 
     private void getConsoles() {
-        ObservableList consoles = FXCollections.observableArrayList(ConsoleService.getAvailableConsoles());
+        ObservableList consoles = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
         consoleChoiceBox.getItems().setAll(consoles);
     }
 
@@ -78,7 +78,14 @@ public class CreateRentalController implements Initializable {
 
     @FXML
     private void handleConsoleRequiredChange() {
-        BasketService.setConsoleRequired(consoleRequired.isSelected());
+        try {
+            BasketService.setConsoleRequired(CreateRentalAdaptor.getConsole(consoleChoiceBox), consoleRequired.isSelected());
+        } catch (Exception e) {
+            // ensure box does not show as ticked
+            consoleRequired.setSelected(false);
+            AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
+
     }
 
     @FXML

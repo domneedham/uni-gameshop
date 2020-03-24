@@ -12,61 +12,79 @@ public class BasketService {
     private static BasketRepository repo = new BasketRepository();
 
     public static boolean isBasketPopulated() {
-        if (repo.getCustomer() != null && repo.getConsole() != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return repo.getBasket().isBasketPopulated();
     }
 
     public static Customer getCustomer() {
-        return repo.getCustomer();
+        return repo.getBasket().getCustomer();
     }
 
     public static boolean isConsoleRequired() {
-        return repo.isConsoleRequired();
+        return repo.getBasket().isConsoleRequired();
     }
 
     public static Console getConsole() {
-        return repo.getConsole();
+        return repo.getBasket().getConsole();
     }
 
     public static ArrayList<Game> getGames() {
-        return repo.getGames();
+        return repo.getBasket().getGames();
     }
 
-    public static LocalDate getDate() { return repo.getDate(); }
+    public static LocalDate getDate() {
+        return repo.getBasket().getDate();
+    }
 
-    public static void setCustomer(Customer customer) { repo.setCustomer(customer); }
+    public static void setCustomer(Customer customer) {
+        repo.getBasket().setCustomer(customer);
+    }
 
-    public static void setConsoleRequired(boolean required) {
-        repo.setConsoleRequired(required);
+    public static void setConsoleRequired(Console console, boolean required) throws Exception {
+        if (!console.isAvailable()) {
+            throw new Exception("Console is not available for rental");
+        } else {
+            repo.getBasket().setConsoleRequired(required);
+        }
     }
 
     public static void setConsole(Console console) {
-        repo.setConsole(console);
+        repo.getBasket().setConsole(console);
     }
 
-    public static void setDate(LocalDate date) { repo.setDate(date); }
+    public static void setDate(LocalDate date) {
+        repo.getBasket().setDate(date);
+    }
 
-    public static void addGame(Game game) { repo.addGame(game); }
+    public static void addGame(Game game) {
+        repo.getBasket().addGame(game);
+    }
 
     public static void removeGame(Game game) {
-        repo.removeGame(game);
+        repo.getBasket().removeGame(game);
     }
 
-    public static void removeGame(ArrayList<Game> games) { repo.removeGame(games);}
+    public static void removeGame(ArrayList<Game> games) {
+        repo.getBasket().removeGame(games);
+    }
 
-    public static void clearBasket() { repo.clearBasket(); }
+    public static void clearBasket() {
+        repo.getBasket().clearBasket();
+    }
 
-    public static boolean gameInBasket(Game game) { return repo.gameInBasket(game); }
+    public static boolean gameInBasket(Game game) {
+        return repo.getBasket().gameInBasket(game);
+    }
 
-    public static void clearGames() { repo.clearGames(); }
+    public static void clearGames() {
+        repo.getBasket().clearGames();
+    }
 
-    public static boolean maxGamesInBasket() { return repo.maxGamesInBasket(); }
+    public static boolean maxGamesInBasket() {
+        return repo.getBasket().maxGamesInBasket();
+    }
 
     public static void submitBasket() {
-        repo.submitBasket();
+        repo.getBasket().submitBasket();
         clearBasket();
     }
 }

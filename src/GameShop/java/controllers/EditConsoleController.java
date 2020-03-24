@@ -46,8 +46,6 @@ public class EditConsoleController implements Initializable, IControllerCommunic
     @FXML
     public void handleSaveChanges(ActionEvent event) throws IOException {
         ConsoleService.modifyConsole(ConsoleService.getById(idText.getText()), nameTextField.getText(), inForRepairCheckBox.isSelected());
-//        ConsoleService.modifyConsoleName(idText.getText(), nameTextField.getText());
-//        ConsoleService.modifyInForRepair(idText.getText(), inForRepairCheckBox.isSelected());
         router.changeRoute(RouteNames.EDIT_CONSOLES, event);
     }
 }

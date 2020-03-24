@@ -15,7 +15,7 @@ public class Basket {
     private LocalDate date;
 
     public boolean isBasketPopulated() {
-        if (customer != null && console != null & date != null && (consoleRequired || !consoleRequired && games.size() > 0)) {
+        if (customer != null && console != null & date != null && (consoleRequired || (!consoleRequired && games.size() > 0))) {
             return true;
         } else {
             return false;
@@ -52,7 +52,9 @@ public class Basket {
         this.console = console;
     }
 
-    public void setDate(LocalDate date) { this.date = date; }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public void addGame(Game game) {
         if (!games.contains(game) && games.size() < MAX_GAMES) {
@@ -64,7 +66,9 @@ public class Basket {
         games.remove(game);
     }
 
-    public void removeGame(ArrayList<Game> games) { this.games.removeAll(games); }
+    public void removeGame(ArrayList<Game> games) {
+        this.games.removeAll(games);
+    }
 
     public void clearBasket() {
         customer = null;
@@ -74,11 +78,17 @@ public class Basket {
         consoleRequired = false;
     }
 
-    public boolean gameInBasket(Game game) { return games.contains(game); }
+    public boolean gameInBasket(Game game) {
+        return games.contains(game);
+    }
 
-    public boolean maxGamesInBasket() { return games.size() >= MAX_GAMES; }
+    public boolean maxGamesInBasket() {
+        return games.size() >= MAX_GAMES;
+    }
 
-    public int numberOfGamesInBasket() { return games.size(); }
+    public int numberOfGamesInBasket() {
+        return games.size();
+    }
 
     public void clearGames() {
         games.clear();
