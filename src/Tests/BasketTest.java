@@ -41,6 +41,7 @@ class BasketTest {
 
         Assertions.assertTrue(this.basket.isBasketPopulated());
     }
+
     @Test
     void basketIsPopulatedWithConsoleNotRequired() {
         this.basket.setConsole(this.console);
@@ -181,7 +182,6 @@ class BasketTest {
         Assertions.assertFalse(this.basket.isConsoleRequired());
         Assertions.assertFalse(this.basket.isBasketPopulated());
     }
-
 
     void populateBasket() {
         this.basket.setConsole(this.console);

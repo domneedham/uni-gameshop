@@ -5,8 +5,11 @@ public interface IProduct {
     String getName();
     double getCost();
     boolean isInForRepair();
+    boolean isCurrentlyRented();
+    boolean isAvailable();
 
     void setName(String name);
     void setCost(double cost);
     void setInForRepair(boolean inForRepair);
+    void setIsCurrentlyRented(boolean status);
 }

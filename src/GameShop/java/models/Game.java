@@ -10,6 +10,7 @@ public class Game implements IProduct {
     private Console console;
     private double cost;
     private boolean inForRepair;
+    private boolean currentlyRented = false;
 
     public Game(String name, Console console, double cost, boolean inForRepair) {
         id = String.format("%s%d", idPrefix, idSeed);
@@ -51,8 +52,25 @@ public class Game implements IProduct {
     }
 
     @Override
+    public boolean isCurrentlyRented() { return currentlyRented; }
+
+    @Override
+    public boolean isAvailable() {
+        if (inForRepair || currentlyRented) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
     public void setInForRepair(boolean inForRepair) {
         this.inForRepair = inForRepair;
+    }
+
+    @Override
+    public void setIsCurrentlyRented(boolean status) {
+        this.currentlyRented = status;
     }
 
     public Console getConsole() {

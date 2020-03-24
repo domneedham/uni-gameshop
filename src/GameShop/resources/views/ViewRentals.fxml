@@ -13,9 +13,29 @@
     </top>
 
     <center>
-        <ScrollPane>
-            <ListView fx:id="rentalListView" />
-        </ScrollPane>
+        <VBox>
+            <HBox>
+                <Label text="Specific Customer?" />
+                <CheckBox fx:id="specificCustomer" selected="false" onAction="#handleSpecificCustomerToggle" />
+            </HBox>
+            <HBox fx:id="customerChoiceWrapper" visible="false">
+                <Label text="Customer" />
+                <ChoiceBox fx:id="customerChoiceBox" onAction="#handleCustomerChange" />
+            </HBox>
+
+            <ScrollPane>
+                <TableView fx:id="rentalTableView">
+                    <columns>
+                        <TableColumn text="Customer" fx:id="customerColumn" />
+                        <TableColumn text="Date Rented" fx:id="dateRentedColumn" />
+                        <TableColumn text="Date Due" fx:id="dateDueColumn" />
+                        <TableColumn text="Console" fx:id="consoleColumn" />
+                        <TableColumn text="Games" fx:id="gamesColumn" />
+                        <TableColumn text="Return Rental" fx:id="buttonColumn" />
+                    </columns>
+                </TableView>
+            </ScrollPane>
+        </VBox>
     </center>
 
     <bottom>

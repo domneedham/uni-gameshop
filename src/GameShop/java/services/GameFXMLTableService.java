@@ -7,5 +7,5 @@ public class GameFXMLTableService extends GameService {
     public static String getName(Game game) { return repo.getName(game); }
     public static String getConsoleName(Game game) { return repo.getConsole(game).getName(); }
     public static String getCost(Game game) { return String.format("£%.2f", repo.getCost(game)); }
-    public static String getAvailable(Game game) { return repo.isInForRepair(game) ? "No" : "Yes"; }
+    public static String getAvailable(Game game) { return repo.isAvailable(game) ? "Yes" : "No"; }
 }

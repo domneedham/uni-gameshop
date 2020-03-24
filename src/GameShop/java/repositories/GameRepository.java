@@ -12,7 +12,7 @@ public class GameRepository {
     public ArrayList<Game> getAvailableGames() {
         ArrayList<Game> availableGames = new ArrayList<>();
         for (Game g: getAllGames()) {
-            if (!g.isInForRepair()) {
+            if (g.isAvailable()) {
                 availableGames.add(g);
             }
         }
@@ -54,5 +54,5 @@ public class GameRepository {
     public Console getConsole(Game game) { return game.getConsole(); }
     public boolean isInForRepair (Game game) { return game.isInForRepair();}
     public double getCost(Game game) { return game.getCost(); }
-
+    public boolean isAvailable(Game game) { return game.isAvailable(); }
 }

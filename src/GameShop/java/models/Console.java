@@ -12,6 +12,7 @@ public class Console implements IProduct {
     private double cost;
     private int bit;
     private boolean inForRepair;
+    private boolean currentlyRented = false;
 
     public Console(String name, ConsoleForm form, double cost, int bit, boolean inForRepair) {
         id = String.format("%s%d", idPrefix, idSeed);
@@ -54,8 +55,25 @@ public class Console implements IProduct {
     }
 
     @Override
+    public boolean isCurrentlyRented() { return currentlyRented; }
+
+    @Override
+    public boolean isAvailable() {
+        if (inForRepair || currentlyRented) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
     public void setInForRepair(boolean inForRepair) {
         this.inForRepair = inForRepair;
+    }
+
+    @Override
+    public void setIsCurrentlyRented(boolean status) {
+        this.currentlyRented = status;
     }
 
     public ConsoleForm getForm() { return form; }

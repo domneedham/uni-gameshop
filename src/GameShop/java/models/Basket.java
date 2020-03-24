@@ -2,6 +2,7 @@ package GameShop.java.models;
 
 import GameShop.java.services.RentalService;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -84,7 +85,23 @@ public class Basket {
     }
 
     public void submitBasket() {
-        RentalService.createRental(date, customer, console, new ArrayList<>(games));
+        // create copy of games so that when basket is cleared
+        // does not clear games in rental
+        ArrayList<Game> gamesCopy = new ArrayList<>(games);
+        if (consoleRequired) {
+            RentalService.createRentalWithConsole(date, customer, console, gamesCopy);
+        } else {
+            RentalService.createRental(date, customer, gamesCopy);
+        }
         clearBasket();
+    }
+
+    @Override
+    public String toString() {
+        return "Customer: " + customer +
+                ", Console Required: " + consoleRequired +
+                ", Console: " + console +
+                ", Games: " + games +
+                ", Date: " + date;
     }
 }

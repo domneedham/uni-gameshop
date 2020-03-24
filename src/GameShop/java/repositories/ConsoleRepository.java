@@ -11,7 +11,7 @@ public class ConsoleRepository {
     public ArrayList<Console> getAvailableConsoles() {
         ArrayList<Console> availableConsoles = new ArrayList<>();
         for (Console c: getAllConsoles()) {
-            if (!c.isInForRepair()) {
+            if (!c.isInForRepair() && !c.isCurrentlyRented()) {
                 availableConsoles.add(c);
             }
         }
@@ -54,4 +54,5 @@ public class ConsoleRepository {
     public int getBit(Console console) { return console.getBit(); }
     public boolean isInForRepair(Console console) { return console.isInForRepair(); }
     public double getCost(Console console) { return console.getCost(); }
+    public boolean isAvailable(Console console) { return console.isAvailable(); }
 }

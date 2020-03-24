@@ -90,10 +90,10 @@ public class StateService {
         Rental r1 = new Rental(LocalDate.of(2020, 03, 03), customers.get(0), consoles.get(0), games1);
         rentals.add(r1);
 
-        ArrayList<Game> games2 = new ArrayList<>();
-        games2.add(this.games.get(2));
-        Rental r2 = new Rental(LocalDate.of(2020, 03, 03), customers.get(1), consoles.get(1), games2);
-        rentals.add(r2);
+//        ArrayList<Game> games2 = new ArrayList<>();
+//        games2.add(this.games.get(2));
+//        Rental r2 = new Rental(LocalDate.of(2020, 03, 03), customers.get(1), consoles.get(1), games2);
+//        rentals.add(r2);
     }
 
     @Override
