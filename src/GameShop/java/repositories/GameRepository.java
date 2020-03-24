@@ -19,6 +19,26 @@ public class GameRepository {
         return availableGames;
     }
 
+    public ArrayList<Game> getAllGamesForConsole(Console console) {
+        ArrayList<Game> gamesForConsole = new ArrayList<>();
+        for (Game g: getAllGames()) {
+            if (console == g.getConsole()) {
+                gamesForConsole.add(g);
+            }
+        }
+        return gamesForConsole;
+    }
+
+    public ArrayList<Game> getAvailableGamesForConsole(Console console) {
+        ArrayList<Game> gamesForConsole = new ArrayList<>();
+        for (Game g: getAvailableGames()) {
+            if (console == g.getConsole()) {
+                gamesForConsole.add(g);
+            }
+        }
+        return gamesForConsole;
+    }
+
     public Game getById(String id) {
         for (Game g: getAllGames()) {
             if (g.getId().equals(id)) {

@@ -12,6 +12,14 @@
     </top>
     <center>
         <VBox>
+            <HBox>
+                <Label text="Specific Console?" />
+                <CheckBox fx:id="specificConsole" selected="false" onAction="#handleSpecificConsoleToggle" />
+            </HBox>
+            <HBox fx:id="consoleChoiceWrapper" visible="false">
+                <Label text="Console" />
+                <ChoiceBox fx:id="consoleChoiceBox" onAction="#handleConsoleChange" />
+            </HBox>
             <ScrollPane>
                 <TableView fx:id="gameTableView">
                     <columns>

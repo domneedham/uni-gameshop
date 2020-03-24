@@ -1,5 +1,6 @@
 package GameShop.java.services;
 
+import GameShop.java.models.Console;
 import GameShop.java.models.Game;
 import GameShop.java.repositories.GameRepository;
 
@@ -11,6 +12,10 @@ public class GameService {
     public static ArrayList<Game> getAllGames() { return repo.getAllGames(); }
 
     public static ArrayList<Game> getAvailableGames() { return repo.getAvailableGames(); }
+
+    public static ArrayList<Game> getAllGamesForConsole(Console console) { return repo.getAllGamesForConsole(console); }
+
+    public static ArrayList<Game> getAvailableGamesForConsole(Console console) { return repo.getAvailableGamesForConsole(console); }
 
     public static Game getById(String id) { return repo.getById(id); }
 
