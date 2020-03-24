@@ -19,13 +19,9 @@ import java.util.ResourceBundle;
 public class ViewBasketController implements Initializable {
     private Router router = new Router();
 
-    @FXML private Text customer;
-    @FXML private Text console;
-    @FXML private Text consoleRequired;
-    @FXML private Text dateText;
+    @FXML private Text customer, console, consoleRequired, dateText;
     @FXML private TableView gameTableView;
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
+    @FXML private TableColumn idColumn,  nameColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {

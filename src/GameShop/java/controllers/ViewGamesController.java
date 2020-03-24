@@ -36,11 +36,7 @@ public class ViewGamesController implements Initializable {
 
     @FXML private CheckBox showAll;
 
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn consoleColumn;
-    @FXML private TableColumn costColumn;
-    @FXML private TableColumn availableColumn;
+    @FXML private TableColumn idColumn, nameColumn, consoleColumn, costColumn, availableColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

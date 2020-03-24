@@ -22,16 +22,13 @@ import java.util.ResourceBundle;
 public class CreateRentalController implements Initializable {
     private Router router = new Router();
 
-    @FXML private ChoiceBox customerChoiceBox;
-    @FXML private ChoiceBox consoleChoiceBox;
+    @FXML private ChoiceBox customerChoiceBox, consoleChoiceBox;
     @FXML private HBox gameTableWrapper;
     @FXML private TableView gameTableView;
     @FXML private CheckBox consoleRequired;
     @FXML private DatePicker datePicker;
 
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn buttonColumn;
+    @FXML private TableColumn idColumn, nameColumn, buttonColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {

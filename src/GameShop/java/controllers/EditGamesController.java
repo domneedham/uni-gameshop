@@ -21,12 +21,7 @@ public class EditGamesController implements Initializable {
     private final Router router = new Router();
 
     @FXML private TableView gameTableView;
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn consoleColumn;
-    @FXML private TableColumn costColumn;
-    @FXML private TableColumn availableColumn;
-    @FXML private TableColumn editGameColumn;
+    @FXML private TableColumn idColumn, nameColumn, consoleColumn, costColumn, availableColumn, editGameColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

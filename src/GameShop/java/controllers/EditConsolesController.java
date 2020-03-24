@@ -21,13 +21,7 @@ public class EditConsolesController implements Initializable {
     private final Router router = new Router();
 
     @FXML private TableView consoleTableView;
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn formColumn;
-    @FXML private TableColumn bitColumn;
-    @FXML private TableColumn availableColumn;
-    @FXML private TableColumn costColumn;
-    @FXML private TableColumn editConsoleColumn;
+    @FXML private TableColumn idColumn, nameColumn, formColumn, bitColumn, availableColumn, costColumn, editConsoleColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

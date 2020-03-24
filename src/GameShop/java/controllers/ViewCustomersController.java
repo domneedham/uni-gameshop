@@ -20,11 +20,7 @@ public class ViewCustomersController implements Initializable {
     private final Router router = new Router();
 
     @FXML private TableView customerTableView;
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn forenameColumn;
-    @FXML private TableColumn surnameColumn;
-    @FXML private TableColumn emailColumn;
-    @FXML private TableColumn telephoneColumn;
+    @FXML private TableColumn idColumn, forenameColumn, surnameColumn, emailColumn, telephoneColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

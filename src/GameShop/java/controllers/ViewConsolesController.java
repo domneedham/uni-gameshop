@@ -25,12 +25,7 @@ public class ViewConsolesController implements Initializable {
 
     @FXML private CheckBox showAll;
 
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn formColumn;
-    @FXML private TableColumn bitColumn;
-    @FXML private TableColumn availableColumn;
-    @FXML private TableColumn costColumn;
+    @FXML private TableColumn idColumn, nameColumn, formColumn, bitColumn, availableColumn, costColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -29,12 +29,7 @@ public class ViewRentalsController implements Initializable {
     @FXML private ChoiceBox customerChoiceBox;
 
     @FXML private TableView rentalTableView;
-    @FXML private TableColumn customerColumn;
-    @FXML private TableColumn dateRentedColumn;
-    @FXML private TableColumn dateDueColumn;
-    @FXML private TableColumn consoleColumn;
-    @FXML private TableColumn gamesColumn;
-    @FXML private TableColumn buttonColumn;
+    @FXML private TableColumn customerColumn, dateRentedColumn, dateDueColumn, consoleColumn, gamesColumn, buttonColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
