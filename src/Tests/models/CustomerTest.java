@@ -1,4 +1,4 @@
-package Tests;
+package Tests.models;
 
 import GameShop.java.models.Customer;
 import org.junit.jupiter.api.*;

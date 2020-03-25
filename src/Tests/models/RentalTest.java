@@ -1,4 +1,4 @@
-package Tests;
+package Tests.models;
 
 import GameShop.java.models.*;
 import GameShop.java.models.enums.ConsoleForm;
