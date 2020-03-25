@@ -45,8 +45,8 @@ public abstract class Product {
     }
 
     public void rentItem() throws Error {
-        if (this.inForRepair) {
-            throw new Error("Game can not be rented when in for repair");
+        if (!isAvailable()) {
+            throw new Error("Game can not be rented when it is not available");
         } else {
             this.currentlyRented = true;
         }
