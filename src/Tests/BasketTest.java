@@ -90,7 +90,7 @@ class BasketTest {
     }
 
     @Test
-    void basketIsNotPopulatedWithNoConsole() {
+    void basketIsNotPopulatedWithNoConsoleOrConsoleRequired() {
         this.basket.setCustomer(this.customer);
         this.basket.setDate(this.date);
         this.basket.addGame(this.game1);
