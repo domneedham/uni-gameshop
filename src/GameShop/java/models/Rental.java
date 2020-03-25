@@ -68,7 +68,7 @@ public class Rental {
     public ArrayList<Game> getGames() { return games; }
 
     public void addGameToRental(Game game) {
-        if (games.size() <= MAX_RENTAL_GAMES) {
+        if (games.size() < MAX_RENTAL_GAMES) {
             games.add(game);
         }
     }
