@@ -55,4 +55,9 @@ public abstract class Product {
     public void returnItem() {
         this.currentlyRented = false;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

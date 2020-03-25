@@ -20,9 +20,4 @@ public class Game extends Product {
     public Console getConsole() {
         return console;
     }
-
-    @Override
-    public String toString() {
-        return this.getName();
-    }
 }

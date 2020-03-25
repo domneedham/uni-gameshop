@@ -35,8 +35,5 @@ public class Console extends Product {
         this.bit = bit;
     }
 
-    @Override
-    public String toString() {
-        return this.getName();
-    }
+
 }

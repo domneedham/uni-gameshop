@@ -26,7 +26,7 @@ class GameTest {
 
     @Test
     void idIsDifferentOnEachGame() {
-        Assertions.assertFalse(this.game1.getId().equals(this.game2.getId()));
+        Assertions.assertNotEquals(this.game1.getId(), this.game2.getId());
     }
 
     @Test
