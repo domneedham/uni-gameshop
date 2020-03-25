@@ -1,5 +1,6 @@
 package GameShop.java.controllers;
 
+import GameShop.java.general.AlertBox;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
@@ -8,6 +9,7 @@ import GameShop.java.services.CreateRentalFXMLService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
@@ -36,8 +38,13 @@ public class ViewBasketController implements Initializable {
 
     @FXML
     private void submitRental(ActionEvent event) throws IOException {
-        BasketService.submitBasket();
-        router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
+        try {
+            BasketService.submitBasket();
+            router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
+        } catch (Error e) {
+            AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
+
     }
 
     private void setupGameTable() {

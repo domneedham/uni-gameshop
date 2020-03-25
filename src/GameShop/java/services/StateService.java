@@ -84,11 +84,17 @@ public class StateService {
 
     // create dummy objects for rentals, like reading from a DB
     private void populateRentals() {
-        ArrayList<Game> games1 = new ArrayList<>();
-        games1.add(games.get(4));
-        games1.add(games.get(5));
-        Rental r1 = new Rental(LocalDate.of(2020, 3, 3), customers.get(0), consoles.get(0), games1);
-        rentals.add(r1);
+        try {
+            ArrayList<Game> games1 = new ArrayList<>();
+            games1.add(games.get(4));
+            games1.add(games.get(5));
+            Rental r1 = new Rental(LocalDate.of(2020, 3, 3), customers.get(0), consoles.get(0), games1);
+            rentals.add(r1);
+        } catch (Exception e) {
+            System.out.println("Unable to make rentals");
+            System.exit(0);
+        }
+
 
 //        ArrayList<Game> games2 = new ArrayList<>();
 //        games2.add(this.games.get(2));

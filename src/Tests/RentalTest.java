@@ -95,7 +95,7 @@ class RentalTest {
         }
 
         // return items
-        this.rental.setReturned(true);
+        this.rental.returnRental();
 
         for (Game g: this.rental.getGames()) {
             Assertions.assertTrue(g.isAvailable());
@@ -119,7 +119,7 @@ class RentalTest {
         Assertions.assertFalse(this.console.isAvailable());
 
         // return items
-        this.rental.setReturned(true);
+        this.rental.returnRental();
 
         Assertions.assertTrue(this.rental.getConsole().isAvailable());
     }

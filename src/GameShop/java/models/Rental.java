@@ -15,7 +15,7 @@ public class Rental {
     private ArrayList<Game> games;
     private boolean returned;
 
-    public Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) {
+    public Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) throws Error {
         id = idSeed;
         this.dateRented = dateRented;
         this.dateDue = dateRented.plusMonths(1);
@@ -26,7 +26,7 @@ public class Rental {
         markGamesAsUnavailable();
     }
 
-    public Rental(LocalDate dateRented, Customer customer, Console console, ArrayList<Game> games) {
+    public Rental(LocalDate dateRented, Customer customer, Console console, ArrayList<Game> games) throws Error {
         id = idSeed;
         this.dateRented = dateRented;
         this.dateDue = dateRented.plusMonths(1);
@@ -85,35 +85,32 @@ public class Rental {
 
     public boolean isReturned() { return returned; }
 
-    public void setReturned(boolean returned ) {
-        this.returned = returned;
-
-        if (returned) {
-            markGamesAsAvailable();
-            if (console != null) {
-                markConsoleAsAvailable();
-            }
+    public void returnRental() {
+        this.returned = true;
+        markGamesAsAvailable();
+        if (console != null) {
+            markConsoleAsAvailable();
         }
     }
 
-    private void markGamesAsUnavailable() {
+    private void markGamesAsUnavailable() throws Error {
         for (Game g: this.games) {
-            g.setIsCurrentlyRented(true);
+            g.rentItem();
         }
     }
 
-    private void markConsoleAsUnavailable() {
-        this.console.setIsCurrentlyRented(true);
+    private void markConsoleAsUnavailable() throws Error {
+        this.console.rentItem();
     }
 
     private void markGamesAsAvailable() {
         for (Game g: this.games) {
-            g.setIsCurrentlyRented(false);
+            g.returnItem();
         }
     }
 
     private void markConsoleAsAvailable() {
-        this.console.setIsCurrentlyRented(false);
+        this.console.returnItem();
     }
 
     @Override

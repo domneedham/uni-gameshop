@@ -39,7 +39,7 @@ public class ViewRentalAdaptor {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Rental rental = getTableView().getItems().get(getIndex());
-                            rental.setReturned(true);
+                            rental.returnRental();
                             btn.setText("Already Returned");
                             btn.setDisable(true);
                             AlertBox.showMessage(Alert.AlertType.CONFIRMATION, "Returned the product!");

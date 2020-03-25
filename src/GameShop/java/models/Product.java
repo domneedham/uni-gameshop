@@ -44,7 +44,15 @@ public abstract class Product {
         this.inForRepair = inForRepair;
     }
 
-    public void setIsCurrentlyRented(boolean status) {
-        this.currentlyRented = status;
+    public void rentItem() throws Error {
+        if (this.inForRepair) {
+            throw new Error("Game can not be rented when in for repair");
+        } else {
+            this.currentlyRented = true;
+        }
+    }
+
+    public void returnItem() {
+        this.currentlyRented = false;
     }
 }

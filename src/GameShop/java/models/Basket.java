@@ -93,7 +93,7 @@ public class Basket {
         games.clear();
     }
 
-    public void submitBasket() {
+    public void submitBasket() throws Error {
         // create copy of games so that when basket is cleared
         // does not clear games in rental
         ArrayList<Game> gamesCopy = new ArrayList<>(games);

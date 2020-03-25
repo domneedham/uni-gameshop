@@ -83,7 +83,7 @@ public class BasketService {
         return repo.getBasket().maxGamesInBasket();
     }
 
-    public static void submitBasket() {
+    public static void submitBasket() throws Error {
         repo.getBasket().submitBasket();
         clearBasket();
     }
