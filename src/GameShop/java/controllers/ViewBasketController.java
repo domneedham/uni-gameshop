@@ -24,7 +24,7 @@ public class ViewBasketController implements Initializable {
 
     @FXML private Text customer, console, consoleRequired, dateText;
     @FXML private TableView gameTableView;
-    @FXML private TableColumn idColumn,  nameColumn;
+    @FXML private TableColumn idColumn,  nameColumn, consoleColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -52,6 +52,7 @@ public class ViewBasketController implements Initializable {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         GameTableAdaptor.setIdVales(idColumn);
         GameTableAdaptor.setNameValues(nameColumn);
+        GameTableAdaptor.setConsoleValues(consoleColumn);
     }
 
     private void populateData() {

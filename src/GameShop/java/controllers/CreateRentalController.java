@@ -92,10 +92,8 @@ public class CreateRentalController implements Initializable {
             gameTableWrapper.setVisible(true);
         }
 
-        // if the console is wanted - clear the games from the basket when it changes
-        // as you can't rent games for more than one console if the console is being rented
         if (consoleRequired.isSelected()) {
-            BasketService.removeGame(CreateRentalAdaptor.getGamesToRemoveFromBasket());
+            // ensure console can be rented since customer wants console
             setConsole();
         }
 
@@ -118,8 +116,6 @@ public class CreateRentalController implements Initializable {
     private void reviewRental(ActionEvent event) throws IOException {
         if (customerChoiceBox.getSelectionModel().isEmpty()) {
             AlertBox.showMessage(Alert.AlertType.ERROR, "Add a customer to the rental");
-        } else if (consoleChoiceBox.getSelectionModel().isEmpty()) {
-            AlertBox.showMessage(Alert.AlertType.ERROR, "Add a console to the rental");
         } else if (datePicker.getValue() == null) {
             AlertBox.showMessage(Alert.AlertType.ERROR, "You need to pick a date");
         } else if (BasketService.getGames().isEmpty() && !consoleRequired.isSelected()) {
