@@ -14,7 +14,7 @@ public class Basket {
     private LocalDate date;
 
     public boolean isBasketPopulated() {
-        if (customer != null && console != null & date != null && (consoleRequired || games.size() > 0)) {
+        if (customer != null & date != null && (consoleRequired && console != null || games.size() > 0)) {
             return true;
         } else {
             return false;
@@ -81,7 +81,7 @@ public class Basket {
         return games.contains(game);
     }
 
-    public boolean maxGamesInBasket() {
+    public boolean isMaxGamesInBasket() {
         return games.size() >= MAX_GAMES;
     }
 

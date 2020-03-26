@@ -90,15 +90,6 @@ class BasketTest {
     }
 
     @Test
-    void basketIsNotPopulatedWithNoConsoleOrConsoleRequired() {
-        this.basket.setCustomer(this.customer);
-        this.basket.setDate(this.date);
-        this.basket.addGame(this.game1);
-
-        Assertions.assertFalse(this.basket.isBasketPopulated());
-    }
-
-    @Test
     void correctlyFindsGameInBasket() {
         this.basket.addGame(this.game1);
 
@@ -131,7 +122,7 @@ class BasketTest {
         this.basket.addGame(this.game2);
         this.basket.addGame(this.game3);
 
-        Assertions.assertTrue(this.basket.maxGamesInBasket());
+        Assertions.assertTrue(this.basket.isMaxGamesInBasket());
     }
 
     @Test
@@ -140,7 +131,7 @@ class BasketTest {
         this.basket.addGame(this.game1);
         this.basket.addGame(this.game2);
 
-        Assertions.assertFalse(this.basket.maxGamesInBasket());
+        Assertions.assertFalse(this.basket.isMaxGamesInBasket());
     }
 
     @Test
@@ -152,7 +143,7 @@ class BasketTest {
         this.basket.addGame(this.game3);
         this.basket.addGame(game4);
 
-        Assertions.assertTrue(this.basket.maxGamesInBasket());
+        Assertions.assertTrue(this.basket.isMaxGamesInBasket());
     }
 
     @Test

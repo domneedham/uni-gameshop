@@ -24,7 +24,7 @@ public class ViewRentalAdaptor {
     }
 
     public static void setConsoleValues(TableColumn<Rental, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(RentalFXMLTableFormat.formatConsoleName(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(RentalFXMLTableFormat.formatConsoleName(val.getValue().getConsole())));
     }
 
     public static void setGameValues(TableColumn<Rental, String> tableColumn) {

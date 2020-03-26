@@ -39,16 +39,18 @@ public class BasketService {
         repo.getBasket().setCustomer(customer);
     }
 
-    public static void setConsoleRequired(Console console, boolean required) throws Exception {
+    public static void requireConsole(Console console) throws Exception {
         if (!console.isAvailable()) {
             throw new Exception("Console is not available for rental");
-        } else {
-            repo.getBasket().setConsoleRequired(required);
         }
+        repo.getBasket().setConsoleRequired(true);
+        repo.getBasket().setConsole(console);
     }
 
-    public static void setConsole(Console console) {
-        repo.getBasket().setConsole(console);
+    public static void unrequireConsole() {
+        repo.getBasket().setConsoleRequired(false);
+        // clear console from basket
+        repo.getBasket().setConsole(null);
     }
 
     public static void setDate(LocalDate date) {
@@ -79,8 +81,8 @@ public class BasketService {
         repo.getBasket().clearGames();
     }
 
-    public static boolean maxGamesInBasket() {
-        return repo.getBasket().maxGamesInBasket();
+    public static boolean isMaxGamesInBasket() {
+        return repo.getBasket().isMaxGamesInBasket();
     }
 
     public static void submitBasket() throws Error {

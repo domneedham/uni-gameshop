@@ -78,14 +78,12 @@ public class CreateRentalController implements Initializable {
 
     @FXML
     private void handleConsoleRequiredChange() {
-        try {
-            BasketService.setConsoleRequired(CreateRentalAdaptor.getConsole(consoleChoiceBox), consoleRequired.isSelected());
-        } catch (Exception e) {
-            // ensure box does not show as ticked
+        if (consoleRequired.isSelected() && !consoleChoiceBox.getSelectionModel().isEmpty()) {
+            setConsole();
+        } else {
+            BasketService.unrequireConsole();
             consoleRequired.setSelected(false);
-            AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
-
     }
 
     @FXML
@@ -98,8 +96,9 @@ public class CreateRentalController implements Initializable {
         // as you can't rent games for more than one console if the console is being rented
         if (consoleRequired.isSelected()) {
             BasketService.removeGame(CreateRentalAdaptor.getGamesToRemoveFromBasket());
+            setConsole();
         }
-        BasketService.setConsole(CreateRentalAdaptor.getConsole(consoleChoiceBox));
+
         // if the console is unavailable, uncheck the required box as it can not be rented
         if (!CreateRentalAdaptor.isConsoleAvailable(consoleChoiceBox)) {
             consoleRequired.setSelected(false);
@@ -132,5 +131,15 @@ public class CreateRentalController implements Initializable {
 
     private void addButtonToTable() {
         CreateRentalAdaptor.addAddButtonToGameTable(buttonColumn);
+    }
+
+    private void setConsole() {
+        try {
+            BasketService.requireConsole(CreateRentalAdaptor.getConsole(consoleChoiceBox));
+        } catch (Exception e) {
+            // ensure box does not show as ticked
+            consoleRequired.setSelected(false);
+            AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
     }
 }

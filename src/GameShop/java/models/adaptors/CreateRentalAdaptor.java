@@ -69,7 +69,7 @@ public class CreateRentalAdaptor {
                                     AlertBox.showMessage(Alert.AlertType.ERROR, "Failed to remove game from the basket");
                                 }
                             } else {
-                                if (BasketService.maxGamesInBasket()) {
+                                if (BasketService.isMaxGamesInBasket()) {
                                     AlertBox.showMessage(Alert.AlertType.ERROR, "Max games already in the basket");
                                     return;
                                 }
