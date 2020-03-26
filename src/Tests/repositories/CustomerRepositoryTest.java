@@ -2,13 +2,16 @@ package Tests.repositories;
 
 import GameShop.java.models.Customer;
 import GameShop.java.repositories.CustomerRepository;
+import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class CustomerRepositoryTest {
+    TestData testData = new TestData();
+
     CustomerRepository repo = new CustomerRepository();
 
-    Customer customer1 = new Customer("Test", "Person1", "test1@test.com", "0113");
-    Customer customer2 = new Customer("Test", "Person2", "test2@test.com", "0113");
+    Customer customer1 = testData.customer1;
+    Customer customer2 = testData.customer2;
 
     @BeforeEach
     void setUp() {

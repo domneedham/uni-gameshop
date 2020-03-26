@@ -1,14 +1,16 @@
 package Tests.services;
 
 import GameShop.java.models.Console;
-import GameShop.java.models.enums.ConsoleForm;
 import GameShop.java.services.ConsoleService;
+import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class ConsoleServiceTest {
-    Console console1 = new Console("Test 1", ConsoleForm.STANDARD, 15, 8, false);
-    Console console2 = new Console("Test 2", ConsoleForm.STANDARD, 15, 8, false);
-    Console console3 = new Console("Test 3", ConsoleForm.STANDARD, 15, 8, true);
+    TestData testData = new TestData();
+
+    Console console1 = testData.standardConsole1;
+    Console console2 = testData.standardConsole2;
+    Console console3 = testData.nonStandardConsole1;
 
     @BeforeEach
     void setUp() {

@@ -2,11 +2,14 @@ package Tests.services;
 
 import GameShop.java.models.Customer;
 import GameShop.java.services.CustomerService;
+import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class CustomerServiceTest {
-    Customer customer1 = new Customer("Test", "One", "testuser1@test.com", "0177");
-    Customer customer2 = new Customer("Test", "Two", "testuser2@test.com", "0177");
+    TestData testData = new TestData();
+
+    Customer customer1 = testData.customer1;
+    Customer customer2 = testData.customer2;
 
     @BeforeEach
     void setUp() {

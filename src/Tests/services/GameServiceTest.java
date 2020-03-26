@@ -2,19 +2,21 @@ package Tests.services;
 
 import GameShop.java.models.Console;
 import GameShop.java.models.Game;
-import GameShop.java.models.enums.ConsoleForm;
 import GameShop.java.services.GameService;
+import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class GameServiceTest {
-    Console console1 = new Console("Test Console", ConsoleForm.STANDARD, 15, 8, false);
-    Game game1 = new Game("Test 1", this.console1, 10, false);
-    Game game2 = new Game("Test 2", this.console1, 10, false);
-    Game game3 = new Game("Test 3", this.console1, 10, true);
+    TestData testData = new TestData();
 
-    Console console2 = new Console("Test Console 2", ConsoleForm.STANDARD, 15, 8, false);
-    Game game4 = new Game("Test 4", this.console2, 10, false);
-    Game game5 = new Game("Test 5", this.console2, 10, true);
+    Console console1 = testData.standardConsole1;
+    Game game1 = testData.consoleOneGame1;
+    Game game2 = testData.consoleOneGame2;
+    Game game3 = testData.consoleOneRepairGame1;
+
+    Console console2 = testData.standardConsole2;
+    Game game4 = testData.consoleTwoGame1;
+    Game game5 = testData.consoleTwoRepairGame1;
 
 
     @BeforeEach

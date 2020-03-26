@@ -4,25 +4,19 @@ import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 import GameShop.java.models.Rental;
-import GameShop.java.models.enums.ConsoleForm;
+import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 class GameTest {
-    Console console;
-    Game game1;
-    Game game2;
-    Game game3;
+    TestData testData = new TestData();
 
-    @BeforeEach
-    void setUp() {
-        this.console = new Console("Test console", ConsoleForm.STANDARD, 15, 8, false);
-        this.game1 = new Game("Test game", this.console, 10, false);
-        this.game2 = new Game("Test game 2", this.console, 10, false);
-        this.game3 = new Game("Test game 3", this.console, 10, true);
-    }
+    Console console = testData.standardConsole1;
+    Game game1 = testData.consoleOneGame1;
+    Game game2 = testData.consoleOneGame2;
+    Game game3 = testData.consoleOneRepairGame1;
 
     @Test
     void idIsDifferentOnEachGame() {
@@ -44,7 +38,7 @@ class GameTest {
             Rental rental = new Rental(LocalDate.now(), customer, this.console, games);
 
         } catch (Exception e) {
-            new AssertionError("Unable to make rental");
+            // ignore
         } finally {
             Assertions.assertTrue(this.game1.isCurrentlyRented());
             Assertions.assertFalse(this.game1.isAvailable());

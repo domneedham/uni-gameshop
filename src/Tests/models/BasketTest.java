@@ -4,35 +4,26 @@ import GameShop.java.models.Basket;
 import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
-import GameShop.java.models.enums.ConsoleForm;
+import Tests.TestData;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 class BasketTest {
+    TestData testData = new TestData();
+
     private Basket basket;
-    private LocalDate date;
-    private Customer customer;
-    private ArrayList<Game> games = new ArrayList<>();
-    private Console console;
-    private Game game1;
-    private Game game2;
-    private Game game3;
+    private LocalDate date = testData.date;
+    private Customer customer = testData.customer1;
+    private Console console = testData.standardConsole1;
+    private Game game1 = testData.consoleOneGame1;
+    private Game game2 = testData.consoleOneGame2;
+    private Game game3 = testData.consoleOneRepairGame1;
 
     @BeforeEach
     void setUp() {
         this.basket = new Basket();
-        this.date = LocalDate.now();
-        this.customer = new Customer("Dom", "Needham", "dominic.needham@bt.com", "01773");
-        this.console = new Console("Test Console", ConsoleForm.STANDARD, 15.0, 8, false);
-        this.game1 = new Game("Test game 1", console, 10.0, false);
-        this.game2 = new Game("Test game 2", console, 10.0, false);
-        this.game3 = new Game("Test game 3", console, 10.0, false);
-        this.games.add(this.game1);
-        this.games.add(this.game2);
-        this.games.add(this.game3);
     }
 
     @Test

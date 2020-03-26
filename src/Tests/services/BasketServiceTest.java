@@ -11,12 +11,14 @@ import org.junit.jupiter.api.*;
 import java.time.LocalDate;
 
 class BasketServiceTest {
-    LocalDate date = LocalDate.of(2020, 03, 26);
-    Customer customer = TestData.customer1;
-    Console console = TestData.standardConsole1;
-    Game game1 = TestData.standardGame1;
-    Game game2 = TestData.standardGame2;
-    Game game3 = TestData.standardGame3;
+    TestData testData = new TestData();
+
+    LocalDate date = testData.date;
+    Customer customer = testData.customer1;
+    Console console = testData.standardConsole1;
+    Game game1 = testData.consoleOneGame1;
+    Game game2 = testData.consoleOneGame2;
+    Game game3 = testData.consoleOneRepairGame1;
 
     @BeforeEach
     void setUp() {

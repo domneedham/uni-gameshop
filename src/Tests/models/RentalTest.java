@@ -1,7 +1,7 @@
 package Tests.models;
 
 import GameShop.java.models.*;
-import GameShop.java.models.enums.ConsoleForm;
+import Tests.TestData;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 
@@ -9,24 +9,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 class RentalTest {
-    private Rental rental;
-    private LocalDate date;
-    private Customer customer;
-    private ArrayList<Game> games = new ArrayList<>();
-    private Console console;
+    TestData testData = new TestData();
 
-    @BeforeEach
-    void setUp() {
-        this.date = LocalDate.now();
-        this.customer = new Customer("Dom", "Needham", "dominic.needham@bt.com", "01773");
-        this.console = new Console("Test Console", ConsoleForm.STANDARD, 15.0, 8, false);
-        Game game1 = new Game("Test game 1", console, 10.0, false);
-        Game game2 = new Game("Test game 2", console, 10.0, false);
-        Game game3 = new Game("Test game 3", console, 10.0, false);
-        this.games.add(game1);
-        this.games.add(game2);
-        this.games.add(game3);
-    }
+    private Rental rental;
+    private LocalDate date = testData.date;
+    private Customer customer = testData.customer1;
+    private ArrayList<Game> games = testData.consoleOneGamesFullList;
+    private Console console = testData.standardConsole1;
 
     @Test
     @Description("Max games is 3")
@@ -62,12 +51,12 @@ class RentalTest {
     @Test
     void canNotAddMoreThanThreeGamesToARental() {
         this.rental = new Rental(this.date, this.customer, this.console, this.games);
-
         // check there are three games in test first
         Assertions.assertEquals(3, this.rental.getGames().size());
 
-        Game game4 = new Game("Test game 4", console, 10.0, false);
-        this.rental.addGameToRental(game4);
+        Game game2 = testData.consoleTwoGame2;
+
+        this.rental.addGameToRental(game2);
 
         Assertions.assertEquals(3, this.rental.getGames().size());
     }
