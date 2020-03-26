@@ -24,9 +24,7 @@ public class CustomerRepository {
     }
 
     public void removeCustomer(Customer customer) {
-        if (!getAllCustomers().contains(customer)) {
-            getAllCustomers().remove(customer);
-        }
+        getAllCustomers().remove(customer);
     }
 
     public void modifyCustomer(Customer customer) {

@@ -57,8 +57,8 @@ class CustomerRepositoryTest {
         Assertions.assertEquals(2, this.repo.getAllCustomers().size());
 
         this.repo.removeCustomer(this.customer1);
-        int expectedCustomerId = this.customer2.getId();
-        Assertions.assertEquals(this.repo.getById(expectedCustomerId), this.customer2);
+        Assertions.assertNull(this.repo.getById(this.customer1.getId()));
+        Assertions.assertEquals(this.customer2, this.repo.getById(this.customer2.getId()));
     }
 
     @Test

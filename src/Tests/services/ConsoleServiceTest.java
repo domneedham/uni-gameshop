@@ -20,16 +20,12 @@ class ConsoleServiceTest {
 
     @Test
     void getAllConsolesReturnsCorrectNumberOfConsoles() {
-        Assertions.assertEquals(0, ConsoleService.getAllConsoles().size());
-
         ConsoleService.addConsole(this.console1);
         Assertions.assertEquals(1, ConsoleService.getAllConsoles().size());
     }
 
     @Test
     void getAvailableConsolesReturnsCorrectNumberOfConsoles() {
-        Assertions.assertEquals(0, ConsoleService.getAvailableConsoles().size());
-
         ConsoleService.addConsole(this.console1);
         // unavailable console
         ConsoleService.addConsole(this.console3);
