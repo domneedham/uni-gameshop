@@ -1,8 +1,9 @@
-package GameShop.java.services;
+package Tests.services;
 
 import GameShop.java.models.Console;
 import GameShop.java.models.Game;
 import GameShop.java.models.enums.ConsoleForm;
+import GameShop.java.services.GameService;
 import org.junit.jupiter.api.*;
 
 class GameServiceTest {
@@ -25,11 +26,21 @@ class GameServiceTest {
     }
 
     @Test
-    void getAllGamesReturnsCorrectNumberOfGames() {
+    void getAllGamesReturnsCorrectSize() {
         Assertions.assertEquals(0, GameService.getAllGames().size());
 
         GameService.addGame(this.game1);
         Assertions.assertEquals(1, GameService.getAllGames().size());
+    }
+
+    @Test
+    void getAvailableGamesReturnsCorrectSize() {
+        Assertions.assertEquals(0, GameService.getAvailableGames().size());
+
+        GameService.addGame(this.game1);
+        // unavailable game
+        GameService.addGame(this.game3);
+        Assertions.assertEquals(1, GameService.getAvailableGames().size());
     }
 
     @Test
