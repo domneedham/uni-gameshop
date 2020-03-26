@@ -11,12 +11,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 class GameTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    Console console = testData.standardConsole1;
-    Game game1 = testData.consoleOneGame1;
-    Game game2 = testData.consoleOneGame2;
-    Game game3 = testData.consoleOneRepairGame1;
+    final Console console = testData.standardConsole1;
+    final Game game1 = testData.consoleOneGame1;
+    final Game game2 = testData.consoleOneGame2;
+    final Game game3 = testData.consoleOneRepairGame1;
 
     @Test
     void idIsDifferentOnEachGame() {

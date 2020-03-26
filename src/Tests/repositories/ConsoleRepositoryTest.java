@@ -1,18 +1,17 @@
 package Tests.repositories;
 
 import GameShop.java.models.Console;
-import GameShop.java.models.enums.ConsoleForm;
 import GameShop.java.repositories.ConsoleRepository;
 import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class ConsoleRepositoryTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    ConsoleRepository repo = new ConsoleRepository();
-    Console console1 = testData.standardConsole1;
-    Console console2 = testData.standardConsole2;
-    Console console3 = testData.nonStandardConsole1;
+    final ConsoleRepository repo = new ConsoleRepository();
+    final Console console1 = testData.standardConsole1;
+    final Console console2 = testData.standardConsole2;
+    final Console console3 = testData.nonStandardConsole1;
 
     @BeforeEach
     void setUp() {
@@ -54,7 +53,7 @@ class ConsoleRepositoryTest {
 
         String wrongId = this.console2.getId();
 
-        Assertions.assertEquals(null, this.repo.getById(wrongId));
+        Assertions.assertNull(this.repo.getById(wrongId));
     }
 
     @Test
@@ -90,6 +89,6 @@ class ConsoleRepositoryTest {
         this.console1.setInForRepair(true);
 
         this.repo.modifyConsole(this.console1);
-        Assertions.assertEquals(true, this.repo.getById(this.console1.getId()).isInForRepair());
+        Assertions.assertTrue(this.repo.getById(this.console1.getId()).isInForRepair());
     }
 }

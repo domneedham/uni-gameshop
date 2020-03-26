@@ -6,11 +6,11 @@ import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class ConsoleServiceTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    Console console1 = testData.standardConsole1;
-    Console console2 = testData.standardConsole2;
-    Console console3 = testData.nonStandardConsole1;
+    final Console console1 = testData.standardConsole1;
+    final Console console2 = testData.standardConsole2;
+    final Console console3 = testData.nonStandardConsole1;
 
     @BeforeEach
     void setUp() {
@@ -48,7 +48,7 @@ class ConsoleServiceTest {
 
         String wrongId = this.console2.getId();
 
-        Assertions.assertEquals(null, ConsoleService.getById(wrongId));
+        Assertions.assertNull(ConsoleService.getById(wrongId));
     }
 
     @Test
@@ -98,6 +98,6 @@ class ConsoleServiceTest {
         ConsoleService.addConsole(this.console1);
 
         ConsoleService.modifyConsole(this.console1, "new name", true);
-        Assertions.assertEquals(true, ConsoleService.getById(this.console1.getId()).isInForRepair());
+        Assertions.assertTrue(ConsoleService.getById(this.console1.getId()).isInForRepair());
     }
 }

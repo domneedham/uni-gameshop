@@ -12,19 +12,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 class RentalRepositoryTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    RentalRepository repo = new RentalRepository();
+    final RentalRepository repo = new RentalRepository();
 
     private Rental rental1;
     private Rental rental2;
-    private LocalDate date = testData.date;
-    private Customer customer1 = testData.customer1;
-    private Customer customer2 = testData.customer2;
-    private ArrayList<Game> gamesForRental1 = testData.consoleOneGamesFullList;
-    private ArrayList<Game> gamesForRental2 = testData.consoleTwoGamesNotFullList;
-    private Console console1 = testData.standardConsole1;
-    private Console console2 = testData.standardConsole2;
+    private final LocalDate date = testData.date;
+    private final Customer customer1 = testData.customer1;
+    private final Customer customer2 = testData.customer2;
+    private final ArrayList<Game> gamesForRental1 = testData.consoleOneGamesFullList;
+    private final ArrayList<Game> gamesForRental2 = testData.consoleTwoGamesNotFullList;
+    private final Console console1 = testData.standardConsole1;
+    private final Console console2 = testData.standardConsole2;
 
     @BeforeEach
     void setUp() {

@@ -7,16 +7,16 @@ import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class GameRepositoryTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    GameRepository repo = new GameRepository();
-    Game game1 = testData.consoleOneGame1;
-    Game game2 = testData.consoleOneGame2;
-    Game game3 = testData.consoleOneRepairGame1;
+    final GameRepository repo = new GameRepository();
+    final Game game1 = testData.consoleOneGame1;
+    final Game game2 = testData.consoleOneGame2;
+    final Game game3 = testData.consoleOneRepairGame1;
 
-    Console console2 = testData.standardConsole2;
-    Game game4 = testData.consoleTwoGame1;
-    Game game5 = testData.consoleTwoRepairGame1;
+    final Console console2 = testData.standardConsole2;
+    final Game game4 = testData.consoleTwoGame1;
+    final Game game5 = testData.consoleTwoRepairGame1;
 
     @BeforeEach
     void setUp() {
@@ -100,7 +100,7 @@ class GameRepositoryTest {
 
         String wrongId = this.game2.getId();
 
-        Assertions.assertEquals(null, this.repo.getById(wrongId));
+        Assertions.assertNull(this.repo.getById(wrongId));
     }
 
     @Test

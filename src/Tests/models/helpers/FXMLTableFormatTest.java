@@ -80,7 +80,7 @@ class FXMLTableFormatTest {
 
     @Test
     void formatDate() {
-        LocalDate date = LocalDate.of(2020, 03, 26);
+        LocalDate date = LocalDate.of(2020, 3, 26);
         String result = FXMLTableFormat.formatDate(date);
         Assertions.assertEquals("26-03-20", result);
     }

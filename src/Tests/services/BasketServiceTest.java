@@ -11,14 +11,14 @@ import org.junit.jupiter.api.*;
 import java.time.LocalDate;
 
 class BasketServiceTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    LocalDate date = testData.date;
-    Customer customer = testData.customer1;
-    Console console = testData.standardConsole1;
-    Game game1 = testData.consoleOneGame1;
-    Game game2 = testData.consoleOneGame2;
-    Game game3 = testData.consoleOneRepairGame1;
+    final LocalDate date = testData.date;
+    final Customer customer = testData.customer1;
+    final Console console = testData.standardConsole1;
+    final Game game1 = testData.consoleOneGame1;
+    final Game game2 = testData.consoleOneGame2;
+    final Game game3 = testData.consoleOneRepairGame1;
 
     @BeforeEach
     void setUp() {
@@ -178,7 +178,7 @@ class BasketServiceTest {
     }
 
     @Test
-    void isConsoleRequiredReturnsFalseIfConsoleIsNotRequired() throws Exception {
+    void isConsoleRequiredReturnsFalseIfConsoleIsNotRequired() {
         BasketService.unrequireConsole();
 
         Assertions.assertFalse(BasketService.isConsoleRequired());

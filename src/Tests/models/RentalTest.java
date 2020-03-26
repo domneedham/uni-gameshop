@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 class RentalTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
     private Rental rental;
-    private LocalDate date = testData.date;
-    private Customer customer = testData.customer1;
-    private ArrayList<Game> games = testData.consoleOneGamesFullList;
-    private Console console = testData.standardConsole1;
+    private final LocalDate date = testData.date;
+    private final Customer customer = testData.customer1;
+    private final ArrayList<Game> games = testData.consoleOneGamesFullList;
+    private final Console console = testData.standardConsole1;
 
     @Test
     @Description("Max games is 3")

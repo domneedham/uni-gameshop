@@ -5,7 +5,7 @@ import GameShop.java.repositories.BasketRepository;
 import org.junit.jupiter.api.*;
 
 class BasketRepositoryTest {
-    BasketRepository repo = new BasketRepository();
+    final BasketRepository repo = new BasketRepository();
 
     @Test
     void getBasketReturnsABasketType() {

@@ -7,16 +7,16 @@ import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class GameServiceTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
     Console console1 = testData.standardConsole1;
-    Game game1 = testData.consoleOneGame1;
-    Game game2 = testData.consoleOneGame2;
-    Game game3 = testData.consoleOneRepairGame1;
+    final Game game1 = testData.consoleOneGame1;
+    final Game game2 = testData.consoleOneGame2;
+    final Game game3 = testData.consoleOneRepairGame1;
 
-    Console console2 = testData.standardConsole2;
-    Game game4 = testData.consoleTwoGame1;
-    Game game5 = testData.consoleTwoRepairGame1;
+    final Console console2 = testData.standardConsole2;
+    final Game game4 = testData.consoleTwoGame1;
+    final Game game5 = testData.consoleTwoRepairGame1;
 
 
     @BeforeEach
@@ -93,7 +93,7 @@ class GameServiceTest {
 
         String wrongId = this.game2.getId();
 
-        Assertions.assertEquals(null, GameService.getById(wrongId));
+        Assertions.assertNull(GameService.getById(wrongId));
     }
 
     @Test
@@ -143,6 +143,6 @@ class GameServiceTest {
         GameService.addGame(this.game1);
 
         GameService.modifyGame(this.game1, "new name", true);
-        Assertions.assertEquals(true, GameService.getById(this.game1.getId()).isInForRepair());
+        Assertions.assertTrue(GameService.getById(this.game1.getId()).isInForRepair());
     }
 }

@@ -6,12 +6,12 @@ import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class CustomerRepositoryTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    CustomerRepository repo = new CustomerRepository();
+    final CustomerRepository repo = new CustomerRepository();
 
-    Customer customer1 = testData.customer1;
-    Customer customer2 = testData.customer2;
+    final Customer customer1 = testData.customer1;
+    final Customer customer2 = testData.customer2;
 
     @BeforeEach
     void setUp() {
@@ -43,7 +43,7 @@ class CustomerRepositoryTest {
 
         int wrongId = this.customer2.getId();
 
-        Assertions.assertEquals(null, this.repo.getById(wrongId));
+        Assertions.assertNull(this.repo.getById(wrongId));
     }
 
     @Test

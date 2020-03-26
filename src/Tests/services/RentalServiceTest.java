@@ -12,16 +12,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 class RentalServiceTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
     private Rental rentalWithConsole;
     private Rental rentalWithoutConsole;
-    private LocalDate date = testData.date;
-    private Customer customer1 = testData.customer1;
-    private Customer customer2 = testData.customer2;
-    private ArrayList<Game> gamesForRental1 = testData.consoleOneGamesFullList;
-    private ArrayList<Game> gamesForRental2 = testData.consoleTwoGamesNotFullList;
-    private Console console1 = testData.standardConsole1;
+    private final LocalDate date = testData.date;
+    private final Customer customer1 = testData.customer1;
+    private final Customer customer2 = testData.customer2;
+    private final ArrayList<Game> gamesForRental1 = testData.consoleOneGamesFullList;
+    private final ArrayList<Game> gamesForRental2 = testData.consoleTwoGamesNotFullList;
+    private final Console console1 = testData.standardConsole1;
     private Console console2 = testData.standardConsole2;
 
     @BeforeEach

@@ -5,9 +5,9 @@ import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class CustomerTest {
-    TestData testData = new TestData();
-    Customer customer1 = testData.customer1;
-    Customer customer2 = testData.customer2;
+    final TestData testData = new TestData();
+    final Customer customer1 = testData.customer1;
+    final Customer customer2 = testData.customer2;
 
     @Test
     void idIsDifferentForEachCustomer() {

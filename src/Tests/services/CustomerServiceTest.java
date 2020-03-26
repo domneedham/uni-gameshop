@@ -6,10 +6,10 @@ import Tests.TestData;
 import org.junit.jupiter.api.*;
 
 class CustomerServiceTest {
-    TestData testData = new TestData();
+    final TestData testData = new TestData();
 
-    Customer customer1 = testData.customer1;
-    Customer customer2 = testData.customer2;
+    final Customer customer1 = testData.customer1;
+    final Customer customer2 = testData.customer2;
 
     @BeforeEach
     void setUp() {

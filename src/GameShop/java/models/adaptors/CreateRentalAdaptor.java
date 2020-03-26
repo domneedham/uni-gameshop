@@ -40,18 +40,6 @@ public class CreateRentalAdaptor {
         }
     }
 
-    public static ArrayList<Game> getGamesToRemoveFromBasket() {
-        ArrayList<Game> games = BasketService.getGames();
-        ArrayList<Game> gamesToRemove = new ArrayList<>();
-
-        for (Game game : games) {
-            if (game.getConsole() != BasketService.getConsole()) {
-                gamesToRemove.add(game);
-            }
-        }
-        return gamesToRemove;
-    }
-
     public static void addAddButtonToGameTable(TableColumn<Game, Button> tableColumn) {
         Callback<TableColumn<Game, Button>, TableCell<Game, Button>> cellFactory = new Callback<>() {
             @Override

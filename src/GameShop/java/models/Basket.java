@@ -14,11 +14,7 @@ public class Basket {
     private LocalDate date;
 
     public boolean isBasketPopulated() {
-        if (customer != null & date != null && (consoleRequired && console != null || games.size() > 0)) {
-            return true;
-        } else {
-            return false;
-        }
+        return customer != null && date != null && (consoleRequired && console != null || games.size() > 0);
     }
 
     public Customer getCustomer() {
