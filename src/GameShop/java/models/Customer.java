@@ -37,6 +37,10 @@ public class Customer {
         this.surname = surname;
     }
 
+    public String getFullName() {
+        return forename + " " + surname;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -55,6 +59,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return forename + " " + surname;
+        return getFullName();
     }
 }

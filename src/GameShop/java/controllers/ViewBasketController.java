@@ -2,10 +2,10 @@ package GameShop.java.controllers;
 
 import GameShop.java.general.AlertBox;
 import GameShop.java.models.adaptors.GameTableAdaptor;
+import GameShop.java.models.helpers.FXMLTableFormat;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.BasketService;
-import GameShop.java.services.CreateRentalFXMLService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,10 +54,10 @@ public class ViewBasketController implements Initializable {
     }
 
     private void populateData() {
-        customer.setText(CreateRentalFXMLService.formatCustomer(BasketService.getCustomer()));
-        console.setText(CreateRentalFXMLService.formatConsole(BasketService.getConsole()));
-        consoleRequired.setText(CreateRentalFXMLService.formatConsoleRequired(BasketService.isConsoleRequired()));
-        dateText.setText(BasketService.getDate().toString());
+        customer.setText(FXMLTableFormat.formatString(BasketService.getCustomer().getFullName()));
+        console.setText(FXMLTableFormat.formatString(BasketService.getConsole().getName()));
+        consoleRequired.setText(FXMLTableFormat.formatBoolean(BasketService.isConsoleRequired()));
+        dateText.setText(FXMLTableFormat.formatDate(BasketService.getDate()));
         gameTableView.getItems().setAll(BasketService.getGames());
     }
 }

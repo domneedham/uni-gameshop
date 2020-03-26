@@ -1,9 +1,10 @@
 package GameShop.java.models.adaptors;
 
 import GameShop.java.general.AlertBox;
+import GameShop.java.models.helpers.FXMLTableFormat;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Rental;
-import GameShop.java.services.RentalFXMLTableService;
+import GameShop.java.models.helpers.RentalFXMLTableFormat;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -11,23 +12,23 @@ import javafx.util.Callback;
 
 public class ViewRentalAdaptor {
     public static void setCustomerValues(TableColumn<Rental, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(RentalFXMLTableService.getCustomer(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatString(val.getValue().getCustomer().getFullName())));
     }
 
     public static void setDateRentedValues(TableColumn<Rental, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(RentalFXMLTableService.getDateRented(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatDate(val.getValue().getDateRented())));
     }
 
     public static void setDateDueValues(TableColumn<Rental, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(RentalFXMLTableService.getDateDue(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatDate(val.getValue().getDateDue())));
     }
 
     public static void setConsoleValues(TableColumn<Rental, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(RentalFXMLTableService.getConsole(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(RentalFXMLTableFormat.formatConsoleName(val.getValue())));
     }
 
     public static void setGameValues(TableColumn<Rental, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper(RentalFXMLTableService.getGames(val.getValue())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatArrayList(val.getValue().getGames())));
     }
 
     public static void addButtonToTable(TableColumn<Rental, Button> tableColumn) {
