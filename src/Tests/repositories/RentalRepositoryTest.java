@@ -4,7 +4,6 @@ import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 import GameShop.java.models.Rental;
-import GameShop.java.models.enums.ConsoleForm;
 import GameShop.java.repositories.RentalRepository;
 import Tests.TestData;
 import org.junit.jupiter.api.*;
