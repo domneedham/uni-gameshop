@@ -87,6 +87,5 @@ public class BasketService {
 
     public static void submitBasket() throws Error {
         repo.getBasket().submitBasket();
-        clearBasket();
     }
 }
