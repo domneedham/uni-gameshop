@@ -2,7 +2,6 @@ package GameShop.java.models;
 
 import GameShop.java.services.RentalService;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Basket extends Order {

@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class CreateRentalAdaptor {

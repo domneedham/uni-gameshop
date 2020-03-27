@@ -1,7 +1,6 @@
 package GameShop.java.controllers;
 
 import GameShop.java.general.AlertBox;
-import GameShop.java.models.Basket;
 import GameShop.java.models.adaptors.CreateRentalAdaptor;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.models.helpers.FXMLTableFormat;
