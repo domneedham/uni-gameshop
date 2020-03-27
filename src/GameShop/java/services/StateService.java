@@ -88,18 +88,12 @@ public class StateService {
             ArrayList<Game> games1 = new ArrayList<>();
             games1.add(games.get(4));
             games1.add(games.get(5));
-            Rental r1 = new Rental(LocalDate.of(2020, 3, 3), customers.get(0), consoles.get(0), games1);
+            Rental r1 = Rental.withConsole(LocalDate.of(2020, 3, 3), customers.get(0), games1, consoles.get(0));
             rentals.add(r1);
         } catch (Exception e) {
             System.out.println("Unable to make rentals");
             System.exit(0);
         }
-
-
-//        ArrayList<Game> games2 = new ArrayList<>();
-//        games2.add(this.games.get(2));
-//        Rental r2 = new Rental(LocalDate.of(2020, 03, 03), customers.get(1), consoles.get(1), games2);
-//        rentals.add(r2);
     }
 
     @Override

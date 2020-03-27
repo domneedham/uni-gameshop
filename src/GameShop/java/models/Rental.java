@@ -3,84 +3,38 @@ package GameShop.java.models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Rental {
-    private static final int MAX_RENTAL_GAMES = 3;
-
+public class Rental extends Order {
     private static int idSeed = 1000;
     private final int id;
-    private LocalDate dateRented;
-    private LocalDate dateDue;
-    private Customer customer;
-    private Console console;
-    private ArrayList<Game> games;
     private boolean returned;
 
-    public Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) throws Error {
+    private Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) throws Error {
+        super(dateRented, customer, games);
         id = idSeed;
-        this.dateRented = dateRented;
-        this.dateDue = dateRented.plusMonths(1);
-        this.customer = customer;
-        this.games = games;
         idSeed++;
 
         markGamesAsUnavailable();
     }
 
-    public Rental(LocalDate dateRented, Customer customer, Console console, ArrayList<Game> games) throws Error {
+    private Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) throws Error {
+        super(dateRented, customer, games, console);
         id = idSeed;
-        this.dateRented = dateRented;
-        this.dateDue = dateRented.plusMonths(1);
-        this.customer = customer;
-        this.console = console;
-        this.games = games;
         idSeed++;
 
         markGamesAsUnavailable();
         markConsoleAsUnavailable();
     }
 
-    public static int getMaxGames() { return MAX_RENTAL_GAMES; }
+    public static Rental withConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) {
+        return new Rental(dateRented, customer, games, console);
+    }
+
+    public static Rental withoutConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games) {
+        return new Rental(dateRented, customer, games);
+    }
 
     public int getId() {
         return id;
-    }
-
-    public LocalDate getDateRented() {
-        return dateRented;
-    }
-
-    public void setDateRented(LocalDate dateRented) {
-        this.dateRented = dateRented;
-    }
-
-    public LocalDate getDateDue() { return dateDue; }
-
-    public void setDateDue(LocalDate due) { this.dateDue = due; }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public ArrayList<Game> getGames() { return games; }
-
-    public void addGameToRental(Game game) {
-        if (games.size() < MAX_RENTAL_GAMES) {
-            games.add(game);
-        }
-    }
-
-    public void removeGameFromRental(Game game) {
-        games.remove(game);
-    }
-
-    public Console getConsole() { return console; }
-
-    public void setConsole(Console console) {
-        this.console = console;
     }
 
     public boolean isReturned() { return returned; }
@@ -91,17 +45,6 @@ public class Rental {
         if (console != null) {
             markConsoleAsAvailable();
         }
-    }
-
-    public double calculateCost() {
-        double cost = 0;
-        for(Game game : games) {
-            cost += game.getCost();
-        }
-        if (console != null) {
-            cost += console.getCost();
-        }
-        return cost;
     }
 
     private void markGamesAsUnavailable() throws Error {

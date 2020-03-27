@@ -13,12 +13,12 @@ public class RentalService {
     protected static final RentalRepository repo = new RentalRepository();
 
     public static void createRentalWithConsole(LocalDate date, Customer customer, Console console, ArrayList<Game> games) throws Error {
-        Rental rental = new Rental(date, customer, console, games);
+        Rental rental = Rental.withConsole(date, customer, games, console);
         repo.addRental(rental);
     }
 
     public static void createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Error {
-        Rental rental = new Rental(date, customer, games);
+        Rental rental = Rental.withoutConsole(date, customer, games);
         repo.addRental(rental);
     }
 

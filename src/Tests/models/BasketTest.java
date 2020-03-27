@@ -37,7 +37,7 @@ class BasketTest {
     void basketIsPopulatedWithConsoleNotRequired() {
         this.basket.setConsole(this.console);
         this.basket.setCustomer(this.customer);
-        this.basket.setDate(this.date);
+        this.basket.setDateRented(this.date);
         this.basket.addGame(this.game1);
 
         Assertions.assertTrue(this.basket.isBasketPopulated());
@@ -47,7 +47,7 @@ class BasketTest {
     void basketIsPopulatedWithNoGamesIfConsoleIsRequired() {
         this.basket.setConsole(this.console);
         this.basket.setCustomer(this.customer);
-        this.basket.setDate(this.date);
+        this.basket.setDateRented(this.date);
         this.basket.setConsoleRequired(true);
 
         Assertions.assertTrue(this.basket.isBasketPopulated());
@@ -57,7 +57,7 @@ class BasketTest {
     void basketIsNotPopulatedWithNoGamesAndConsoleIsNotRequired() {
         this.basket.setConsole(this.console);
         this.basket.setCustomer(this.customer);
-        this.basket.setDate(this.date);
+        this.basket.setDateRented(this.date);
 
         Assertions.assertFalse(this.basket.isBasketPopulated());
     }
@@ -74,7 +74,7 @@ class BasketTest {
     @Test
     void basketIsNotPopulatedWithNoCustomer() {
         this.basket.setConsole(this.console);
-        this.basket.setDate(this.date);
+        this.basket.setDateRented(this.date);
         this.basket.addGame(this.game1);
 
         Assertions.assertFalse(this.basket.isBasketPopulated());
@@ -143,10 +143,10 @@ class BasketTest {
         this.basket.addGame(this.game2);
 
         // make sure games got added first
-        Assertions.assertEquals(2, this.basket.numberOfGamesInBasket());
+        Assertions.assertEquals(2, this.basket.getNumberOfGamesInBasket());
 
         this.basket.clearGames();
-        Assertions.assertEquals(0, this.basket.numberOfGamesInBasket());
+        Assertions.assertEquals(0, this.basket.getNumberOfGamesInBasket());
     }
 
     @Test
@@ -159,8 +159,8 @@ class BasketTest {
         this.basket.clearBasket();
         Assertions.assertNull(this.basket.getConsole());
         Assertions.assertNull(this.basket.getCustomer());
-        Assertions.assertNull(this.basket.getDate());
-        Assertions.assertEquals(0, this.basket.numberOfGamesInBasket());
+        Assertions.assertNull(this.basket.getDateRented());
+        Assertions.assertEquals(0, this.basket.getNumberOfGamesInBasket());
         Assertions.assertFalse(this.basket.isConsoleRequired());
         Assertions.assertFalse(this.basket.isBasketPopulated());
     }
@@ -168,7 +168,7 @@ class BasketTest {
     void populateBasket() {
         this.basket.setConsole(this.console);
         this.basket.setCustomer(this.customer);
-        this.basket.setDate(this.date);
+        this.basket.setDateRented(this.date);
         this.basket.addGame(this.game1);
         this.basket.setConsoleRequired(true);
     }

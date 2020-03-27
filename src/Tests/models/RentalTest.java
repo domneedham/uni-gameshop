@@ -25,7 +25,7 @@ class RentalTest {
 
     @Test
     void creatingARentalWorks() {
-        this.rental = new Rental(this.date, this.customer, this.console, this.games);
+        this.rental = Rental.withConsole(this.date, this.customer, this.games, this.console);
 
         Assertions.assertEquals(this.date, this.rental.getDateRented());
         Assertions.assertEquals(this.customer, this.rental.getCustomer());
@@ -35,7 +35,7 @@ class RentalTest {
 
     @Test
     void creatingARentalWithNoConsoleWorks() {
-        this.rental = new Rental(this.date, this.customer, this.games);
+        this.rental = Rental.withoutConsole(this.date, this.customer, this.games);
 
         Assertions.assertEquals(this.date, this.rental.getDateRented());
         Assertions.assertEquals(this.customer, this.rental.getCustomer());
@@ -50,13 +50,13 @@ class RentalTest {
 
     @Test
     void canNotAddMoreThanThreeGamesToARental() {
-        this.rental = new Rental(this.date, this.customer, this.console, this.games);
+        this.rental = Rental.withConsole(this.date, this.customer, this.games, this.console);
         // check there are three games in test first
         Assertions.assertEquals(3, this.rental.getGames().size());
 
         Game game2 = testData.consoleTwoGame2;
 
-        this.rental.addGameToRental(game2);
+        this.rental.addGame(game2);
 
         Assertions.assertEquals(3, this.rental.getGames().size());
     }
@@ -68,7 +68,7 @@ class RentalTest {
             Assertions.assertTrue(g.isAvailable());
         }
 
-        this.rental = new Rental(this.date, this.customer, this.console, this.games);
+        this.rental = Rental.withConsole(this.date, this.customer, this.games, this.console);
 
         for (Game g: this.rental.getGames()) {
             Assertions.assertFalse(g.isAvailable());
@@ -77,7 +77,7 @@ class RentalTest {
 
     @Test
     void eachGameGetsMarkedAsAvailableOnReturn() {
-        this.rental = new Rental(this.date, this.customer, this.console, this.games);
+        this.rental = Rental.withConsole(this.date, this.customer, this.games, this.console);
         // make sure each game is not available after rental
         for (Game g: this.rental.getGames()) {
             Assertions.assertFalse(g.isAvailable());
@@ -96,14 +96,14 @@ class RentalTest {
         // make sure console is available before checking rental changes
         Assertions.assertTrue(this.console.isAvailable());
 
-        this.rental = new Rental(this.date, this.customer, this.console, this.games);
+        this.rental = Rental.withConsole(this.date, this.customer, this.games, this.console);
 
         Assertions.assertFalse(this.rental.getConsole().isAvailable());
     }
 
     @Test
     void consoleGetsMarkedAsAvailableOnReturn() {
-        this.rental = new Rental(this.date, this.customer, this.console, this.games);
+        this.rental = Rental.withConsole(this.date, this.customer, this.games, this.console);
         // make sure console is not available after rental
         Assertions.assertFalse(this.console.isAvailable());
 

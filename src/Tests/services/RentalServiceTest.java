@@ -42,8 +42,8 @@ class RentalServiceTest {
 
     @Test
     void getRentalsForCustomerReturnsCorrectSize() {
-        this.rentalWithConsole = new Rental(this.date, this.customer1, this.console1, this.gamesForRental1);
-        this.rentalWithoutConsole = new Rental(this.date, this.customer2, this.gamesForRental2);
+        this.rentalWithConsole = Rental.withConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        this.rentalWithoutConsole = Rental.withoutConsole(this.date, this.customer2, this.gamesForRental2);
         RentalService.getRentals().add(this.rentalWithConsole);
         RentalService.getRentals().add(this.rentalWithoutConsole);
 

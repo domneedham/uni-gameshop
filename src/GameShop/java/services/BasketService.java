@@ -32,7 +32,7 @@ public class BasketService {
     }
 
     public static LocalDate getDate() {
-        return repo.getBasket().getDate();
+        return repo.getBasket().getDateRented();
     }
 
     public static void setCustomer(Customer customer) {
@@ -54,7 +54,7 @@ public class BasketService {
     }
 
     public static void setDate(LocalDate date) {
-        repo.getBasket().setDate(date);
+        repo.getBasket().setDateRented(date);
     }
 
     public static void addGame(Game game) {
@@ -90,13 +90,6 @@ public class BasketService {
     }
 
     public static double calculateCost() {
-        double cost = 0;
-        for(Game game : getGames()) {
-            cost += game.getCost();
-        }
-        if (isConsoleRequired()) {
-            cost += getConsole().getCost();
-        }
-        return cost;
+        return repo.getBasket().calculateCost();
     }
 }
