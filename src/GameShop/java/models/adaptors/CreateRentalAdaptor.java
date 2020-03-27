@@ -1,5 +1,6 @@
 package GameShop.java.models.adaptors;
 
+import GameShop.java.controllers.CreateRentalController;
 import GameShop.java.general.AlertBox;
 import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class CreateRentalAdaptor {
@@ -40,7 +42,7 @@ public class CreateRentalAdaptor {
         }
     }
 
-    public static void addAddButtonToGameTable(TableColumn<Game, Button> tableColumn) {
+    public static void addAddButtonToGameTable(TableColumn<Game, Button> tableColumn, CreateRentalController controller) {
         Callback<TableColumn<Game, Button>, TableCell<Game, Button>> cellFactory = new Callback<>() {
             @Override
             public TableCell<Game, Button> call(final TableColumn<Game, Button> param) {
@@ -64,6 +66,7 @@ public class CreateRentalAdaptor {
                                 BasketService.addGame(game);
                                 if (BasketService.gameInBasket(game)) {
                                     btn.setText("Remove");
+                                    controller.updateCost();
                                 } else {
                                     AlertBox.showMessage(Alert.AlertType.ERROR, "Failed to add game to the basket");
                                 }

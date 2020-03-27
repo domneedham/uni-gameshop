@@ -1,8 +1,10 @@
 package GameShop.java.controllers;
 
 import GameShop.java.general.AlertBox;
+import GameShop.java.models.Basket;
 import GameShop.java.models.adaptors.CreateRentalAdaptor;
 import GameShop.java.models.adaptors.GameTableAdaptor;
+import GameShop.java.models.helpers.FXMLTableFormat;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
 import GameShop.java.services.*;
@@ -14,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,8 +30,9 @@ public class CreateRentalController implements Initializable {
     @FXML private TableView gameTableView;
     @FXML private CheckBox consoleRequired;
     @FXML private DatePicker datePicker;
+    @FXML private Text costText;
 
-    @FXML private TableColumn idColumn, nameColumn, buttonColumn;
+    @FXML private TableColumn idColumn, nameColumn, costColumn, buttonColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -49,6 +53,7 @@ public class CreateRentalController implements Initializable {
         addButtonToTable();
         GameTableAdaptor.setIdVales(idColumn);
         GameTableAdaptor.setNameValues(nameColumn);
+        GameTableAdaptor.setCostValues(costColumn);
     }
 
     private void fillDefaults() {
@@ -56,6 +61,7 @@ public class CreateRentalController implements Initializable {
         consoleChoiceBox.getSelectionModel().select(BasketService.getConsole());
         consoleRequired.setSelected(BasketService.isConsoleRequired());
         datePicker.setValue(BasketService.getDate());
+        costText.setText(FXMLTableFormat.formatCost(BasketService.calculateCost()));
     }
 
     private void getCustomers() {
@@ -84,6 +90,7 @@ public class CreateRentalController implements Initializable {
             BasketService.unrequireConsole();
             consoleRequired.setSelected(false);
         }
+        updateCost();
     }
 
     @FXML
@@ -97,11 +104,15 @@ public class CreateRentalController implements Initializable {
             setConsole();
         }
 
-        // if the console is unavailable, uncheck the required box as it can not be rented
+        // if the console is unavailable
+        // unrequire the console from the basket
+        // uncheck the required box as it can not be rented
         if (!CreateRentalAdaptor.isConsoleAvailable(consoleChoiceBox)) {
+            BasketService.unrequireConsole();
             consoleRequired.setSelected(false);
         }
         getGames();
+        updateCost();
     }
 
     @FXML
@@ -126,7 +137,7 @@ public class CreateRentalController implements Initializable {
     }
 
     private void addButtonToTable() {
-        CreateRentalAdaptor.addAddButtonToGameTable(buttonColumn);
+        CreateRentalAdaptor.addAddButtonToGameTable(buttonColumn, this);
     }
 
     private void setConsole() {
@@ -137,5 +148,9 @@ public class CreateRentalController implements Initializable {
             consoleRequired.setSelected(false);
             AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
+    }
+
+    public void updateCost() {
+        costText.setText(FXMLTableFormat.formatCost(BasketService.calculateCost()));
     }
 }

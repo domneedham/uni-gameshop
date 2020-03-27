@@ -93,6 +93,17 @@ public class Rental {
         }
     }
 
+    public double calculateCost() {
+        double cost = 0;
+        for(Game game : games) {
+            cost += game.getCost();
+        }
+        if (console != null) {
+            cost += console.getCost();
+        }
+        return cost;
+    }
+
     private void markGamesAsUnavailable() throws Error {
         for (Game g: this.games) {
             g.rentItem();

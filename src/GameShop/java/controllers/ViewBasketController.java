@@ -1,6 +1,7 @@
 package GameShop.java.controllers;
 
 import GameShop.java.general.AlertBox;
+import GameShop.java.models.Basket;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.models.helpers.FXMLTableFormat;
 import GameShop.java.models.helpers.RentalFXMLTableFormat;
@@ -22,9 +23,9 @@ import java.util.ResourceBundle;
 public class ViewBasketController implements Initializable {
     private final Router router = new Router();
 
-    @FXML private Text customer, console, consoleRequired, dateText;
+    @FXML private Text customer, console, consoleRequired, dateText, costText;
     @FXML private TableView gameTableView;
-    @FXML private TableColumn idColumn,  nameColumn, consoleColumn;
+    @FXML private TableColumn idColumn,  nameColumn, consoleColumn, costColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -53,6 +54,7 @@ public class ViewBasketController implements Initializable {
         GameTableAdaptor.setIdVales(idColumn);
         GameTableAdaptor.setNameValues(nameColumn);
         GameTableAdaptor.setConsoleValues(consoleColumn);
+        GameTableAdaptor.setCostValues(costColumn);
     }
 
     private void populateData() {
@@ -60,6 +62,7 @@ public class ViewBasketController implements Initializable {
         console.setText(RentalFXMLTableFormat.formatConsoleName(BasketService.getConsole()));
         consoleRequired.setText(FXMLTableFormat.formatBoolean(BasketService.isConsoleRequired()));
         dateText.setText(FXMLTableFormat.formatDate(BasketService.getDate()));
+        costText.setText(FXMLTableFormat.formatCost(BasketService.calculateCost()));
         gameTableView.getItems().setAll(BasketService.getGames());
     }
 }

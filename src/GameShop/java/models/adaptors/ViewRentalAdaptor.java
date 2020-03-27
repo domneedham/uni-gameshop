@@ -31,6 +31,10 @@ public class ViewRentalAdaptor {
         tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatArrayList(val.getValue().getGames())));
     }
 
+    public static void setCostValues(TableColumn<Rental, String> tableColumn) {
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatCost(val.getValue().calculateCost())));
+    }
+
     public static void addButtonToTable(TableColumn<Rental, Button> tableColumn) {
         Callback<TableColumn<Rental, Button>, TableCell<Rental, Button>> cellFactory = new Callback<>() {
             @Override

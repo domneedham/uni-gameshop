@@ -31,6 +31,7 @@
                         <TableColumn text="Date Due" fx:id="dateDueColumn" />
                         <TableColumn text="Console" fx:id="consoleColumn" />
                         <TableColumn text="Games" fx:id="gamesColumn" />
+                        <TableColumn text="Cost" fx:id="costColumn" />
                         <TableColumn text="Return Rental" fx:id="buttonColumn" />
                     </columns>
                 </TableView>

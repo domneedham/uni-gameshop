@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Text?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameShop.java.controllers.CreateRentalController">
     <top>
@@ -30,15 +31,24 @@
                 <DatePicker fx:id="datePicker" onAction="#handleDateChange" />
             </HBox>
 
-            <HBox fx:id="gameTableWrapper">
-                <TableView fx:id="gameTableView" >
-                    <columns>
-                        <TableColumn text="Game ID" fx:id="idColumn" />
-                        <TableColumn text="Title" fx:id="nameColumn" />
-                        <TableColumn text="Add to Basket" fx:id="buttonColumn" />
-                    </columns>
-                </TableView>
+            <HBox>
+                <Label text="Cost" />
+                <Text fx:id="costText" text="£0.00" />
             </HBox>
+
+            <HBox fx:id="gameTableWrapper">
+                <ScrollPane>
+                    <TableView fx:id="gameTableView" >
+                        <columns>
+                            <TableColumn text="Game ID" fx:id="idColumn" />
+                            <TableColumn text="Title" fx:id="nameColumn" />
+                            <TableColumn text="Cost" fx:id="costColumn" />
+                            <TableColumn text="Add to Basket" fx:id="buttonColumn" />
+                        </columns>
+                    </TableView>
+                </ScrollPane>
+            </HBox>
+
         </VBox>
     </center>
 

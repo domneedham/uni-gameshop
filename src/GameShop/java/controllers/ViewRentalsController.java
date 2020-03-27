@@ -29,7 +29,7 @@ public class ViewRentalsController implements Initializable {
     @FXML private ChoiceBox customerChoiceBox;
 
     @FXML private TableView rentalTableView;
-    @FXML private TableColumn customerColumn, dateRentedColumn, dateDueColumn, consoleColumn, gamesColumn, buttonColumn;
+    @FXML private TableColumn customerColumn, dateRentedColumn, dateDueColumn, consoleColumn, gamesColumn, costColumn, buttonColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -50,6 +50,7 @@ public class ViewRentalsController implements Initializable {
         ViewRentalAdaptor.setDateDueValues(dateDueColumn);
         ViewRentalAdaptor.setConsoleValues(consoleColumn);
         ViewRentalAdaptor.setGameValues(gamesColumn);
+        ViewRentalAdaptor.setCostValues(costColumn);
         addButtonToTable();
     }
 

@@ -88,4 +88,15 @@ public class BasketService {
     public static void submitBasket() throws Error {
         repo.getBasket().submitBasket();
     }
+
+    public static double calculateCost() {
+        double cost = 0;
+        for(Game game : getGames()) {
+            cost += game.getCost();
+        }
+        if (isConsoleRequired()) {
+            cost += getConsole().getCost();
+        }
+        return cost;
+    }
 }
