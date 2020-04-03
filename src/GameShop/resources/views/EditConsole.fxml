@@ -8,7 +8,7 @@
             fx:controller="GameShop.java.controllers.EditConsoleController">
     <top>
         <HBox>
-            <Label text="View All Consoles" styleClass="PageHeader" />
+            <Label text="Edit Console" styleClass="PageHeader" />
         </HBox>
     </top>
 

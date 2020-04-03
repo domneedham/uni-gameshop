@@ -8,7 +8,7 @@
             fx:controller="GameShop.java.controllers.EditGameController">
     <top>
         <HBox>
-            <Label text="View All Games" styleClass="PageHeader" />
+            <Label text="Edit Game" styleClass="PageHeader" />
         </HBox>
     </top>
 
