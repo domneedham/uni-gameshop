@@ -25,11 +25,11 @@ public class Rental extends Order {
         markConsoleAsUnavailable();
     }
 
-    public static Rental withConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) {
+    public static Rental createWithConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) {
         return new Rental(dateRented, customer, games, console);
     }
 
-    public static Rental withoutConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games) {
+    public static Rental createWithoutConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games) {
         return new Rental(dateRented, customer, games);
     }
 

@@ -1,9 +1,5 @@
 package GameShop.java.models;
 
-import GameShop.java.services.RentalService;
-
-import java.util.ArrayList;
-
 public class Basket extends Order {
     private final int MAX_GAMES = Rental.getMaxGames();
     private boolean consoleRequired = false;
@@ -19,7 +15,6 @@ public class Basket extends Order {
     public boolean isConsoleRequired() {
         return consoleRequired;
     }
-
 
     public void setConsoleRequired(boolean required) {
         this.consoleRequired = required;
@@ -48,19 +43,7 @@ public class Basket extends Order {
     public void clearGames() {
         games.clear();
     }
-
-    public void submitBasket() throws Error {
-        // create copy of games so that when basket is cleared
-        // does not clear games in rental
-        ArrayList<Game> gamesCopy = new ArrayList<>(games);
-        if (consoleRequired) {
-            RentalService.createRentalWithConsole(dateRented, customer, console, gamesCopy);
-        } else {
-            RentalService.createRental(dateRented, customer, gamesCopy);
-        }
-        clearBasket();
-    }
-
+    
     @Override
     public String toString() {
         return "Customer: " + customer +

@@ -86,7 +86,15 @@ public class BasketService {
     }
 
     public static void submitBasket() throws Error {
-        repo.getBasket().submitBasket();
+        // create copy of games so that when basket is cleared
+        // does not clear games in rental
+        ArrayList<Game> gamesCopy = new ArrayList<>(getGames());
+        if (isConsoleRequired()) {
+            RentalService.createRentalWithConsole(getDate(), getCustomer(), getConsole(), gamesCopy);
+        } else {
+            RentalService.createRental(getDate(), getCustomer(), gamesCopy);
+        }
+        clearBasket();
     }
 
     public static double calculateCost() {

@@ -33,8 +33,8 @@ class RentalRepositoryTest {
         // test clear worked on rentals before running other tests
         Assertions.assertEquals(0, repo.getAllRentals().size());
 
-        this.rental1 = Rental.withConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
-        this.rental2 = Rental.withConsole(this.date, this.customer2, this.gamesForRental2, this.console2);
+        this.rental1 = Rental.createWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        this.rental2 = Rental.createWithConsole(this.date, this.customer2, this.gamesForRental2, this.console2);
     }
 
     @Test

@@ -34,7 +34,7 @@ class ConsoleTest {
             ArrayList<Game> games = new ArrayList<>();
             games.add(this.game1);
             Customer customer = new Customer("Dom", "Needham", "email", "01");
-            Rental rental = Rental.withConsole(LocalDate.now(), customer, games, this.console1);
+            Rental rental = Rental.createWithConsole(LocalDate.now(), customer, games, this.console1);
         } catch (Error e) {
             // do not care about the error
         } finally {
@@ -49,7 +49,7 @@ class ConsoleTest {
             ArrayList<Game> games = new ArrayList<>();
             games.add(this.game1);
             Customer customer = new Customer("Dom", "Needham", "email", "01");
-            Rental rental = Rental.withConsole(LocalDate.now(), customer, games, this.console3);
+            Rental rental = Rental.createWithConsole(LocalDate.now(), customer, games, this.console3);
         } catch (Error e) {
             // do not care about the error
         } finally {
