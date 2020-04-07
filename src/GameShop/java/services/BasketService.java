@@ -90,7 +90,7 @@ public class BasketService {
         // does not clear games in rental
         ArrayList<Game> gamesCopy = new ArrayList<>(getGames());
         if (isConsoleRequired()) {
-            RentalService.createRentalWithConsole(getDate(), getCustomer(), getConsole(), gamesCopy);
+            RentalService.createRentalWithConsole(getDate(), getCustomer(), gamesCopy, getConsole());
         } else {
             RentalService.createRental(getDate(), getCustomer(), gamesCopy);
         }

@@ -45,4 +45,12 @@ public class ConsoleRepository {
             }
         }
     }
+
+    public void rentConsole(Console console) {
+        console.rentItem();
+    }
+
+    public void returnConsole(Console console) {
+        console.returnItem();
+    }
 }

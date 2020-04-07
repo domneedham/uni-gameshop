@@ -66,4 +66,12 @@ public class GameRepository {
             }
         }
     }
+
+    public void rentGame(Game game) {
+        game.rentItem();
+    }
+
+    public void returnGame(Game game) {
+        game.returnItem();
+    }
 }

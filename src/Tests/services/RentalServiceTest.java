@@ -55,7 +55,7 @@ class RentalServiceTest {
     void createARentalWithConsoleWorks() {
         Assertions.assertEquals(0, RentalService.getRentals().size());
 
-        RentalService.createRentalWithConsole(this.date, this.customer1, this.console1, this.gamesForRental1);
+        RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
 
         Assertions.assertEquals(1, RentalService.getRentals().size());
         // make sure rental has a console
@@ -71,6 +71,58 @@ class RentalServiceTest {
         Assertions.assertEquals(1, RentalService.getRentals().size());
         // make sure rental does not have a console
         Assertions.assertNull(RentalService.getRentals().get(0).getConsole());
+    }
+
+    @Test
+    void eachGameGetsMarkedAsUnavailableOnceRented() {
+        // make sure each game is available before checking rental changes
+        for (Game g: this.gamesForRental1) {
+            Assertions.assertTrue(g.isAvailable());
+        }
+
+        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+
+        for (Game g: this.rentalWithConsole.getGames()) {
+            Assertions.assertFalse(g.isAvailable());
+        }
+    }
+
+    @Test
+    void eachGameGetsMarkedAsAvailableOnReturn() {
+        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental2, this.console1);
+        // make sure each game is not available after rental
+        for (Game g: this.rentalWithConsole.getGames()) {
+            Assertions.assertFalse(g.isAvailable());
+        }
+
+        // return items
+        RentalService.returnRental(this.rentalWithConsole);
+
+        for (Game g: this.rentalWithConsole.getGames()) {
+            Assertions.assertTrue(g.isAvailable());
+        }
+    }
+
+    @Test
+    void consoleGetsMarkedAsUnavailableOnceRented() {
+        // make sure console is available before checking rental changes
+        Assertions.assertTrue(this.console1.isAvailable());
+
+        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+
+        Assertions.assertFalse(this.rentalWithConsole.getConsole().isAvailable());
+    }
+
+    @Test
+    void consoleGetsMarkedAsAvailableOnReturn() {
+        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        // make sure console is not available after rental
+        Assertions.assertFalse(this.console1.isAvailable());
+
+        // return items
+        RentalService.returnRental(this.rentalWithConsole);
+
+        Assertions.assertTrue(this.rentalWithConsole.getConsole().isAvailable());
     }
 
 }

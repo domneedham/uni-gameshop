@@ -24,4 +24,9 @@ public class RentalRepository {
             getAllRentals().add(rental);
         }
     }
+
+    public void returnRental(Rental rental) {
+        rental.setIsReturned(true);
+
+    }
 }

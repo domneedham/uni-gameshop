@@ -4,6 +4,7 @@ import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 import GameShop.java.models.Rental;
+import GameShop.java.services.RentalService;
 import Tests.TestData;
 import org.junit.jupiter.api.*;
 
@@ -35,7 +36,7 @@ class GameTest {
             ArrayList<Game> games = new ArrayList<>();
             games.add(this.game1);
             Customer customer = new Customer("Dom", "Needham", "email", "01");
-            Rental rental = Rental.createWithConsole(LocalDate.now(), customer, games, this.console);
+            Rental rental = RentalService.createRentalWithConsole(LocalDate.now(), customer, games, this.console);
 
         } catch (Exception e) {
             // ignore

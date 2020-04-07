@@ -3,7 +3,7 @@ package GameShop.java.models;
 public class Game extends Product {
     private static int idSeed = 1000;
     private final String id;
-    private Console console;
+    private final Console console;
 
     public Game(String name, Console console, double cost, boolean inForRepair) {
         super(name, cost, inForRepair);

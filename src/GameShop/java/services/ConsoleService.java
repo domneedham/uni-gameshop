@@ -25,4 +25,12 @@ public class ConsoleService {
         console.setInForRepair(inForRepair);
         repo.modifyConsole(console);
     }
+
+    public static void rentConsole(Console console) {
+        repo.rentConsole(console);
+    }
+
+    public static void returnConsole(Console console) {
+        repo.returnConsole(console);
+    }
 }

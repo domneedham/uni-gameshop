@@ -30,4 +30,12 @@ public class GameService {
         game.setInForRepair(inForRepair);
         repo.modifyGame(game);
     }
+
+    public static void rentGame(Game game) {
+        repo.rentGame(game);
+    }
+
+    public static void returnGame(Game game) {
+        repo.returnGame(game);
+    }
 }

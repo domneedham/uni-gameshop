@@ -5,6 +5,7 @@ import GameShop.java.models.helpers.FXMLTableFormat;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Rental;
 import GameShop.java.models.helpers.RentalFXMLTableFormat;
+import GameShop.java.services.RentalService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -44,7 +45,7 @@ public class ViewRentalAdaptor {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Rental rental = getTableView().getItems().get(getIndex());
-                            rental.returnRental();
+                            RentalService.returnRental(rental);
                             btn.setText("Already Returned");
                             btn.setDisable(true);
                             AlertBox.showMessage(Alert.AlertType.CONFIRMATION, "Returned the product!");
