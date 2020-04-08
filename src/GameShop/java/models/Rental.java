@@ -2,22 +2,20 @@ package GameShop.java.models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Rental extends Order {
-    private static int idSeed = 1000;
-    private final int id;
+    private final String id;
     private boolean returned;
 
     private Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) throws Error {
         super(dateRented, customer, games);
-        id = idSeed;
-        idSeed++;
+        id = UUID.randomUUID().toString();
     }
 
     private Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) throws Error {
         super(dateRented, customer, games, console);
-        id = idSeed;
-        idSeed++;
+        id = UUID.randomUUID().toString();
     }
 
     public static Rental createWithConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) {
@@ -28,7 +26,7 @@ public class Rental extends Order {
         return new Rental(dateRented, customer, games);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

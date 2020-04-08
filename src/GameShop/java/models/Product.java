@@ -1,15 +1,23 @@
 package GameShop.java.models;
 
+import java.util.UUID;
+
 public abstract class Product {
+    private String id;
     private String name;
     private double cost;
     private boolean inForRepair;
     private boolean currentlyRented = false;
 
     public Product(String name, double cost, boolean inForRepair) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.cost = cost;
         this.inForRepair = inForRepair;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

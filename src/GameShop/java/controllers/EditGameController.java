@@ -17,26 +17,24 @@ import java.util.ResourceBundle;
 
 public class EditGameController implements Initializable, IControllerCommunication {
     private final Router router = new Router();
+    private String gameId;
 
-    @FXML Text idText;
     @FXML TextField nameTextField;
     @FXML CheckBox inForRepairCheckBox;
 
     @Override
     public void passId(String id) {
+        gameId = id;
         EditGameAdaptor.getGame(GameService.getById(id), this);
     }
 
     public void gameDetailsToEdit(String id, String name, boolean inForRepair) {
-        idText.setText(id);
         nameTextField.setText(name);
         inForRepairCheckBox.setSelected(inForRepair);
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
 
     @FXML
     public void handleGoBack(ActionEvent event) throws IOException {
@@ -45,7 +43,7 @@ public class EditGameController implements Initializable, IControllerCommunicati
 
     @FXML
     public void handleSaveChanges(ActionEvent event) throws IOException {
-        GameService.modifyGame(GameService.getById(idText.getText()), nameTextField.getText(), inForRepairCheckBox.isSelected());
+        GameService.modifyGame(GameService.getById(gameId), nameTextField.getText(), inForRepairCheckBox.isSelected());
         router.changeRoute(RouteNames.EDIT_GAMES, event);
     }
 }

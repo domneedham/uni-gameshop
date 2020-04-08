@@ -20,7 +20,7 @@ public class ViewCustomersController implements Initializable {
     private final Router router = new Router();
 
     @FXML private TableView customerTableView;
-    @FXML private TableColumn idColumn, forenameColumn, surnameColumn, emailColumn, telephoneColumn;
+    @FXML private TableColumn forenameColumn, surnameColumn, emailColumn, telephoneColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -30,7 +30,6 @@ public class ViewCustomersController implements Initializable {
 
     private void setupTable() {
         customerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        CustomerTableAdaptor.setIdValues(idColumn);
         CustomerTableAdaptor.setForenameValues(forenameColumn);
         CustomerTableAdaptor.setSurnameValues(surnameColumn);
         CustomerTableAdaptor.setEmailValues(emailColumn);

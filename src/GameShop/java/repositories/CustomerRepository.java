@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CustomerRepository {
     public ArrayList<Customer> getAllCustomers() { return App.state.getCustomers(); }
 
-    public Customer getById(int id) {
+    public Customer getById(String id) {
         for (Customer c: getAllCustomers()) {
             if (c.getId() == id) {
                 return c;

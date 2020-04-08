@@ -23,7 +23,6 @@
             <ScrollPane>
                 <TableView fx:id="gameTableView">
                     <columns>
-                        <TableColumn text="Game ID" fx:id="idColumn" />
                         <TableColumn text="Title" fx:id="nameColumn" />
                         <TableColumn text="Console" fx:id="consoleColumn" />
                         <TableColumn text="Cost" fx:id="costColumn" />

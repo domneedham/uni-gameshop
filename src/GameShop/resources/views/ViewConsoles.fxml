@@ -15,7 +15,6 @@
             <ScrollPane>
                 <TableView fx:id="consoleTableView">
                     <columns>
-                        <TableColumn text="Console ID" fx:id="idColumn" />
                         <TableColumn text="Title" fx:id="nameColumn" />
                         <TableColumn text="Form" fx:id="formColumn" />
                         <TableColumn text="Bit" fx:id="bitColumn" />

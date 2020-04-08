@@ -33,7 +33,7 @@ class CustomerRepositoryTest {
     void getByIdReturnsCorrectCustomer() {
         this.repo.addCustomer(this.customer1);
 
-        int customerId = this.customer1.getId();
+        String customerId = this.customer1.getId();
         Assertions.assertEquals(this.repo.getById(customerId), this.customer1);
     }
 
@@ -41,7 +41,7 @@ class CustomerRepositoryTest {
     void getByIdReturnsNullIfWrongId() {
         this.repo.addCustomer(this.customer1);
 
-        int wrongId = this.customer2.getId();
+        String wrongId = this.customer2.getId();
 
         Assertions.assertNull(this.repo.getById(wrongId));
     }

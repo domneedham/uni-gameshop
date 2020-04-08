@@ -31,7 +31,7 @@ public class CreateRentalController implements Initializable {
     @FXML private DatePicker datePicker;
     @FXML private Text costText;
 
-    @FXML private TableColumn idColumn, nameColumn, costColumn, buttonColumn;
+    @FXML private TableColumn nameColumn, costColumn, buttonColumn;
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
@@ -50,7 +50,6 @@ public class CreateRentalController implements Initializable {
     private void setupTable() {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         addButtonToTable();
-        GameTableAdaptor.setIdVales(idColumn);
         GameTableAdaptor.setNameValues(nameColumn);
         GameTableAdaptor.setCostValues(costColumn);
     }

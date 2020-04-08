@@ -15,10 +15,6 @@
     <center>
         <VBox>
             <HBox>
-                <Label text="Game ID" />
-                <Text fx:id="idText" />
-            </HBox>
-            <HBox>
                 <Label text="Name" />
                 <TextField fx:id="nameTextField" />
             </HBox>

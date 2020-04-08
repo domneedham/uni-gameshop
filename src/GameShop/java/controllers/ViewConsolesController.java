@@ -25,7 +25,7 @@ public class ViewConsolesController implements Initializable {
 
     @FXML private CheckBox showAll;
 
-    @FXML private TableColumn idColumn, nameColumn, formColumn, bitColumn, availableColumn, costColumn;
+    @FXML private TableColumn nameColumn, formColumn, bitColumn, availableColumn, costColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,7 +35,6 @@ public class ViewConsolesController implements Initializable {
 
     private void setupTable() {
         consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ConsoleTableAdaptor.setIdValues(idColumn);
         ConsoleTableAdaptor.setNameValues(nameColumn);
         ConsoleTableAdaptor.setFormValues(formColumn);
         ConsoleTableAdaptor.setBitValues(bitColumn);

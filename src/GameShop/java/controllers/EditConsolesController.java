@@ -21,7 +21,7 @@ public class EditConsolesController implements Initializable {
     private final Router router = new Router();
 
     @FXML private TableView consoleTableView;
-    @FXML private TableColumn idColumn, nameColumn, formColumn, bitColumn, availableColumn, costColumn, editConsoleColumn;
+    @FXML private TableColumn nameColumn, formColumn, bitColumn, availableColumn, costColumn, editConsoleColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -31,7 +31,6 @@ public class EditConsolesController implements Initializable {
 
     private void setupTable() {
         consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ConsoleTableAdaptor.setIdValues(idColumn);
         ConsoleTableAdaptor.setNameValues(nameColumn);
         ConsoleTableAdaptor.setFormValues(formColumn);
         ConsoleTableAdaptor.setBitValues(bitColumn);

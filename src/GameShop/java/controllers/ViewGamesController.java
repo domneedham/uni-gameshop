@@ -34,7 +34,7 @@ public class ViewGamesController implements Initializable {
 
     @FXML private CheckBox showAll;
 
-    @FXML private TableColumn idColumn, nameColumn, consoleColumn, costColumn, availableColumn;
+    @FXML private TableColumn nameColumn, consoleColumn, costColumn, availableColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,7 +45,6 @@ public class ViewGamesController implements Initializable {
 
     private void setupTable() {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        GameTableAdaptor.setIdVales(idColumn);
         GameTableAdaptor.setNameValues(nameColumn);
         GameTableAdaptor.setConsoleValues(consoleColumn);
         GameTableAdaptor.setAvailableValues(availableColumn);

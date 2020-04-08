@@ -21,7 +21,7 @@ public class EditGamesController implements Initializable {
     private final Router router = new Router();
 
     @FXML private TableView gameTableView;
-    @FXML private TableColumn idColumn, nameColumn, consoleColumn, costColumn, availableColumn, editGameColumn;
+    @FXML private TableColumn nameColumn, consoleColumn, costColumn, availableColumn, editGameColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -31,7 +31,6 @@ public class EditGamesController implements Initializable {
 
     private void setupTable() {
         gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        GameTableAdaptor.setIdVales(idColumn);
         GameTableAdaptor.setNameValues(nameColumn);
         GameTableAdaptor.setConsoleValues(consoleColumn);
         GameTableAdaptor.setAvailableValues(availableColumn);

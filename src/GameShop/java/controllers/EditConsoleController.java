@@ -17,26 +17,24 @@ import java.util.ResourceBundle;
 
 public class EditConsoleController implements Initializable, IControllerCommunication {
     private final Router router = new Router();
+    private String gameId;
 
-    @FXML Text idText;
     @FXML TextField nameTextField;
     @FXML CheckBox inForRepairCheckBox;
 
     @Override
     public void passId(String id) {
+        gameId = id;
         EditConsoleAdaptor.getConsole(ConsoleService.getById(id), this);
     }
 
     public void consoleDetailsToEdit(String id, String name, boolean inForRepair) {
-        idText.setText(id);
         nameTextField.setText(name);
         inForRepairCheckBox.setSelected(inForRepair);
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
 
     @FXML
     public void handleGoBack(ActionEvent event) throws IOException {
@@ -45,7 +43,7 @@ public class EditConsoleController implements Initializable, IControllerCommunic
 
     @FXML
     public void handleSaveChanges(ActionEvent event) throws IOException {
-        ConsoleService.modifyConsole(ConsoleService.getById(idText.getText()), nameTextField.getText(), inForRepairCheckBox.isSelected());
+        ConsoleService.modifyConsole(ConsoleService.getById(gameId), nameTextField.getText(), inForRepairCheckBox.isSelected());
         router.changeRoute(RouteNames.EDIT_CONSOLES, event);
     }
 }

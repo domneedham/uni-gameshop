@@ -1,23 +1,23 @@
 package GameShop.java.models;
 
+import java.util.UUID;
+
 public class Customer {
-    private static int idSeed = 1000;
-    private final int id;
+    private final String id;
     private String forename;
     private String surname;
     private String email;
     private String telNumber;
 
     public Customer(String forename, String surname, String email, String telNumber) {
-        id = idSeed;
+        id = UUID.randomUUID().toString();
         this.forename = forename;
         this.surname = surname;
         this.email = email;
         this.telNumber = telNumber;
-        idSeed++;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

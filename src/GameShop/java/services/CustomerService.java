@@ -10,9 +10,9 @@ public class CustomerService {
 
     public static ArrayList<Customer> getAllCustomers() { return  repo.getAllCustomers(); }
 
-    public static Customer getById(int id) { return repo.getById(id); }
+    public static Customer getById(String id) { return repo.getById(id); }
 
-    public static boolean idExists(int id) { return repo.getById(id) != null; }
+    public static boolean idExists(String id) { return repo.getById(id) != null; }
 
     public static void addCustomer(Customer customer) { repo.addCustomer(customer); }
 

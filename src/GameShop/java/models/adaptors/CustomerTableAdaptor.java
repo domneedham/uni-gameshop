@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 
 public class CustomerTableAdaptor {
     public static void setIdValues(TableColumn<Customer, String> tableColumn) {
-        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatInt(val.getValue().getId())));
+        tableColumn.setCellValueFactory(val -> new ReadOnlyObjectWrapper<>(FXMLTableFormat.formatString(val.getValue().getId())));
     }
 
     public static void setForenameValues(TableColumn<Customer, String> tableColumn) {

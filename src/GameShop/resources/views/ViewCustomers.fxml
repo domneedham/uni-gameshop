@@ -15,7 +15,6 @@
             <ScrollPane>
                 <TableView fx:id="customerTableView">
                     <columns>
-                        <TableColumn text="Customer ID" fx:id="idColumn" />
                         <TableColumn text="Forename" fx:id="forenameColumn" />
                         <TableColumn text="Surname" fx:id="surnameColumn" />
                         <TableColumn text="Email" fx:id="emailColumn" />

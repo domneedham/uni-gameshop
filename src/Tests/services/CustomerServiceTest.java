@@ -32,7 +32,7 @@ class CustomerServiceTest {
     void getByIdReturnsCorrectCustomer() {
         CustomerService.addCustomer(this.customer1);
 
-        int expectedId = this.customer1.getId();
+        String expectedId = this.customer1.getId();
         Assertions.assertEquals(this.customer1, CustomerService.getById(expectedId));
     }
 
@@ -40,7 +40,7 @@ class CustomerServiceTest {
     void idExistsReturnsTrueForCorrectCustomer() {
         CustomerService.addCustomer(this.customer1);
 
-        int expectedId = this.customer1.getId();
+        String expectedId = this.customer1.getId();
         Assertions.assertTrue(CustomerService.idExists(expectedId));
     }
 
