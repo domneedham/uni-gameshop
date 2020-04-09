@@ -1,8 +1,6 @@
 package Tests;
 
-import GameShop.java.models.Console;
-import GameShop.java.models.Customer;
-import GameShop.java.models.Game;
+import GameShop.java.models.*;
 import GameShop.java.models.enums.ConsoleForm;
 
 import java.time.LocalDate;

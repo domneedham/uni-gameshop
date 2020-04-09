@@ -4,6 +4,8 @@ import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 import GameShop.java.models.Rental;
+import GameShop.java.services.ConsoleService;
+import GameShop.java.services.GameService;
 import GameShop.java.services.RentalService;
 import Tests.TestData;
 import org.junit.jupiter.api.*;
@@ -75,8 +77,10 @@ class RentalServiceTest {
 
     @Test
     void eachGameGetsMarkedAsUnavailableOnceRented() {
+        // add games to repository as games are checked when marking unavailable
         // make sure each game is available before checking rental changes
         for (Game g: this.gamesForRental1) {
+            GameService.addGame(g);
             Assertions.assertTrue(g.isAvailable());
         }
 
@@ -89,9 +93,15 @@ class RentalServiceTest {
 
     @Test
     void eachGameGetsMarkedAsAvailableOnReturn() {
+        // add games to repository as games are checked when marking available
+        for (Game g: this.gamesForRental2) {
+            GameService.addGame(g);
+        }
+
         this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental2, this.console1);
+
         // make sure each game is not available after rental
-        for (Game g: this.rentalWithConsole.getGames()) {
+        for (Game g: this.gamesForRental2) {
             Assertions.assertFalse(g.isAvailable());
         }
 
@@ -105,6 +115,9 @@ class RentalServiceTest {
 
     @Test
     void consoleGetsMarkedAsUnavailableOnceRented() {
+        // add console to repository as games are checked when marking unavailable
+        ConsoleService.addConsole(this.console1);
+
         // make sure console is available before checking rental changes
         Assertions.assertTrue(this.console1.isAvailable());
 
@@ -115,14 +128,18 @@ class RentalServiceTest {
 
     @Test
     void consoleGetsMarkedAsAvailableOnReturn() {
+        // add console to repository as games are checked when marking unavailable
+        ConsoleService.addConsole(this.console1);
+
         this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+
         // make sure console is not available after rental
-        Assertions.assertFalse(this.console1.isAvailable());
+        Assertions.assertFalse(RentalService.getRentalById(rentalWithConsole.getId()).getConsole().isAvailable());
 
         // return items
         RentalService.returnRental(this.rentalWithConsole);
 
-        Assertions.assertTrue(this.rentalWithConsole.getConsole().isAvailable());
+        Assertions.assertTrue(RentalService.getRentalById(rentalWithConsole.getId()).getConsole().isAvailable());
     }
 
 }

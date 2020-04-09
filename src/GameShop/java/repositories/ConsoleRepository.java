@@ -47,10 +47,18 @@ public class ConsoleRepository {
     }
 
     public void rentConsole(Console console) {
-        console.rentItem();
+        for (Console c: getAllConsoles()) {
+            if (c.getId().equals(console.getId())) {
+                 c.rentItem();
+            }
+        }
     }
 
     public void returnConsole(Console console) {
-        console.returnItem();
+        for (Console c: getAllConsoles()) {
+            if (c.getId().equals(console.getId())) {
+                c.returnItem();
+            }
+        }
     }
 }

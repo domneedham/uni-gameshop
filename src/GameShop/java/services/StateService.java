@@ -90,6 +90,11 @@ public class StateService {
             games1.add(games.get(5));
             Rental r1 = Rental.createWithConsole(LocalDate.of(2020, 3, 3), customers.get(0), games1, consoles.get(0));
             rentals.add(r1);
+
+            // make games and console rented
+            games.get(4).rentItem();
+            games.get(5).rentItem();
+            consoles.get(0).rentItem();
         } catch (Exception e) {
             System.out.println("Unable to make rentals");
             System.exit(0);

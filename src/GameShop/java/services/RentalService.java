@@ -33,6 +33,10 @@ public class RentalService {
 
     public static ArrayList<Rental> getRentals() { return repo.getAllRentals(); }
 
+    public static Rental getRentalById(String id) {
+        return repo.getById(id);
+    }
+
     public static ArrayList<Rental> getRentalsForCustomer(Customer customer) { return repo.getRentalsForCustomer(customer); }
 
     public static void returnRental(Rental rental) {

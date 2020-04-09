@@ -68,10 +68,19 @@ public class GameRepository {
     }
 
     public void rentGame(Game game) {
-        game.rentItem();
+        for (Game g: getAllGames()) {
+            if (g.getId().equals(game.getId())) {
+                System.out.println("Game should be rented");
+                g.rentItem();
+            }
+        }
     }
 
     public void returnGame(Game game) {
-        game.returnItem();
+        for (Game g: getAllGames()) {
+            if (g.getId().equals(game.getId())) {
+                g.returnItem();
+            }
+        }
     }
 }
