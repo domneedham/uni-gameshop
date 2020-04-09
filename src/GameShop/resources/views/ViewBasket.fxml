@@ -40,8 +40,9 @@
                 <Text fx:id="costText" />
             </HBox>
 
-            <HBox>
+            <VBox>
                 <Label text="Games" />
+                <HBox>
                 <TableView fx:id="gameTableView">
                     <columns>
                         <TableColumn text="Title" fx:id="nameColumn" />
@@ -49,7 +50,8 @@
                         <TableColumn text="Cost" fx:id="costColumn" />
                     </columns>
                 </TableView>
-            </HBox>
+                </HBox>
+            </VBox>
         </VBox>
     </center>
 

@@ -42,7 +42,7 @@ public class Router {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
     }
-
+    
     public final void changeRouteActivated(RouteNames route, ActionEvent event, String id) throws IOException {
         String sceneRoute = routes.get(route);
 

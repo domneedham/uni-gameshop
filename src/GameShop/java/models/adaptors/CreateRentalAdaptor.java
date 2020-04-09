@@ -54,6 +54,7 @@ public class CreateRentalAdaptor {
                                 BasketService.removeGame(game);
                                 if (!BasketService.gameInBasket(game)) {
                                     btn.setText("Add");
+                                    controller.updateCost();
                                 } else {
                                     AlertBox.showMessage(Alert.AlertType.ERROR, "Failed to remove game from the basket");
                                 }

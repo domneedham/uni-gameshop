@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="GameShop.java.controllers.EditConsoleController">
     <top>
@@ -14,10 +13,6 @@
 
     <center>
         <VBox>
-            <HBox>
-                <Label text="Console ID" />
-                <Text fx:id="idText" />
-            </HBox>
             <HBox>
                 <Label text="Name" />
                 <TextField fx:id="nameTextField" />

@@ -10,7 +10,7 @@ public class CustomerRepository {
 
     public Customer getById(String id) {
         for (Customer c: getAllCustomers()) {
-            if (c.getId() == id) {
+            if (c.getId().equals(id)) {
                 return c;
             }
         }
@@ -29,7 +29,7 @@ public class CustomerRepository {
 
     public void modifyCustomer(Customer customer) {
         for (Customer c: getAllCustomers()) {
-            if (c.getId() == customer.getId()) {
+            if (c.getId().equals(customer.getId())) {
                 c.setEmail(customer.getEmail());
                 c.setTelNumber(customer.getTelNumber());
             }

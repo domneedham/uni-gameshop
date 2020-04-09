@@ -3,7 +3,7 @@ package GameShop.java.models;
 import java.util.UUID;
 
 public abstract class Product {
-    private String id;
+    private final String id;
     private String name;
     private double cost;
     private boolean inForRepair;
