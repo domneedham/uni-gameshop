@@ -32,7 +32,7 @@ public class Router {
         put(RouteNames.EDIT_CONSOLE, VIEW_PATH + "EditConsole.fxml");
     }};
 
-    public final void changeRoute(RouteNames route, ActionEvent event) throws IOException {
+    public void changeRoute(RouteNames route, ActionEvent event) throws IOException {
         String sceneRoute = routes.get(route);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneRoute));
@@ -42,8 +42,8 @@ public class Router {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
     }
-    
-    public final void changeRouteActivated(RouteNames route, ActionEvent event, String id) throws IOException {
+
+    public void changeRouteActivated(RouteNames route, ActionEvent event, String id) throws IOException {
         String sceneRoute = routes.get(route);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneRoute));
