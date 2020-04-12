@@ -1,12 +1,12 @@
 package GameShop.java.repositories;
 
-import GameShop.App;
 import GameShop.java.models.Customer;
+import GameShop.java.services.StateService;
 
 import java.util.ArrayList;
 
 public class CustomerRepository {
-    public ArrayList<Customer> getAllCustomers() { return App.state.getCustomers(); }
+    public ArrayList<Customer> getAllCustomers() { return StateService.getCustomers(); }
 
     public Customer getById(String id) {
         for (Customer c: getAllCustomers()) {

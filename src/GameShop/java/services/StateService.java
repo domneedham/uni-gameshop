@@ -23,19 +23,19 @@ public class StateService {
         populateRentals();
     }
 
-    public ArrayList<Game> getGames(){
+    public static ArrayList<Game> getGames(){
         return games;
     }
 
-    public ArrayList<Console> getConsoles(){
+    public static ArrayList<Console> getConsoles(){
         return consoles;
     }
 
-    public ArrayList<Customer> getCustomers() { return customers; }
+    public static ArrayList<Customer> getCustomers() { return customers; }
 
-    public ArrayList<Rental> getRentals() { return rentals; }
+    public static ArrayList<Rental> getRentals() { return rentals; }
 
-    public Basket getBasket() { return basket; }
+    public static Basket getBasket() { return basket; }
 
     // create dummy objects for consoles, like reading from a DB
     private void populateConsoles() {

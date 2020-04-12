@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditGameController implements Initializable, IControllerCommunication {
+public class EditGameController implements Initializable, ControllerCommunication {
     private final Router router = new Router();
     private String gameId;
 

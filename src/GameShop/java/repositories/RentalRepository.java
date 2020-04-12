@@ -1,13 +1,13 @@
 package GameShop.java.repositories;
 
-import GameShop.App;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Rental;
+import GameShop.java.services.StateService;
 
 import java.util.ArrayList;
 
 public class RentalRepository {
-    public ArrayList<Rental> getAllRentals() { return App.state.getRentals(); }
+    public ArrayList<Rental> getAllRentals() { return StateService.getRentals(); }
 
     public Rental getById(String id) {
         for (Rental rental : getAllRentals()) {

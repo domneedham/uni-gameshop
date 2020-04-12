@@ -1,5 +1,5 @@
 package GameShop.java.controllers;
 
-public interface IControllerCommunication {
+public interface ControllerCommunication {
     void passId(String id);
 }

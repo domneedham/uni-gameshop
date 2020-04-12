@@ -1,6 +1,6 @@
 package GameShop.java.routers;
 
-import GameShop.java.controllers.IControllerCommunication;
+import GameShop.java.controllers.ControllerCommunication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,10 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Router {
-    private final String VIEW_PATH = "../../resources/views/";
-    private final String CSS_FILE = "../../resources/css/style.css";
+    private FXMLLoader loader;
 
     private final Map<RouteNames, String> routes = new HashMap<>() {{
+        String VIEW_PATH = "../../resources/views/";
+
         put(RouteNames.HOME, VIEW_PATH + "Home.fxml");
         put(RouteNames.SIGN_IN, VIEW_PATH + "SignIn.fxml");
         put(RouteNames.VIEW_GAMES, VIEW_PATH + "ViewGames.fxml");
@@ -35,25 +36,19 @@ public class Router {
     public void changeRoute(RouteNames route, ActionEvent event) throws IOException {
         String sceneRoute = routes.get(route);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneRoute));
+        loader = new FXMLLoader(getClass().getResource(sceneRoute));
         Parent root = loader.load();
         Scene scene = new Scene(root, 1080, 720);
+        String CSS_FILE = "../../resources/css/style.css";
         root.getStylesheets().add(getClass().getResource(CSS_FILE).toExternalForm());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
     }
 
     public void changeRouteActivated(RouteNames route, ActionEvent event, String id) throws IOException {
-        String sceneRoute = routes.get(route);
+        changeRoute(route, event);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneRoute));
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 1080, 720);
-        root.getStylesheets().add(getClass().getResource(CSS_FILE).toExternalForm());
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-
-        IControllerCommunication control = loader.getController();
+        ControllerCommunication control = loader.getController();
         control.passId(id);
     }
 }

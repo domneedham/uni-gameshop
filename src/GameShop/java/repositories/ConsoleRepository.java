@@ -1,12 +1,12 @@
 package GameShop.java.repositories;
 
-import GameShop.App;
 import GameShop.java.models.Console;
+import GameShop.java.services.StateService;
 
 import java.util.ArrayList;
 
 public class ConsoleRepository {
-    public ArrayList<Console> getAllConsoles() { return App.state.getConsoles(); }
+    public ArrayList<Console> getAllConsoles() { return StateService.getConsoles(); }
 
     public ArrayList<Console> getAvailableConsoles() {
         ArrayList<Console> availableConsoles = new ArrayList<>();
