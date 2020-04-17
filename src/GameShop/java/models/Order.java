@@ -14,13 +14,6 @@ public abstract class Order {
 
     protected Order() {}
 
-    public Order(LocalDate dateRented, Customer customer, ArrayList<Game> games) {
-        this.dateRented = dateRented;
-        this.dateDue = dateRented.plusMonths(1);
-        this.customer = customer;
-        this.games = games;
-    }
-
     public Order(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) {
         this.dateRented = dateRented;
         this.dateDue = dateRented.plusMonths(1);

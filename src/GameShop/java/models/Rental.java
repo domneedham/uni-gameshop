@@ -6,12 +6,7 @@ import java.util.UUID;
 
 public class Rental extends Order {
     private final String id;
-    private boolean returned;
-
-    private Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games) throws Error {
-        super(dateRented, customer, games);
-        id = UUID.randomUUID().toString();
-    }
+    private boolean returned = false;
 
     private Rental(LocalDate dateRented, Customer customer, ArrayList<Game> games, Console console) throws Error {
         super(dateRented, customer, games, console);
@@ -23,7 +18,7 @@ public class Rental extends Order {
     }
 
     public static Rental createWithoutConsole(LocalDate dateRented, Customer customer, ArrayList<Game> games) {
-        return new Rental(dateRented, customer, games);
+        return new Rental(dateRented, customer, games, null);
     }
 
     public String getId() {
