@@ -15,64 +15,67 @@ import java.util.ArrayList;
 
 class RentalServiceTest {
     final TestData testData = new TestData();
+    final RentalService rentalService = new RentalService();
+    final GameService gameService = new GameService();
+    final ConsoleService consoleService = new ConsoleService();
 
-    private Rental rentalWithConsole;
-    private Rental rentalWithoutConsole;
-    private final LocalDate date = testData.date;
-    private final Customer customer1 = testData.customer1;
-    private final Customer customer2 = testData.customer2;
-    private final ArrayList<Game> gamesForRental1 = testData.consoleOneGamesFullList;
-    private final ArrayList<Game> gamesForRental2 = testData.consoleTwoGamesNotFullList;
-    private final Console console1 = testData.standardConsole1;
-    private Console console2 = testData.standardConsole2;
+    Rental rentalWithConsole;
+    Rental rentalWithoutConsole;
+    final LocalDate date = testData.date;
+    final Customer customer1 = testData.customer1;
+    final Customer customer2 = testData.customer2;
+    final ArrayList<Game> gamesForRental1 = testData.consoleOneGamesFullList;
+    final ArrayList<Game> gamesForRental2 = testData.consoleTwoGamesNotFullList;
+    final Console console1 = testData.standardConsole1;
+    Console console2 = testData.standardConsole2;
 
     @BeforeEach
     void setUp() {
         // clear anything that could be in repo already so data is not mistaken
-        RentalService.getRentals().clear();
+        rentalService.getRentals().clear();
         // test clear worked on rentals before running other tests
-        Assertions.assertEquals(0, RentalService.getRentals().size());
+        Assertions.assertEquals(0, rentalService.getRentals().size());
     }
 
     @Test
     void getRentalsReturnsCorrectSize() {
-        Assertions.assertEquals(0, RentalService.getRentals().size());
-        RentalService.getRentals().add(this.rentalWithConsole);
+        Assertions.assertEquals(0, rentalService.getRentals().size());
+        rentalService.getRentals().add(this.rentalWithConsole);
 
-        Assertions.assertEquals(1, RentalService.getRentals().size());
+        Assertions.assertEquals(1, rentalService.getRentals().size());
     }
 
     @Test
     void getRentalsForCustomerReturnsCorrectSize() {
         this.rentalWithConsole = Rental.createWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
         this.rentalWithoutConsole = Rental.createWithoutConsole(this.date, this.customer2, this.gamesForRental2);
-        RentalService.getRentals().add(this.rentalWithConsole);
-        RentalService.getRentals().add(this.rentalWithoutConsole);
+        rentalService.getRentals().add(this.rentalWithConsole);
+        rentalService.getRentals().add(this.rentalWithoutConsole);
 
-        Assertions.assertEquals(1, RentalService.getRentalsForCustomer(this.customer1).size());
-        Assertions.assertEquals(1, RentalService.getRentalsForCustomer(this.customer2).size());
+        Assertions.assertEquals(1, rentalService.getRentalsForCustomer(this.customer1).size());
+        Assertions.assertEquals(1, rentalService.getRentalsForCustomer(this.customer2).size());
     }
 
     @Test
     void createARentalWithConsoleWorks() {
-        Assertions.assertEquals(0, RentalService.getRentals().size());
+        Assertions.assertEquals(0, rentalService.getRentals().size());
 
-        RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        rentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
 
-        Assertions.assertEquals(1, RentalService.getRentals().size());
+        Assertions.assertEquals(1, rentalService.getRentals().size());
         // make sure rental has a console
-        Assertions.assertNotNull(RentalService.getRentals().get(0).getConsole());
+        Assertions.assertNotNull(rentalService.getRentals().get(0).getConsole());
     }
 
     @Test
     void createARentalWithoutConsoleWorks() {
-        Assertions.assertEquals(0, RentalService.getRentals().size());
+        Assertions.assertEquals(0, rentalService.getRentals().size());
 
-        RentalService.createRental(this.date, this.customer1, this.gamesForRental1);
+        rentalService.createRental(this.date, this.customer1, this.gamesForRental1);
 
-        Assertions.assertEquals(1, RentalService.getRentals().size());
+        Assertions.assertEquals(1, rentalService.getRentals().size());
         // make sure rental does not have a console
-        Assertions.assertNull(RentalService.getRentals().get(0).getConsole());
+        Assertions.assertNull(rentalService.getRentals().get(0).getConsole());
     }
 
     @Test
@@ -80,11 +83,11 @@ class RentalServiceTest {
         // add games to repository as games are checked when marking unavailable
         // make sure each game is available before checking rental changes
         for (Game g: this.gamesForRental1) {
-            GameService.addGame(g);
+            gameService.addGame(g);
             Assertions.assertTrue(g.isAvailable());
         }
 
-        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        this.rentalWithConsole = rentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
 
         for (Game g: this.rentalWithConsole.getGames()) {
             Assertions.assertFalse(g.isAvailable());
@@ -95,10 +98,10 @@ class RentalServiceTest {
     void eachGameGetsMarkedAsAvailableOnReturn() {
         // add games to repository as games are checked when marking available
         for (Game g: this.gamesForRental2) {
-            GameService.addGame(g);
+            gameService.addGame(g);
         }
 
-        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental2, this.console1);
+        this.rentalWithConsole = rentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental2, this.console1);
 
         // make sure each game is not available after rental
         for (Game g: this.gamesForRental2) {
@@ -106,7 +109,7 @@ class RentalServiceTest {
         }
 
         // return items
-        RentalService.returnRental(this.rentalWithConsole);
+        rentalService.returnRental(this.rentalWithConsole);
 
         for (Game g: this.rentalWithConsole.getGames()) {
             Assertions.assertTrue(g.isAvailable());
@@ -116,12 +119,12 @@ class RentalServiceTest {
     @Test
     void consoleGetsMarkedAsUnavailableOnceRented() {
         // add console to repository as games are checked when marking unavailable
-        ConsoleService.addConsole(this.console1);
+        consoleService.addConsole(this.console1);
 
         // make sure console is available before checking rental changes
         Assertions.assertTrue(this.console1.isAvailable());
 
-        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        this.rentalWithConsole = rentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
 
         Assertions.assertFalse(this.rentalWithConsole.getConsole().isAvailable());
     }
@@ -129,17 +132,17 @@ class RentalServiceTest {
     @Test
     void consoleGetsMarkedAsAvailableOnReturn() {
         // add console to repository as games are checked when marking unavailable
-        ConsoleService.addConsole(this.console1);
+        consoleService.addConsole(this.console1);
 
-        this.rentalWithConsole = RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
+        this.rentalWithConsole = rentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
 
         // make sure console is not available after rental
-        Assertions.assertFalse(RentalService.getRentalById(rentalWithConsole.getId()).getConsole().isAvailable());
+        Assertions.assertFalse(rentalService.getRentalById(rentalWithConsole.getId()).getConsole().isAvailable());
 
         // return items
-        RentalService.returnRental(this.rentalWithConsole);
+        rentalService.returnRental(this.rentalWithConsole);
 
-        Assertions.assertTrue(RentalService.getRentalById(rentalWithConsole.getId()).getConsole().isAvailable());
+        Assertions.assertTrue(rentalService.getRentalById(rentalWithConsole.getId()).getConsole().isAvailable());
     }
 
 }

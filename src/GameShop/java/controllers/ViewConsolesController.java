@@ -1,9 +1,11 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.ServiceDependency;
 import GameShop.java.models.adaptors.ConsoleTableAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.ConsoleService;
+import GameShop.java.services.interfaces.IConsoleService;
+import GameShop.java.services.interfaces.IService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,8 +20,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewConsolesController implements Initializable {
+public class ViewConsolesController implements Initializable, ServiceDependency {
     private final Router router = new Router();
+    private IConsoleService consoleService;
 
     @FXML private TableView consoleTableView;
 
@@ -29,8 +32,6 @@ public class ViewConsolesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupTable();
-        showConsoles();
     }
 
     private void setupTable() {
@@ -54,11 +55,19 @@ public class ViewConsolesController implements Initializable {
     private void showConsoles() {
         ObservableList items;
         if (showAll.isSelected()) {
-            items = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
+            items = FXCollections.observableArrayList(consoleService.getAllConsoles());
         } else {
-            items = FXCollections.observableArrayList(ConsoleService.getAvailableConsoles());
+            items = FXCollections.observableArrayList(consoleService.getAvailableConsoles());
         }
 
         consoleTableView.setItems(items);
+    }
+
+    @Override
+    public void assignService(IService service) {
+        this.consoleService = (IConsoleService) service;
+
+        setupTable();
+        showConsoles();
     }
 }

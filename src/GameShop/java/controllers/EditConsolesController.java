@@ -1,10 +1,12 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.ServiceDependency;
 import GameShop.java.models.adaptors.ConsoleTableAdaptor;
 import GameShop.java.models.adaptors.EditConsolesAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.ConsoleService;
+import GameShop.java.services.interfaces.IConsoleService;
+import GameShop.java.services.interfaces.IService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,16 +19,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditConsolesController implements Initializable {
+public class EditConsolesController implements Initializable, ServiceDependency {
     private final Router router = new Router();
+    private IConsoleService consoleService;
 
     @FXML private TableView consoleTableView;
     @FXML private TableColumn nameColumn, formColumn, bitColumn, availableColumn, costColumn, editConsoleColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupTable();
-        showConsoles();
     }
 
     private void setupTable() {
@@ -45,11 +46,19 @@ public class EditConsolesController implements Initializable {
     }
 
     private void showConsoles() {
-        ObservableList items = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
+        ObservableList items = FXCollections.observableArrayList(consoleService.getAllConsoles());
         consoleTableView.setItems(items);
     }
 
     private void addButtonsToTable() {
         EditConsolesAdaptor.addButtonToTable(editConsoleColumn, router);
+    }
+
+    @Override
+    public void assignService(IService service) {
+        this.consoleService = (IConsoleService) service;
+
+        setupTable();
+        showConsoles();
     }
 }

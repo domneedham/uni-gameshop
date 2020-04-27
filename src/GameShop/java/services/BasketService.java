@@ -4,42 +4,52 @@ import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
 import GameShop.java.repositories.BasketRepository;
+import GameShop.java.services.interfaces.IBasketService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class BasketService {
+public class BasketService implements IBasketService {
     private static final BasketRepository repo = new BasketRepository();
+    private static final RentalService rentalService = new RentalService();
 
-    public static boolean isBasketPopulated() {
+    @Override
+    public boolean isBasketPopulated() {
         return repo.getBasket().isBasketPopulated();
     }
 
-    public static Customer getCustomer() {
+    @Override
+    public Customer getCustomer() {
         return repo.getBasket().getCustomer();
     }
 
-    public static boolean isConsoleRequired() {
+    @Override
+    public boolean isConsoleRequired() {
         return repo.getBasket().isConsoleRequired();
     }
 
-    public static Console getConsole() {
+    @Override
+    public Console getConsole() {
         return repo.getBasket().getConsole();
     }
 
-    public static ArrayList<Game> getGames() {
+    @Override
+    public ArrayList<Game> getGames() {
         return repo.getBasket().getGames();
     }
 
-    public static LocalDate getDate() {
+    @Override
+    public LocalDate getDate() {
         return repo.getBasket().getDateRented();
     }
 
-    public static void setCustomer(Customer customer) {
+    @Override
+    public void setCustomer(Customer customer) {
         repo.getBasket().setCustomer(customer);
     }
 
-    public static void requireConsole(Console console) throws Exception {
+    @Override
+    public void requireConsole(Console console) throws Exception {
         if (!console.isAvailable()) {
             throw new Exception("Console is not available for rental");
         }
@@ -47,57 +57,68 @@ public class BasketService {
         repo.getBasket().setConsole(console);
     }
 
-    public static void unrequireConsole() {
+    @Override
+    public void unrequireConsole() {
         repo.getBasket().setConsoleRequired(false);
         // clear console from basket
         repo.getBasket().setConsole(null);
     }
 
-    public static void setDate(LocalDate date) {
+    @Override
+    public void setDate(LocalDate date) {
         repo.getBasket().setDateRented(date);
     }
 
-    public static void addGame(Game game) {
+    @Override
+    public void addGame(Game game) {
         repo.getBasket().addGame(game);
     }
 
-    public static void removeGame(Game game) {
+    @Override
+    public void removeGame(Game game) {
         repo.getBasket().removeGame(game);
     }
 
-    public static void removeGame(ArrayList<Game> games) {
+    @Override
+    public void removeGame(ArrayList<Game> games) {
         repo.getBasket().removeGame(games);
     }
 
-    public static void clearBasket() {
+    @Override
+    public void clearBasket() {
         repo.getBasket().clearBasket();
     }
 
-    public static boolean gameInBasket(Game game) {
+    @Override
+    public boolean gameInBasket(Game game) {
         return repo.getBasket().gameInBasket(game);
     }
 
-    public static void clearGames() {
+    @Override
+    public void clearGames() {
         repo.getBasket().clearGames();
     }
 
-    public static boolean isMaxGamesInBasket() {
+    @Override
+    public boolean isMaxGamesInBasket() {
         return repo.getBasket().isMaxGamesInBasket();
     }
 
-    public static void submitBasket() throws Error {
+    @Override
+    public void submitBasket() throws Error {
         // create copy of games so that when basket is cleared
         // does not clear games in rental
         ArrayList<Game> gamesCopy = new ArrayList<>(getGames());
         if (isConsoleRequired()) {
-            RentalService.createRentalWithConsole(getDate(), getCustomer(), gamesCopy, getConsole());
+            rentalService.createRentalWithConsole(getDate(), getCustomer(), gamesCopy, getConsole());
         } else {
-            RentalService.createRental(getDate(), getCustomer(), gamesCopy);
+            rentalService.createRental(getDate(), getCustomer(), gamesCopy);
         }
         clearBasket();
     }
 
-    public static double calculateCost() {
+    @Override
+    public double calculateCost() {
         return repo.getBasket().calculateCost();
     }
 }

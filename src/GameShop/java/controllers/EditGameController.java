@@ -1,9 +1,12 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.ControllerCommunication;
+import GameShop.java.controllers.interfaces.ServiceDependency;
 import GameShop.java.models.adaptors.EditGameAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.GameService;
+import GameShop.java.services.interfaces.IGameService;
+import GameShop.java.services.interfaces.IService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +17,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditGameController implements Initializable, ControllerCommunication {
+public class EditGameController implements Initializable, ControllerCommunication, ServiceDependency {
     private final Router router = new Router();
+    private IGameService gameService;
+
     private String gameId;
 
     @FXML TextField nameTextField;
@@ -24,7 +29,7 @@ public class EditGameController implements Initializable, ControllerCommunicatio
     @Override
     public void passId(String id) {
         gameId = id;
-        EditGameAdaptor.getGame(GameService.getById(id), this);
+        EditGameAdaptor.getGame(gameService.getById(id), this);
     }
 
     public void gameDetailsToEdit(String id, String name, boolean inForRepair) {
@@ -42,7 +47,12 @@ public class EditGameController implements Initializable, ControllerCommunicatio
 
     @FXML
     public void handleSaveChanges(ActionEvent event) throws IOException {
-        GameService.modifyGame(GameService.getById(gameId), nameTextField.getText(), inForRepairCheckBox.isSelected());
+        gameService.modifyGame(gameService.getById(gameId), nameTextField.getText(), inForRepairCheckBox.isSelected());
         router.changeRoute(RouteNames.EDIT_GAMES, event);
+    }
+
+    @Override
+    public void assignService(IService service) {
+        this.gameService = (IGameService) service;
     }
 }

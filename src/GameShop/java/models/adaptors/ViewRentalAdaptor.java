@@ -37,6 +37,7 @@ public class ViewRentalAdaptor {
     }
 
     public static void addButtonToTable(TableColumn<Rental, Button> tableColumn) {
+        final RentalService rentalService = new RentalService();
         Callback<TableColumn<Rental, Button>, TableCell<Rental, Button>> cellFactory = new Callback<>() {
             @Override
             public TableCell<Rental, Button> call(final TableColumn<Rental, Button> param) {
@@ -45,7 +46,7 @@ public class ViewRentalAdaptor {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Rental rental = getTableView().getItems().get(getIndex());
-                            RentalService.returnRental(rental);
+                            rentalService.returnRental(rental);
                             btn.setText("Already Returned");
                             btn.setDisable(true);
                             AlertBox.showMessage(Alert.AlertType.CONFIRMATION, "Returned the product!");

@@ -1,12 +1,14 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.ServiceDependency;
 import GameShop.java.general.AlertBox;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.models.helpers.FXMLTableFormat;
 import GameShop.java.models.helpers.RentalFXMLTableFormat;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.BasketService;
+import GameShop.java.services.interfaces.IBasketService;
+import GameShop.java.services.interfaces.IService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,8 +21,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewBasketController implements Initializable {
+public class ViewBasketController implements Initializable, ServiceDependency {
     private final Router router = new Router();
+    private IBasketService basketService;
 
     @FXML private Text customer, console, consoleRequired, dateText, costText;
     @FXML private TableView gameTableView;
@@ -33,14 +36,12 @@ public class ViewBasketController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupGameTable();
-        populateData();
     }
 
     @FXML
     private void submitRental(ActionEvent event) throws IOException {
         try {
-            BasketService.submitBasket();
+            basketService.submitBasket();
             router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
         } catch (Error e) {
             AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
@@ -56,11 +57,19 @@ public class ViewBasketController implements Initializable {
     }
 
     private void populateData() {
-        customer.setText(FXMLTableFormat.formatString(BasketService.getCustomer().getFullName()));
-        console.setText(RentalFXMLTableFormat.formatConsoleName(BasketService.getConsole()));
-        consoleRequired.setText(FXMLTableFormat.formatBoolean(BasketService.isConsoleRequired()));
-        dateText.setText(FXMLTableFormat.formatDate(BasketService.getDate()));
-        costText.setText(FXMLTableFormat.formatCost(BasketService.calculateCost()));
-        gameTableView.getItems().setAll(BasketService.getGames());
+        customer.setText(FXMLTableFormat.formatString(basketService.getCustomer().getFullName()));
+        console.setText(RentalFXMLTableFormat.formatConsoleName(basketService.getConsole()));
+        consoleRequired.setText(FXMLTableFormat.formatBoolean(basketService.isConsoleRequired()));
+        dateText.setText(FXMLTableFormat.formatDate(basketService.getDate()));
+        costText.setText(FXMLTableFormat.formatCost(basketService.calculateCost()));
+        gameTableView.getItems().setAll(basketService.getGames());
+    }
+
+    @Override
+    public void assignService(IService service) {
+        this.basketService = (IBasketService) service;
+
+        setupGameTable();
+        populateData();
     }
 }

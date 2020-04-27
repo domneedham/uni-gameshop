@@ -1,10 +1,12 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.MultiServiceDependency;
 import GameShop.java.models.adaptors.ViewRentalAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.CustomerService;
-import GameShop.java.services.RentalService;
+import GameShop.java.services.interfaces.ICustomerService;
+import GameShop.java.services.interfaces.IRentalService;
+import GameShop.java.services.interfaces.IService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,10 +20,13 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ViewRentalsController implements Initializable {
+public class ViewRentalsController implements Initializable, MultiServiceDependency {
     private final Router router = new Router();
+    private IRentalService rentalService;
+    private ICustomerService customerService;
 
     @FXML private HBox customerChoiceWrapper;
 
@@ -38,9 +43,6 @@ public class ViewRentalsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupTable();
-        showRentals();
-        getAllCustomers();
     }
 
     private void setupTable() {
@@ -59,12 +61,12 @@ public class ViewRentalsController implements Initializable {
     }
 
     private void showRentals() {
-        ObservableList rentals = FXCollections.observableArrayList(RentalService.getRentals());
+        ObservableList rentals = FXCollections.observableArrayList(rentalService.getRentals());
         rentalTableView.getItems().setAll(rentals);
     }
 
     private void getAllCustomers() {
-        ObservableList items = FXCollections.observableArrayList(CustomerService.getAllCustomers());
+        ObservableList items = FXCollections.observableArrayList(customerService.getAllCustomers());
         customerChoiceBox.getItems().setAll(items);
     }
 
@@ -81,10 +83,26 @@ public class ViewRentalsController implements Initializable {
     @FXML
     private void handleCustomerChange() {
         if (specificCustomer.isSelected()) {
-            ObservableList rentals = FXCollections.observableArrayList(RentalService.getRentalsForCustomer(ViewRentalAdaptor.getSelectedCustomer(customerChoiceBox)));
+            ObservableList rentals = FXCollections.observableArrayList(rentalService.getRentalsForCustomer(ViewRentalAdaptor.getSelectedCustomer(customerChoiceBox)));
             rentalTableView.getItems().setAll(rentals);
         } else {
             showRentals();
         }
+    }
+
+    @Override
+    public void assignServices(ArrayList<IService> services) {
+        for (var service : services) {
+            if (service instanceof IRentalService) {
+                this.rentalService = (IRentalService) service;
+            }
+            if (service instanceof ICustomerService) {
+                this.customerService = (ICustomerService) service;
+            }
+        }
+
+        setupTable();
+        showRentals();
+        getAllCustomers();
     }
 }

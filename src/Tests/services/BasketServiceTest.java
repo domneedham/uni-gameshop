@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 class BasketServiceTest {
     final TestData testData = new TestData();
+    final BasketService basketService = new BasketService();
 
     final LocalDate date = testData.date;
     final Customer customer = testData.customer1;
@@ -23,128 +24,128 @@ class BasketServiceTest {
     @BeforeEach
     void setUp() {
         // ensure basket is empty before starting each test
-        BasketService.clearBasket();
-        Assertions.assertFalse(BasketService.isBasketPopulated());
+        basketService.clearBasket();
+        Assertions.assertFalse(basketService.isBasketPopulated());
     }
 
     @Test
     void basketIsPopulatedWithAllContent() throws Exception {
         populateBasket();
 
-        Assertions.assertTrue(BasketService.isBasketPopulated());
+        Assertions.assertTrue(basketService.isBasketPopulated());
     }
 
     @Test
     void basketIsPopulatedWithConsoleNotRequired() {
-        BasketService.setCustomer(this.customer);
-        BasketService.setDate(this.date);
-        BasketService.addGame(this.game1);
+        basketService.setCustomer(this.customer);
+        basketService.setDate(this.date);
+        basketService.addGame(this.game1);
 
-        Assertions.assertTrue(BasketService.isBasketPopulated());
+        Assertions.assertTrue(basketService.isBasketPopulated());
     }
 
     @Test
     void basketIsPopulatedWithNoGamesIfConsoleIsRequired() throws Exception {
-        BasketService.requireConsole(this.console);
-        BasketService.setCustomer(this.customer);
-        BasketService.setDate(this.date);
+        basketService.requireConsole(this.console);
+        basketService.setCustomer(this.customer);
+        basketService.setDate(this.date);
 
-        Assertions.assertTrue(BasketService.isBasketPopulated());
+        Assertions.assertTrue(basketService.isBasketPopulated());
     }
 
     @Test
     void basketIsNotPopulatedWithNoGamesAndConsoleIsNotRequired() {
-        BasketService.setCustomer(this.customer);
-        BasketService.setDate(this.date);
+        basketService.setCustomer(this.customer);
+        basketService.setDate(this.date);
 
-        Assertions.assertFalse(BasketService.isBasketPopulated());
+        Assertions.assertFalse(basketService.isBasketPopulated());
     }
 
     @Test
     void basketIsNotPopulatedWithNoDate() throws Exception {
-        BasketService.requireConsole(this.console);
-        BasketService.setCustomer(this.customer);
-        BasketService.addGame(this.game1);
+        basketService.requireConsole(this.console);
+        basketService.setCustomer(this.customer);
+        basketService.addGame(this.game1);
 
-        Assertions.assertFalse(BasketService.isBasketPopulated());
+        Assertions.assertFalse(basketService.isBasketPopulated());
     }
 
     @Test
     void basketIsNotPopulatedWithNoCustomer() throws Exception {
-        BasketService.requireConsole(this.console);
-        BasketService.setDate(this.date);
-        BasketService.addGame(this.game1);
+        basketService.requireConsole(this.console);
+        basketService.setDate(this.date);
+        basketService.addGame(this.game1);
 
-        Assertions.assertFalse(BasketService.isBasketPopulated());
+        Assertions.assertFalse(basketService.isBasketPopulated());
     }
 
     @Test
     void correctlyFindsGameInBasket() {
-        BasketService.addGame(this.game1);
+        basketService.addGame(this.game1);
 
-        Assertions.assertTrue(BasketService.gameInBasket(this.game1));
+        Assertions.assertTrue(basketService.gameInBasket(this.game1));
     }
 
     @Test
     void correctlyDoesNotFindGameInBasket() {
-        BasketService.addGame(this.game1);
+        basketService.addGame(this.game1);
 
-        Assertions.assertFalse(BasketService.gameInBasket(this.game2));
+        Assertions.assertFalse(basketService.gameInBasket(this.game2));
     }
 
     @Test
     void correctlyRemovesGameFromBasket() {
-        BasketService.addGame(this.game1);
+        basketService.addGame(this.game1);
 
         // ensure game got added
-        Assertions.assertTrue(BasketService.gameInBasket(this.game1));
+        Assertions.assertTrue(basketService.gameInBasket(this.game1));
 
-        BasketService.removeGame(this.game1);
-        Assertions.assertFalse(BasketService.gameInBasket(this.game1));
+        basketService.removeGame(this.game1);
+        Assertions.assertFalse(basketService.gameInBasket(this.game1));
 
     }
 
     @Test
     @Description("Max games is 3")
     void reachesMaxGamesInBasket() {
-        BasketService.addGame(this.game1);
-        BasketService.addGame(this.game2);
-        BasketService.addGame(this.game3);
+        basketService.addGame(this.game1);
+        basketService.addGame(this.game2);
+        basketService.addGame(this.game3);
 
-        Assertions.assertTrue(BasketService.isMaxGamesInBasket());
+        Assertions.assertTrue(basketService.isMaxGamesInBasket());
     }
 
     @Test
     @Description("Max games is 3")
     void underMaxGamesInBasket() {
-        BasketService.addGame(this.game1);
-        BasketService.addGame(this.game2);
+        basketService.addGame(this.game1);
+        basketService.addGame(this.game2);
 
-        Assertions.assertFalse(BasketService.isMaxGamesInBasket());
+        Assertions.assertFalse(basketService.isMaxGamesInBasket());
     }
 
     @Test
     @Description("Max games is 3")
     void notAllowedOverMaxGamesInBasket() {
         Game game4 = new Game("Test game 4", this.console, 15.0, false);
-        BasketService.addGame(this.game1);
-        BasketService.addGame(this.game2);
-        BasketService.addGame(this.game3);
-        BasketService.addGame(game4);
+        basketService.addGame(this.game1);
+        basketService.addGame(this.game2);
+        basketService.addGame(this.game3);
+        basketService.addGame(game4);
 
-        Assertions.assertTrue(BasketService.isMaxGamesInBasket());
+        Assertions.assertTrue(basketService.isMaxGamesInBasket());
     }
 
     @Test
     void clearGamesLeavesZeroGamesInArray() {
-        BasketService.addGame(this.game1);
-        BasketService.addGame(this.game2);
+        basketService.addGame(this.game1);
+        basketService.addGame(this.game2);
 
         // make sure games got added first
-        Assertions.assertEquals(2, BasketService.getGames().size());
+        Assertions.assertEquals(2, basketService.getGames().size());
 
-        BasketService.clearGames();
-        Assertions.assertEquals(0, BasketService.getGames().size());
+        basketService.clearGames();
+        Assertions.assertEquals(0, basketService.getGames().size());
     }
 
     @Test
@@ -152,86 +153,86 @@ class BasketServiceTest {
         populateBasket();
 
         // make sure basket is populated first
-        Assertions.assertTrue(BasketService.isBasketPopulated());
+        Assertions.assertTrue(basketService.isBasketPopulated());
 
-        BasketService.clearBasket();
-        Assertions.assertNull(BasketService.getConsole());
-        Assertions.assertNull(BasketService.getCustomer());
-        Assertions.assertNull(BasketService.getDate());
-        Assertions.assertEquals(0, BasketService.getGames().size());
-        Assertions.assertFalse(BasketService.isConsoleRequired());
-        Assertions.assertFalse(BasketService.isBasketPopulated());
+        basketService.clearBasket();
+        Assertions.assertNull(basketService.getConsole());
+        Assertions.assertNull(basketService.getCustomer());
+        Assertions.assertNull(basketService.getDate());
+        Assertions.assertEquals(0, basketService.getGames().size());
+        Assertions.assertFalse(basketService.isConsoleRequired());
+        Assertions.assertFalse(basketService.isBasketPopulated());
     }
 
     @Test
     void getCustomerReturnsCorrectCustomer() throws Exception {
         populateBasket();
 
-        Assertions.assertEquals(this.customer, BasketService.getCustomer());
+        Assertions.assertEquals(this.customer, basketService.getCustomer());
     }
 
     @Test
     void isConsoleRequiredReturnsTrueIfConsoleIsRequired() throws Exception {
-        BasketService.requireConsole(this.console);
+        basketService.requireConsole(this.console);
 
-        Assertions.assertTrue(BasketService.isConsoleRequired());
+        Assertions.assertTrue(basketService.isConsoleRequired());
     }
 
     @Test
     void isConsoleRequiredReturnsFalseIfConsoleIsNotRequired() {
-        BasketService.unrequireConsole();
+        basketService.unrequireConsole();
 
-        Assertions.assertFalse(BasketService.isConsoleRequired());
+        Assertions.assertFalse(basketService.isConsoleRequired());
     }
 
     @Test
     void getConsoleReturnsTheCorrectConsole() throws Exception {
-        BasketService.requireConsole(this.console);
-        Assertions.assertEquals(this.console, BasketService.getConsole());
+        basketService.requireConsole(this.console);
+        Assertions.assertEquals(this.console, basketService.getConsole());
     }
 
     @Test
     void getConsoleReturnsNullIfConsoleIsNotRequired() {
-        Assertions.assertNull(BasketService.getConsole());
+        Assertions.assertNull(basketService.getConsole());
     }
 
     @Test
     void getGamesReturnsCorrectSize() {
-        BasketService.addGame(this.game1);
-        BasketService.addGame(this.game2);
+        basketService.addGame(this.game1);
+        basketService.addGame(this.game2);
 
-        Assertions.assertEquals(2, BasketService.getGames().size());
+        Assertions.assertEquals(2, basketService.getGames().size());
     }
 
     @Test
     void getGamesReturnsCorrectSizeIfSameGameAsAdded() {
-        BasketService.addGame(this.game1);
-        BasketService.addGame(this.game2);
-        BasketService.addGame(this.game2);
+        basketService.addGame(this.game1);
+        basketService.addGame(this.game2);
+        basketService.addGame(this.game2);
 
-        Assertions.assertEquals(2, BasketService.getGames().size());
+        Assertions.assertEquals(2, basketService.getGames().size());
     }
 
     @Test
     void getDateReturnsCorrectDate() {
-        BasketService.setDate(this.date);
+        basketService.setDate(this.date);
 
-        Assertions.assertEquals(this.date, BasketService.getDate());
+        Assertions.assertEquals(this.date, basketService.getDate());
     }
 
     @Test
     void submitBasketClearsBasket() throws Exception {
         populateBasket();
-        Assertions.assertTrue(BasketService.isBasketPopulated());
-        BasketService.submitBasket();
-        Assertions.assertFalse(BasketService.isBasketPopulated());
+        Assertions.assertTrue(basketService.isBasketPopulated());
+        basketService.submitBasket();
+        Assertions.assertFalse(basketService.isBasketPopulated());
     }
 
     void populateBasket() throws Exception {
-        BasketService.setCustomer(this.customer);
-        BasketService.setDate(this.date);
-        BasketService.addGame(this.game1);
-        BasketService.requireConsole(this.console);
+        basketService.setCustomer(this.customer);
+        basketService.setDate(this.date);
+        basketService.addGame(this.game1);
+        basketService.requireConsole(this.console);
     }
 
 }

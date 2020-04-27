@@ -1,9 +1,12 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.ControllerCommunication;
+import GameShop.java.controllers.interfaces.ServiceDependency;
 import GameShop.java.models.adaptors.EditConsoleAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.ConsoleService;
+import GameShop.java.services.interfaces.IConsoleService;
+import GameShop.java.services.interfaces.IService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditConsoleController implements Initializable, ControllerCommunication {
+public class EditConsoleController implements Initializable, ControllerCommunication, ServiceDependency {
     private final Router router = new Router();
+    private IConsoleService consoleService;
     private String gameId;
 
     @FXML TextField nameTextField;
@@ -24,7 +28,7 @@ public class EditConsoleController implements Initializable, ControllerCommunica
     @Override
     public void passId(String id) {
         gameId = id;
-        EditConsoleAdaptor.getConsole(ConsoleService.getById(id), this);
+        EditConsoleAdaptor.getConsole(consoleService.getById(id), this);
     }
 
     public void consoleDetailsToEdit(String id, String name, boolean inForRepair) {
@@ -42,7 +46,12 @@ public class EditConsoleController implements Initializable, ControllerCommunica
 
     @FXML
     public void handleSaveChanges(ActionEvent event) throws IOException {
-        ConsoleService.modifyConsole(ConsoleService.getById(gameId), nameTextField.getText(), inForRepairCheckBox.isSelected());
+        consoleService.modifyConsole(consoleService.getById(gameId), nameTextField.getText(), inForRepairCheckBox.isSelected());
         router.changeRoute(RouteNames.EDIT_CONSOLES, event);
+    }
+
+    @Override
+    public void assignService(IService service) {
+        this.consoleService = (IConsoleService) service;
     }
 }

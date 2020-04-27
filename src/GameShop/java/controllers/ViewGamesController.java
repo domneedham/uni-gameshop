@@ -1,11 +1,13 @@
 package GameShop.java.controllers;
 
+import GameShop.java.controllers.interfaces.MultiServiceDependency;
 import GameShop.java.models.adaptors.GameTableAdaptor;
 import GameShop.java.models.adaptors.ViewGamesAdaptor;
 import GameShop.java.routers.RouteNames;
 import GameShop.java.routers.Router;
-import GameShop.java.services.ConsoleService;
-import GameShop.java.services.GameService;
+import GameShop.java.services.interfaces.IConsoleService;
+import GameShop.java.services.interfaces.IGameService;
+import GameShop.java.services.interfaces.IService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,10 +22,13 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ViewGamesController implements Initializable {
+public class ViewGamesController implements Initializable, MultiServiceDependency {
     private final Router router = new Router();
+    private IGameService gameService;
+    private IConsoleService consoleService;
 
     @FXML private HBox consoleChoiceWrapper;
 
@@ -38,9 +43,6 @@ public class ViewGamesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupTable();
-        showGames();
-        getConsoles();
     }
 
     private void setupTable() {
@@ -72,16 +74,16 @@ public class ViewGamesController implements Initializable {
 
         ObservableList items;
         if (showAll.isSelected()) {
-            items = FXCollections.observableArrayList(GameService.getAllGames());
+            items = FXCollections.observableArrayList(gameService.getAllGames());
         } else {
-            items = FXCollections.observableArrayList(GameService.getAvailableGames());
+            items = FXCollections.observableArrayList(gameService.getAvailableGames());
         }
 
         gameTableView.getItems().setAll(items);
     }
 
     private void getConsoles() {
-        ObservableList items = FXCollections.observableArrayList(ConsoleService.getAllConsoles());
+        ObservableList items = FXCollections.observableArrayList(consoleService.getAllConsoles());
         consoleChoiceBox.getItems().setAll(items);
     }
 
@@ -100,14 +102,30 @@ public class ViewGamesController implements Initializable {
         if (specificConsole.isSelected()) {
             ObservableList items;
             if (showAll.isSelected()) {
-                items = FXCollections.observableArrayList(GameService.getAllGamesForConsole(ViewGamesAdaptor.getSelectedConsole(consoleChoiceBox)));
+                items = FXCollections.observableArrayList(gameService.getAllGamesForConsole(ViewGamesAdaptor.getSelectedConsole(consoleChoiceBox)));
             } else {
-                items = FXCollections.observableArrayList(GameService.getAvailableGamesForConsole(ViewGamesAdaptor.getSelectedConsole(consoleChoiceBox)));
+                items = FXCollections.observableArrayList(gameService.getAvailableGamesForConsole(ViewGamesAdaptor.getSelectedConsole(consoleChoiceBox)));
             }
 
             gameTableView.getItems().setAll(items);
         } else {
             showGames();
         }
+    }
+
+    @Override
+    public void assignServices(ArrayList<IService> services) {
+        for (var service : services) {
+            if (service instanceof IGameService) {
+                this.gameService = (IGameService) service;
+            }
+            if (service instanceof IConsoleService) {
+                this.consoleService = (IConsoleService) service;
+            }
+        }
+
+        setupTable();
+        showGames();
+        getConsoles();
     }
 }

@@ -1,6 +1,11 @@
 package GameShop.java.routers;
 
-import GameShop.java.controllers.ControllerCommunication;
+import GameShop.java.controllers.interfaces.ControllerCommunication;
+import GameShop.java.controllers.interfaces.MultiServiceDependency;
+import GameShop.java.controllers.interfaces.ServiceDependency;
+import GameShop.java.services.injectors.MultiServiceInjector;
+import GameShop.java.services.interfaces.IService;
+import GameShop.java.services.injectors.ServiceInjector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +49,19 @@ public class Router {
         root.getStylesheets().add(getClass().getResource(CSS_FILE).toExternalForm());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+
+        IService service = ServiceInjector.getService(route);
+        if (service != null) {
+            ServiceDependency control = loader.getController();
+            control.assignService(service);
+            return;
+        }
+
+        ArrayList<IService> services = MultiServiceInjector.getService(route);
+        if (services != null) {
+            MultiServiceDependency control = loader.getController();
+            control.assignServices(services);
+        }
     }
 
     public void changeRouteActivated(RouteNames route, ActionEvent event, String id) throws IOException {

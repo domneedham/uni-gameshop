@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         // Creates a public object that holds current state of the application (mocking a DB)
         new StateService();
 

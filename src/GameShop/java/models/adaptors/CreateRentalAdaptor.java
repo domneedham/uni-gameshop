@@ -33,7 +33,8 @@ public class CreateRentalAdaptor {
     }
 
     public static void getGamesForConsole(ObservableList<Game> items, String consoleId) {
-        ArrayList<Game> allGames = GameService.getAvailableGames();
+        GameService service = new GameService();
+        ArrayList<Game> allGames = service.getAvailableGames();
         for (Game g: allGames) {
             if (g.getConsole().getId().equals(consoleId)) {
                 items.add(g);
@@ -42,6 +43,7 @@ public class CreateRentalAdaptor {
     }
 
     public static void addAddButtonToGameTable(TableColumn<Game, Button> tableColumn, CreateRentalController controller) {
+        BasketService basketService = new BasketService();
         Callback<TableColumn<Game, Button>, TableCell<Game, Button>> cellFactory = new Callback<>() {
             @Override
             public TableCell<Game, Button> call(final TableColumn<Game, Button> param) {
@@ -50,21 +52,21 @@ public class CreateRentalAdaptor {
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             Game game = getTableView().getItems().get(getIndex());
-                            if (BasketService.gameInBasket(game)) {
-                                BasketService.removeGame(game);
-                                if (!BasketService.gameInBasket(game)) {
+                            if (basketService.gameInBasket(game)) {
+                                basketService.removeGame(game);
+                                if (!basketService.gameInBasket(game)) {
                                     btn.setText("Add");
                                     controller.updateCost();
                                 } else {
                                     AlertBox.showMessage(Alert.AlertType.ERROR, "Failed to remove game from the basket");
                                 }
                             } else {
-                                if (BasketService.isMaxGamesInBasket()) {
+                                if (basketService.isMaxGamesInBasket()) {
                                     AlertBox.showMessage(Alert.AlertType.ERROR, "Max games already in the basket");
                                     return;
                                 }
-                                BasketService.addGame(game);
-                                if (BasketService.gameInBasket(game)) {
+                                basketService.addGame(game);
+                                if (basketService.gameInBasket(game)) {
                                     btn.setText("Remove");
                                     controller.updateCost();
                                 } else {
@@ -81,7 +83,7 @@ public class CreateRentalAdaptor {
                             setGraphic(null);
                         } else {
                             Game game = param.getTableView().getItems().get(getIndex());
-                            if (BasketService.gameInBasket(game)) {
+                            if (basketService.gameInBasket(game)) {
                                 btn.setText("Remove");
                             }
                             setGraphic(btn);
