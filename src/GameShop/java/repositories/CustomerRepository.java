@@ -3,10 +3,13 @@ package GameShop.java.repositories;
 import GameShop.java.models.Customer;
 import GameShop.java.services.StateService;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 
 public class CustomerRepository {
-    public ArrayList<Customer> getAllCustomers() { return StateService.getCustomers(); }
+    private final StateService stateService = StateService.getInstance();
+
+    public ArrayList<Customer> getAllCustomers() { return stateService.getCustomers(); }
 
     public Customer getById(String id) {
         for (Customer c: getAllCustomers()) {

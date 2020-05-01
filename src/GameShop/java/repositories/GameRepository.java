@@ -7,7 +7,9 @@ import GameShop.java.services.StateService;
 import java.util.ArrayList;
 
 public class GameRepository {
-    public ArrayList<Game> getAllGames() { return StateService.getGames(); }
+    private final StateService stateService = StateService.getInstance();
+
+    public ArrayList<Game> getAllGames() { return stateService.getGames(); }
 
     public ArrayList<Game> getAvailableGames() {
         ArrayList<Game> availableGames = new ArrayList<>();

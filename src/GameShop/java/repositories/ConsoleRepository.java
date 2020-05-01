@@ -6,7 +6,9 @@ import GameShop.java.services.StateService;
 import java.util.ArrayList;
 
 public class ConsoleRepository {
-    public ArrayList<Console> getAllConsoles() { return StateService.getConsoles(); }
+    private final StateService stateService = StateService.getInstance();
+
+    public ArrayList<Console> getAllConsoles() { return stateService.getConsoles(); }
 
     public ArrayList<Console> getAvailableConsoles() {
         ArrayList<Console> availableConsoles = new ArrayList<>();

@@ -7,7 +7,9 @@ import GameShop.java.services.StateService;
 import java.util.ArrayList;
 
 public class RentalRepository {
-    public ArrayList<Rental> getAllRentals() { return StateService.getRentals(); }
+    private final StateService stateService = StateService.getInstance();
+
+    public ArrayList<Rental> getAllRentals() { return stateService.getRentals(); }
 
     public Rental getById(String id) {
         for (Rental rental : getAllRentals()) {

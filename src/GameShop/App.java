@@ -1,6 +1,5 @@
 package GameShop;
 
-import GameShop.java.services.StateService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +9,6 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
-        // Creates a public object that holds current state of the application (mocking a DB)
-        new StateService();
-
         try {
             Parent root = FXMLLoader.load(getClass().getResource("resources/views/Home.fxml"));
             root.getStylesheets()

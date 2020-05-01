@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class StateService {
+    private static StateService instance;
+
     // Create ArrayLists to hold some fake data for application
     private final static ArrayList<Game> games = new ArrayList<>();
     private final static ArrayList<Console> consoles = new ArrayList<>();
@@ -16,26 +18,33 @@ public class StateService {
 
     // On initialisation, populate lists with dummy data
     // Create consoles first, so games can use consoles
-    public StateService(){
+    private StateService() {
         populateConsoles();
         populateGames();
         populateCustomers();
         populateRentals();
     }
 
-    public static ArrayList<Game> getGames(){
+    public static StateService getInstance() {
+        if (instance == null) {
+            instance = new StateService();
+        }
+        return instance;
+    }
+
+    public ArrayList<Game> getGames(){
         return games;
     }
 
-    public static ArrayList<Console> getConsoles(){
+    public ArrayList<Console> getConsoles(){
         return consoles;
     }
 
-    public static ArrayList<Customer> getCustomers() { return customers; }
+    public ArrayList<Customer> getCustomers() { return customers; }
 
-    public static ArrayList<Rental> getRentals() { return rentals; }
+    public ArrayList<Rental> getRentals() { return rentals; }
 
-    public static Basket getBasket() { return basket; }
+    public Basket getBasket() { return basket; }
 
     // create dummy objects for consoles, like reading from a DB
     private void populateConsoles() {
