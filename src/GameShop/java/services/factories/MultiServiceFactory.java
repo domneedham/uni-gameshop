@@ -4,11 +4,11 @@ import GameShop.java.routers.RouteNames;
 import GameShop.java.services.*;
 import GameShop.java.services.interfaces.IService;
 
-public class MultiServiceFactory {
-    public static IService[] getService(RouteNames route) {
+public abstract class MultiServiceFactory {
+    public static IService[] getServices(RouteNames route) {
         switch (route) {
             case CREATE_RENTAL:
-                return new IService[] { new GameService(), new ConsoleService(), new BasketService(), new CustomerService()};
+                return new IService[] { new GameService(), new ConsoleService(), new BasketService(), new CustomerService() };
             case VIEW_RENTALS:
                 return new IService[] { new RentalService(), new CustomerService() };
             case VIEW_GAMES:

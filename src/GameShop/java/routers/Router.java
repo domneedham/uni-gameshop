@@ -53,10 +53,11 @@ public class Router {
         if (service != null) {
             ServiceDependency control = loader.getController();
             control.assignService(service);
+            // if service is found, no need to try to find multi service, so return to break
             return;
         }
 
-        IService[] services = MultiServiceFactory.getService(route);
+        IService[] services = MultiServiceFactory.getServices(route);
         if (services != null) {
             MultiServiceDependency control = loader.getController();
             control.assignServices(services);

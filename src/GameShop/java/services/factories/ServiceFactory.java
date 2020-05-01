@@ -7,7 +7,7 @@ import GameShop.java.services.CustomerService;
 import GameShop.java.services.GameService;
 import GameShop.java.services.interfaces.IService;
 
-public class ServiceFactory {
+public abstract class ServiceFactory {
     public static IService getService(RouteNames route) {
         switch (route) {
             case EDIT_GAME:
