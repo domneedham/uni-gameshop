@@ -72,7 +72,6 @@ public class GameRepository {
     public void rentGame(Game game) {
         for (Game g: getAllGames()) {
             if (g.getId().equals(game.getId())) {
-                System.out.println("Game should be rented");
                 g.rentItem();
             }
         }

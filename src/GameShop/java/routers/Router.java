@@ -3,9 +3,9 @@ package GameShop.java.routers;
 import GameShop.java.controllers.interfaces.ControllerCommunication;
 import GameShop.java.controllers.interfaces.MultiServiceDependency;
 import GameShop.java.controllers.interfaces.ServiceDependency;
-import GameShop.java.services.injectors.MultiServiceInjector;
+import GameShop.java.services.factories.MultiServiceFactory;
 import GameShop.java.services.interfaces.IService;
-import GameShop.java.services.injectors.ServiceInjector;
+import GameShop.java.services.factories.ServiceFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,14 +49,14 @@ public class Router {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
 
-        IService service = ServiceInjector.getService(route);
+        IService service = ServiceFactory.getService(route);
         if (service != null) {
             ServiceDependency control = loader.getController();
             control.assignService(service);
             return;
         }
 
-        ArrayList<IService> services = MultiServiceInjector.getService(route);
+        IService[] services = MultiServiceFactory.getService(route);
         if (services != null) {
             MultiServiceDependency control = loader.getController();
             control.assignServices(services);

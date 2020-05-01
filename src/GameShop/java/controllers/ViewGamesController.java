@@ -22,7 +22,6 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewGamesController implements Initializable, MultiServiceDependency {
@@ -114,7 +113,7 @@ public class ViewGamesController implements Initializable, MultiServiceDependenc
     }
 
     @Override
-    public void assignServices(ArrayList<IService> services) {
+    public void assignServices(IService[] services) {
         for (var service : services) {
             if (service instanceof IGameService) {
                 this.gameService = (IGameService) service;

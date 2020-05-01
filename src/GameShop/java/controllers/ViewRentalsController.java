@@ -20,7 +20,6 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewRentalsController implements Initializable, MultiServiceDependency {
@@ -91,7 +90,7 @@ public class ViewRentalsController implements Initializable, MultiServiceDepende
     }
 
     @Override
-    public void assignServices(ArrayList<IService> services) {
+    public void assignServices(IService[] services) {
         for (var service : services) {
             if (service instanceof IRentalService) {
                 this.rentalService = (IRentalService) service;
