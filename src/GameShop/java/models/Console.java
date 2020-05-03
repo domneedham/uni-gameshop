@@ -25,6 +25,4 @@ public class Console extends Product {
     public void setBit(int bit) {
         this.bit = bit;
     }
-
-
 }

@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreateRentalController implements Initializable, ServiceDependency, MultiServiceDependency {
+public class CreateRentalController implements Initializable, MultiServiceDependency {
     private final Router router = new Router();
     private IConsoleService consoleService;
     private IBasketService basketService;
@@ -155,11 +155,6 @@ public class CreateRentalController implements Initializable, ServiceDependency,
 
     public void updateCost() {
         costText.setText(FXMLTableFormat.formatCost(basketService.calculateCost()));
-    }
-
-    @Override
-    public void assignService(IService service) {
-        this.consoleService = (IConsoleService) service;
     }
 
     @Override
