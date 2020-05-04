@@ -25,4 +25,9 @@ public class Console extends Product {
     public void setBit(int bit) {
         this.bit = bit;
     }
+
+    @Override
+    String getErrorMessage() {
+        return "Console can not be rented if it is not available";
+    }
 }

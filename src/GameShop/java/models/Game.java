@@ -11,4 +11,9 @@ public class Game extends Product {
     public Console getConsole() {
         return console;
     }
+
+    @Override
+    String getErrorMessage() {
+        return "Game can not be rented if it is not available";
+    }
 }
