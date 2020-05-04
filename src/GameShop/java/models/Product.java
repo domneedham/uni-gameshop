@@ -54,7 +54,7 @@ public abstract class Product {
 
     public void rentItem() throws Error {
         if (!isAvailable()) {
-            throw new Error("Game can not be rented when it is not available");
+            throw new Error("Product can not be rented when it is not available");
         } else {
             this.currentlyRented = true;
         }
