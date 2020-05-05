@@ -16,7 +16,7 @@ public class RentalService implements IRentalService {
     private static final ConsoleService consoleService = new ConsoleService();
 
     @Override
-    public Rental createRentalWithConsole(LocalDate date, Customer customer, ArrayList<Game> games, Console console) throws Error {
+    public Rental createRentalWithConsole(LocalDate date, Customer customer, ArrayList<Game> games, Console console) throws Exception {
         Rental rental = Rental.createWithConsole(date, customer, games, console);
         repo.addRental(rental);
 
@@ -27,7 +27,7 @@ public class RentalService implements IRentalService {
     }
 
     @Override
-    public Rental createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Error {
+    public Rental createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Exception {
         Rental rental = Rental.createWithoutConsole(date, customer, games);
         repo.addRental(rental);
 
@@ -56,13 +56,13 @@ public class RentalService implements IRentalService {
         }
     }
 
-    private void markGamesAsUnavailable(ArrayList<Game> games) throws Error {
+    private void markGamesAsUnavailable(ArrayList<Game> games) throws Exception {
         for (Game game: games) {
             gameService.rentGame(game);
         }
     }
 
-    private void markConsoleAsUnavailable(Console console) throws Error {
+    private void markConsoleAsUnavailable(Console console) throws Exception {
         consoleService.rentConsole(console);
     }
 

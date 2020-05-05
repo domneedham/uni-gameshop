@@ -35,7 +35,7 @@ public class ConsoleService implements IConsoleService {
     }
 
     @Override
-    public void rentConsole(Console console) {
+    public void rentConsole(Console console) throws Exception {
         repo.rentConsole(console);
     }
 

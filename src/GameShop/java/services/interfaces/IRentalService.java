@@ -9,9 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface IRentalService extends IService {
-    Rental createRentalWithConsole(LocalDate date, Customer customer, ArrayList<Game> games, Console console) throws Error;
+    Rental createRentalWithConsole(LocalDate date, Customer customer, ArrayList<Game> games, Console console) throws Error, Exception;
 
-    Rental createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Error;
+    Rental createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Error, Exception;
 
     ArrayList<Rental> getRentals();
 

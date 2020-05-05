@@ -24,7 +24,7 @@ public interface IGameService extends IService {
 
     void modifyGame(Game game, String newName, boolean inForRepair);
 
-    void rentGame(Game game);
+    void rentGame(Game game) throws Exception;
 
     void returnGame(Game game);
 }

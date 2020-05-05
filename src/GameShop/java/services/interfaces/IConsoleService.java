@@ -19,7 +19,7 @@ public interface IConsoleService extends IService {
 
     void modifyConsole(Console console, String newName, boolean inForRepair);
 
-    void rentConsole(Console console);
+    void rentConsole(Console console) throws Exception;
 
     void returnConsole(Console console);
 }

@@ -105,7 +105,7 @@ public class BasketService implements IBasketService {
     }
 
     @Override
-    public void submitBasket() throws Error {
+    public void submitBasket() throws Exception {
         // create copy of games so that when basket is cleared
         // does not clear games in rental
         ArrayList<Game> gamesCopy = new ArrayList<>(getGames());

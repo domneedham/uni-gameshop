@@ -42,7 +42,7 @@ public interface IBasketService extends IService {
 
     boolean isMaxGamesInBasket();
 
-    void submitBasket() throws Error;
+    void submitBasket() throws Error, Exception;
 
     double calculateCost();
 }

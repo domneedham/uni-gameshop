@@ -42,7 +42,7 @@ public class GameService implements IGameService {
     }
 
     @Override
-    public void rentGame(Game game) {
+    public void rentGame(Game game) throws Exception {
         repo.rentGame(game);
     }
 

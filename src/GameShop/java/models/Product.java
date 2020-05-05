@@ -1,5 +1,7 @@
 package GameShop.java.models;
 
+import GameShop.java.models.exceptions.ProductRentalException;
+
 import java.util.UUID;
 
 public abstract class Product {
@@ -52,9 +54,14 @@ public abstract class Product {
         this.inForRepair = inForRepair;
     }
 
-    public void rentItem() throws Error {
+    public void rentItem() throws Exception {
         if (!isAvailable()) {
-            throw new Error(getErrorMessage());
+            throw new ProductRentalException(
+                    String.format(
+                            "%s.\n Current state:\n Currently Rented: %s \n In For Repair: %s",
+                            getErrorMessage(), isCurrentlyRented(), isInForRepair()
+                    )
+            );
         } else {
             this.currentlyRented = true;
         }

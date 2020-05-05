@@ -39,11 +39,11 @@ public class ViewBasketController implements Initializable, ServiceDependency {
     }
 
     @FXML
-    private void submitRental(ActionEvent event) throws IOException {
+    private void submitRental(ActionEvent event) {
         try {
             basketService.submitBasket();
             router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
-        } catch (Error e) {
+        } catch (Error | Exception e) {
             AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
 
