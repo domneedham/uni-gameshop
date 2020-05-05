@@ -54,7 +54,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void createARentalWithConsoleWorks() {
+    void createARentalWithConsoleWorks() throws Exception {
         Assertions.assertEquals(0, RentalService.getRentals().size());
 
         RentalService.createRentalWithConsole(this.date, this.customer1, this.gamesForRental1, this.console1);
@@ -65,7 +65,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void createARentalWithoutConsoleWorks() {
+    void createARentalWithoutConsoleWorks() throws Exception {
         Assertions.assertEquals(0, RentalService.getRentals().size());
 
         RentalService.createRental(this.date, this.customer1, this.gamesForRental1);
@@ -76,7 +76,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void eachGameGetsMarkedAsUnavailableOnceRented() {
+    void eachGameGetsMarkedAsUnavailableOnceRented() throws Exception {
         // add games to repository as games are checked when marking unavailable
         // make sure each game is available before checking rental changes
         for (Game g: this.gamesForRental1) {
@@ -92,7 +92,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void eachGameGetsMarkedAsAvailableOnReturn() {
+    void eachGameGetsMarkedAsAvailableOnReturn() throws Exception {
         // add games to repository as games are checked when marking available
         for (Game g: this.gamesForRental2) {
             GameService.addGame(g);
@@ -114,7 +114,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void consoleGetsMarkedAsUnavailableOnceRented() {
+    void consoleGetsMarkedAsUnavailableOnceRented() throws Exception {
         // add console to repository as games are checked when marking unavailable
         ConsoleService.addConsole(this.console1);
 
@@ -127,7 +127,7 @@ class RentalServiceTest {
     }
 
     @Test
-    void consoleGetsMarkedAsAvailableOnReturn() {
+    void consoleGetsMarkedAsAvailableOnReturn() throws Exception {
         // add console to repository as games are checked when marking unavailable
         ConsoleService.addConsole(this.console1);
 

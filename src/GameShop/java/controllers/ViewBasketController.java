@@ -38,11 +38,11 @@ public class ViewBasketController implements Initializable {
     }
 
     @FXML
-    private void submitRental(ActionEvent event) throws IOException {
+    private void submitRental(ActionEvent event) {
         try {
             BasketService.submitBasket();
             router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
-        } catch (Error e) {
+        } catch (Exception e) {
             AlertBox.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
 

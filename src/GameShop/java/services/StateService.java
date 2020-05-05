@@ -96,7 +96,8 @@ public class StateService {
             games.get(5).rentItem();
             consoles.get(0).rentItem();
         } catch (Exception e) {
-            System.out.println("Unable to make rentals");
+            System.out.println("Unable to make rental, exiting program ...");
+            System.out.println(e.getMessage());
             System.exit(0);
         }
     }

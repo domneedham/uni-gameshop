@@ -23,7 +23,7 @@ class GameTest {
     }
 
     @Test
-    void gameIsNotAvailableIfItIsRented() {
+    void gameIsNotAvailableIfItIsRented() throws Exception {
         this.game1.rentItem();
         Assertions.assertTrue(this.game1.isCurrentlyRented());
         Assertions.assertFalse(this.game1.isAvailable());
@@ -34,7 +34,7 @@ class GameTest {
         this.game1.setInForRepair(true);
         try {
             this.game1.rentItem();
-        } catch (Error e) {
+        } catch (Exception e) {
             // ignore error
         }
         Assertions.assertFalse(this.game1.isCurrentlyRented());

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class RentalService {
     protected static final RentalRepository repo = new RentalRepository();
 
-    public static Rental createRentalWithConsole(LocalDate date, Customer customer, ArrayList<Game> games, Console console ) throws Error {
+    public static Rental createRentalWithConsole(LocalDate date, Customer customer, ArrayList<Game> games, Console console ) throws Exception {
         Rental rental = Rental.createWithConsole(date, customer, games, console);
         repo.addRental(rental);
 
@@ -22,7 +22,7 @@ public class RentalService {
         return rental;
     }
 
-    public static Rental createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Error {
+    public static Rental createRental(LocalDate date, Customer customer, ArrayList<Game> games) throws Exception {
         Rental rental = Rental.createWithoutConsole(date, customer, games);
         repo.addRental(rental);
 
@@ -47,13 +47,13 @@ public class RentalService {
         }
     }
 
-    private static void markGamesAsUnavailable(ArrayList<Game> games) throws Error {
+    private static void markGamesAsUnavailable(ArrayList<Game> games) throws Exception {
         for (Game game: games) {
             GameService.rentGame(game);
         }
     }
 
-    private static void markConsoleAsUnavailable(Console console) throws Error {
+    private static void markConsoleAsUnavailable(Console console) throws Exception {
         ConsoleService.rentConsole(console);
     }
 

@@ -85,7 +85,7 @@ public class BasketService {
         return repo.getBasket().isMaxGamesInBasket();
     }
 
-    public static void submitBasket() throws Error {
+    public static void submitBasket() throws Exception {
         // create copy of games so that when basket is cleared
         // does not clear games in rental
         ArrayList<Game> gamesCopy = new ArrayList<>(getGames());

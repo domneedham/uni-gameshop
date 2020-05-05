@@ -67,7 +67,7 @@ public class GameRepository {
         }
     }
 
-    public void rentGame(Game game) {
+    public void rentGame(Game game) throws Exception {
         for (Game g: getAllGames()) {
             if (g.getId().equals(game.getId())) {
                 System.out.println("Game should be rented");

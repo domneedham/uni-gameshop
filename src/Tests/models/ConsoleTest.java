@@ -22,7 +22,7 @@ class ConsoleTest {
     }
 
     @Test
-    void consoleIsNotAvailableIfItIsRented() {
+    void consoleIsNotAvailableIfItIsRented() throws Exception {
         this.console1.rentItem();
         Assertions.assertTrue(this.console1.isCurrentlyRented());
         Assertions.assertFalse(this.console1.isAvailable());
@@ -33,7 +33,7 @@ class ConsoleTest {
         this.console1.setInForRepair(true);
         try {
             this.console1.rentItem();
-        } catch (Error e) {
+        } catch (Exception e) {
             // ignore error
         }
         Assertions.assertFalse(this.console1.isCurrentlyRented());

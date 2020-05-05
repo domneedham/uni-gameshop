@@ -46,7 +46,7 @@ public class ConsoleRepository {
         }
     }
 
-    public void rentConsole(Console console) {
+    public void rentConsole(Console console) throws Exception {
         for (Console c: getAllConsoles()) {
             if (c.getId().equals(console.getId())) {
                  c.rentItem();

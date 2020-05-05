@@ -31,7 +31,7 @@ public class GameService {
         repo.modifyGame(game);
     }
 
-    public static void rentGame(Game game) {
+    public static void rentGame(Game game) throws Exception {
         repo.rentGame(game);
     }
 

@@ -26,7 +26,7 @@ public class ConsoleService {
         repo.modifyConsole(console);
     }
 
-    public static void rentConsole(Console console) {
+    public static void rentConsole(Console console) throws Exception {
         repo.rentConsole(console);
     }
 
