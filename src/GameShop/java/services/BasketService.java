@@ -3,6 +3,7 @@ package GameShop.java.services;
 import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
+import GameShop.java.models.exceptions.ProductRentalException;
 import GameShop.java.repositories.BasketRepository;
 
 import java.time.LocalDate;
@@ -41,36 +42,33 @@ public class BasketService {
 
     public static void requireConsole(Console console) throws Exception {
         if (!console.isAvailable()) {
-            throw new Exception("Console is not available for rental");
+            throw new ProductRentalException("Console is not available for rental");
         }
-        repo.getBasket().setConsoleRequired(true);
-        repo.getBasket().setConsole(console);
+        repo.requireConsole(console);
     }
 
     public static void unrequireConsole() {
-        repo.getBasket().setConsoleRequired(false);
-        // clear console from basket
-        repo.getBasket().setConsole(null);
+        repo.unrequireConsole();
     }
 
     public static void setDate(LocalDate date) {
-        repo.getBasket().setDateRented(date);
+        repo.setDate(date);
     }
 
     public static void addGame(Game game) {
-        repo.getBasket().addGame(game);
+        repo.addGame(game);
     }
 
     public static void removeGame(Game game) {
-        repo.getBasket().removeGame(game);
+        repo.removeGame(game);
     }
 
     public static void removeGame(ArrayList<Game> games) {
-        repo.getBasket().removeGame(games);
+        repo.removeGame(games);
     }
 
     public static void clearBasket() {
-        repo.getBasket().clearBasket();
+        repo.clearBasket();
     }
 
     public static boolean gameInBasket(Game game) {
@@ -78,7 +76,7 @@ public class BasketService {
     }
 
     public static void clearGames() {
-        repo.getBasket().clearGames();
+        repo.clearGames();
     }
 
     public static boolean isMaxGamesInBasket() {
