@@ -3,6 +3,7 @@ package GameShop.java.services;
 import GameShop.java.models.Console;
 import GameShop.java.models.Customer;
 import GameShop.java.models.Game;
+import GameShop.java.models.exceptions.ProductRentalException;
 import GameShop.java.repositories.BasketRepository;
 import GameShop.java.services.interfaces.IBasketService;
 
@@ -45,48 +46,45 @@ public class BasketService implements IBasketService {
 
     @Override
     public void setCustomer(Customer customer) {
-        repo.getBasket().setCustomer(customer);
+        repo.setCustomer(customer);
     }
 
     @Override
     public void requireConsole(Console console) throws Exception {
         if (!console.isAvailable()) {
-            throw new Exception("Console is not available for rental");
+            throw new ProductRentalException("Console is not available for rental");
         }
-        repo.getBasket().setConsoleRequired(true);
-        repo.getBasket().setConsole(console);
+        repo.requireConsole(console);
     }
 
     @Override
     public void unrequireConsole() {
-        repo.getBasket().setConsoleRequired(false);
-        // clear console from basket
-        repo.getBasket().setConsole(null);
+        repo.unrequireConsole();
     }
 
     @Override
     public void setDate(LocalDate date) {
-        repo.getBasket().setDateRented(date);
+        repo.setDate(date);
     }
 
     @Override
     public void addGame(Game game) {
-        repo.getBasket().addGame(game);
+        repo.addGame(game);
     }
 
     @Override
     public void removeGame(Game game) {
-        repo.getBasket().removeGame(game);
+        repo.removeGame(game);
     }
 
     @Override
     public void removeGame(ArrayList<Game> games) {
-        repo.getBasket().removeGame(games);
+        repo.removeGame(games);
     }
 
     @Override
     public void clearBasket() {
-        repo.getBasket().clearBasket();
+        repo.clearBasket();
     }
 
     @Override
@@ -96,7 +94,7 @@ public class BasketService implements IBasketService {
 
     @Override
     public void clearGames() {
-        repo.getBasket().clearGames();
+        repo.clearGames();
     }
 
     @Override
