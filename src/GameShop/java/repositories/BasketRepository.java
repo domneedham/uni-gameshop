@@ -19,14 +19,16 @@ public class BasketRepository {
     }
 
     public void requireConsole(Console console) {
-        getBasket().setConsoleRequired(true);
-        getBasket().setConsole(console);
+        var basket = getBasket();
+        basket.setConsoleRequired(true);
+        basket.setConsole(console);
     }
 
     public void unrequireConsole() {
-        getBasket().setConsoleRequired(false);
+        var basket = getBasket();
+        basket.setConsoleRequired(false);
         // clear console from basket
-        getBasket().setConsole(null);
+        basket.setConsole(null);
     }
 
     public void setDate(LocalDate date) {
