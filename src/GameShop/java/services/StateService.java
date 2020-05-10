@@ -10,11 +10,11 @@ public class StateService {
     private static StateService instance;
 
     // Create ArrayLists to hold some fake data for application
-    private final static ArrayList<Game> games = new ArrayList<>();
-    private final static ArrayList<Console> consoles = new ArrayList<>();
-    private final static ArrayList<Customer> customers = new ArrayList<>();
-    private final static ArrayList<Rental> rentals = new ArrayList<>();
-    private final static Basket basket = new Basket();
+    private final ArrayList<Game> games = new ArrayList<>();
+    private final ArrayList<Console> consoles = new ArrayList<>();
+    private final ArrayList<Customer> customers = new ArrayList<>();
+    private final ArrayList<Rental> rentals = new ArrayList<>();
+    private final Basket basket = new Basket();
 
     // On initialisation, populate lists with dummy data
     // Create consoles first, so games can use consoles

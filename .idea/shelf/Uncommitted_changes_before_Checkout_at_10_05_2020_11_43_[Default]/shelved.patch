@@ -1,0 +1,15 @@
+Index: src/GameShop/java/repositories/GameRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/GameShop/java/repositories/GameRepository.java	(revision d4c4218dad58ac5d65e1a227c1be2aaa74c1de45)
++++ src/GameShop/java/repositories/GameRepository.java	(date 1588848171721)
+@@ -70,7 +70,6 @@
+     public void rentGame(Game game) throws Exception {
+         for (Game g: getAllGames()) {
+             if (g.getId().equals(game.getId())) {
+-                System.out.println("Game should be rented");
+                 g.rentItem();
+             }
+         }
