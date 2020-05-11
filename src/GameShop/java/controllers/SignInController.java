@@ -17,15 +17,14 @@ import java.util.ResourceBundle;
 public class SignInController implements Initializable {
     private final Router router = new Router();
 
-    @FXML
-    private TextField username;
-
-    @FXML
-    private PasswordField password;
-
+    @FXML private TextField username;
+    @FXML private PasswordField password;
     @FXML
     // set text to show error if sign is wrong
     private Label signInError;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {}
 
     @FXML
     private void clearForm() {
@@ -49,7 +48,4 @@ public class SignInController implements Initializable {
     private void handleGoHome(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.HOME, event);
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {}
 }

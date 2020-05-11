@@ -29,12 +29,12 @@ public class ViewCustomersController implements Initializable, ServiceDependency
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private void setupTable() {
-        customerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        CustomerTableAdaptor.setForenameValues(forenameColumn);
-        CustomerTableAdaptor.setSurnameValues(surnameColumn);
-        CustomerTableAdaptor.setEmailValues(emailColumn);
-        CustomerTableAdaptor.setTelephoneValues(telephoneColumn);
+    @Override
+    public void assignService(IService service) {
+        this.customerService = (ICustomerService) service;
+
+        setupTable();
+        showCustomers();
     }
 
     @FXML
@@ -47,11 +47,11 @@ public class ViewCustomersController implements Initializable, ServiceDependency
         customerTableView.getItems().setAll(items);
     }
 
-    @Override
-    public void assignService(IService service) {
-        this.customerService = (ICustomerService) service;
-
-        setupTable();
-        showCustomers();
+    private void setupTable() {
+        customerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        CustomerTableAdaptor.setForenameValues(forenameColumn);
+        CustomerTableAdaptor.setSurnameValues(surnameColumn);
+        CustomerTableAdaptor.setEmailValues(emailColumn);
+        CustomerTableAdaptor.setTelephoneValues(telephoneColumn);
     }
 }

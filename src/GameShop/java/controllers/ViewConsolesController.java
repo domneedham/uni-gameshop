@@ -25,22 +25,19 @@ public class ViewConsolesController implements Initializable, ServiceDependency 
     private IConsoleService consoleService;
 
     @FXML private TableView consoleTableView;
-
     @FXML private CheckBox showAll;
-
     @FXML private TableColumn nameColumn, formColumn, bitColumn, availableColumn, costColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private void setupTable() {
-        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ConsoleTableAdaptor.setNameValues(nameColumn);
-        ConsoleTableAdaptor.setFormValues(formColumn);
-        ConsoleTableAdaptor.setBitValues(bitColumn);
-        ConsoleTableAdaptor.setAvailableValues(availableColumn);
-        ConsoleTableAdaptor.setCostValues(costColumn);
+    @Override
+    public void assignService(IService service) {
+        this.consoleService = (IConsoleService) service;
+
+        setupTable();
+        showConsoles();
     }
 
     @FXML
@@ -52,6 +49,15 @@ public class ViewConsolesController implements Initializable, ServiceDependency 
         showConsoles();
     }
 
+    private void setupTable() {
+        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        ConsoleTableAdaptor.setNameValues(nameColumn);
+        ConsoleTableAdaptor.setFormValues(formColumn);
+        ConsoleTableAdaptor.setBitValues(bitColumn);
+        ConsoleTableAdaptor.setAvailableValues(availableColumn);
+        ConsoleTableAdaptor.setCostValues(costColumn);
+    }
+
     private void showConsoles() {
         ObservableList items;
         if (showAll.isSelected()) {
@@ -61,13 +67,5 @@ public class ViewConsolesController implements Initializable, ServiceDependency 
         }
 
         consoleTableView.setItems(items);
-    }
-
-    @Override
-    public void assignService(IService service) {
-        this.consoleService = (IConsoleService) service;
-
-        setupTable();
-        showConsoles();
     }
 }

@@ -29,14 +29,23 @@ public class ViewBasketController implements Initializable, ServiceDependency {
     @FXML private TableView gameTableView;
     @FXML private TableColumn nameColumn, consoleColumn, costColumn;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
+    @Override
+    public void assignService(IService service) {
+        this.basketService = (IBasketService) service;
+
+        setupGameTable();
+        populateData();
+    }
+
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.CREATE_RENTAL, event);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }
 
     @FXML
     private void submitRental(ActionEvent event) {
@@ -63,13 +72,5 @@ public class ViewBasketController implements Initializable, ServiceDependency {
         dateText.setText(FXMLTableFormat.formatDate(basketService.getDate()));
         costText.setText(FXMLTableFormat.formatCost(basketService.calculateCost()));
         gameTableView.getItems().setAll(basketService.getGames());
-    }
-
-    @Override
-    public void assignService(IService service) {
-        this.basketService = (IBasketService) service;
-
-        setupGameTable();
-        populateData();
     }
 }

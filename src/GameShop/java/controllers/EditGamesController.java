@@ -29,13 +29,11 @@ public class EditGamesController implements Initializable, ServiceDependency {
     @Override
     public void initialize(URL url, ResourceBundle rb) { }
 
-    private void setupTable() {
-        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        GameTableAdaptor.setNameValues(nameColumn);
-        GameTableAdaptor.setConsoleValues(consoleColumn);
-        GameTableAdaptor.setAvailableValues(availableColumn);
-        GameTableAdaptor.setCostValues(costColumn);
-        addButtonsToTable();
+    @Override
+    public void assignService(IService service) {
+        this.gameService = (IGameService) service;
+        setupTable();
+        showGames();
     }
 
     @FXML
@@ -52,10 +50,12 @@ public class EditGamesController implements Initializable, ServiceDependency {
         EditGamesAdaptor.addButtonToTable(editGameColumn, router);
     }
 
-    @Override
-    public void assignService(IService service) {
-        this.gameService = (IGameService) service;
-        setupTable();
-        showGames();
+    private void setupTable() {
+        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        GameTableAdaptor.setNameValues(nameColumn);
+        GameTableAdaptor.setConsoleValues(consoleColumn);
+        GameTableAdaptor.setAvailableValues(availableColumn);
+        GameTableAdaptor.setCostValues(costColumn);
+        addButtonsToTable();
     }
 }

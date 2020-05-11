@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     private final Router router = new Router();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }

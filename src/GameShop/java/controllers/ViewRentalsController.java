@@ -28,20 +28,54 @@ public class ViewRentalsController implements Initializable, MultiServiceDepende
     private ICustomerService customerService;
 
     @FXML private HBox customerChoiceWrapper;
-
     @FXML private CheckBox specificCustomer;
     @FXML private ChoiceBox customerChoiceBox;
-
     @FXML private TableView rentalTableView;
     @FXML private TableColumn customerColumn, dateRentedColumn, dateDueColumn, consoleColumn, gamesColumn, costColumn, buttonColumn;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
+    @Override
+    public void assignServices(IService[] services) {
+        for (var service : services) {
+            if (service instanceof IRentalService) {
+                this.rentalService = (IRentalService) service;
+            }
+            if (service instanceof ICustomerService) {
+                this.customerService = (ICustomerService) service;
+            }
+        }
+
+        setupTable();
+        showRentals();
+        getAllCustomers();
+    }
 
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    private void handleSpecificCustomerToggle() {
+        customerChoiceWrapper.setVisible(specificCustomer.isSelected());
+
+        // reset table to show all customers if specific customer is turned off
+        if (!specificCustomer.isSelected()) {
+            showRentals();
+        }
+    }
+
+    @FXML
+    private void handleCustomerChange() {
+        if (specificCustomer.isSelected()) {
+            ObservableList rentals = FXCollections.observableArrayList(rentalService.getRentalsForCustomer(ViewRentalAdaptor.getSelectedCustomer(customerChoiceBox)));
+            rentalTableView.getItems().setAll(rentals);
+        } else {
+            showRentals();
+        }
     }
 
     private void setupTable() {
@@ -67,41 +101,5 @@ public class ViewRentalsController implements Initializable, MultiServiceDepende
     private void getAllCustomers() {
         ObservableList items = FXCollections.observableArrayList(customerService.getAllCustomers());
         customerChoiceBox.getItems().setAll(items);
-    }
-
-    @FXML
-    private void handleSpecificCustomerToggle() {
-        customerChoiceWrapper.setVisible(specificCustomer.isSelected());
-
-        // reset table to show all customers if specific customer is turned off
-        if (!specificCustomer.isSelected()) {
-            showRentals();
-        }
-    }
-
-    @FXML
-    private void handleCustomerChange() {
-        if (specificCustomer.isSelected()) {
-            ObservableList rentals = FXCollections.observableArrayList(rentalService.getRentalsForCustomer(ViewRentalAdaptor.getSelectedCustomer(customerChoiceBox)));
-            rentalTableView.getItems().setAll(rentals);
-        } else {
-            showRentals();
-        }
-    }
-
-    @Override
-    public void assignServices(IService[] services) {
-        for (var service : services) {
-            if (service instanceof IRentalService) {
-                this.rentalService = (IRentalService) service;
-            }
-            if (service instanceof ICustomerService) {
-                this.customerService = (ICustomerService) service;
-            }
-        }
-
-        setupTable();
-        showRentals();
-        getAllCustomers();
     }
 }

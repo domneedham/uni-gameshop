@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 public class EditGameController implements Initializable, ControllerCommunication, ServiceDependency {
     private final Router router = new Router();
     private IGameService gameService;
-
     private String gameId;
 
     @FXML TextField nameTextField;
@@ -32,13 +31,13 @@ public class EditGameController implements Initializable, ControllerCommunicatio
         EditGameAdaptor.getGame(gameService.getById(id), this);
     }
 
-    public void gameDetailsToEdit(String id, String name, boolean inForRepair) {
-        nameTextField.setText(name);
-        inForRepairCheckBox.setSelected(inForRepair);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { }
+
+    @Override
+    public void assignService(IService service) {
+        this.gameService = (IGameService) service;
+    }
 
     @FXML
     public void handleGoBack(ActionEvent event) throws IOException {
@@ -51,8 +50,8 @@ public class EditGameController implements Initializable, ControllerCommunicatio
         router.changeRoute(RouteNames.EDIT_GAMES, event);
     }
 
-    @Override
-    public void assignService(IService service) {
-        this.gameService = (IGameService) service;
+    public void gameDetailsToEdit(String id, String name, boolean inForRepair) {
+        nameTextField.setText(name);
+        inForRepairCheckBox.setSelected(inForRepair);
     }
 }

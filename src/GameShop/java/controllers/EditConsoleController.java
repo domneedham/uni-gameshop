@@ -26,18 +26,18 @@ public class EditConsoleController implements Initializable, ControllerCommunica
     @FXML CheckBox inForRepairCheckBox;
 
     @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
+
+    @Override
     public void passId(String id) {
         gameId = id;
         EditConsoleAdaptor.getConsole(consoleService.getById(id), this);
     }
 
-    public void consoleDetailsToEdit(String id, String name, boolean inForRepair) {
-        nameTextField.setText(name);
-        inForRepairCheckBox.setSelected(inForRepair);
-    }
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { }
+    public void assignService(IService service) {
+        this.consoleService = (IConsoleService) service;
+    }
 
     @FXML
     public void handleGoBack(ActionEvent event) throws IOException {
@@ -50,8 +50,8 @@ public class EditConsoleController implements Initializable, ControllerCommunica
         router.changeRoute(RouteNames.EDIT_CONSOLES, event);
     }
 
-    @Override
-    public void assignService(IService service) {
-        this.consoleService = (IConsoleService) service;
+    public void consoleDetailsToEdit(String id, String name, boolean inForRepair) {
+        nameTextField.setText(name);
+        inForRepairCheckBox.setSelected(inForRepair);
     }
 }

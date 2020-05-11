@@ -14,6 +14,9 @@ import java.util.ResourceBundle;
 public class ShopKeeperHomeController implements Initializable {
     private final Router router = new Router();
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {}
+
     @FXML
     private void handleSignOut(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.HOME, event);
@@ -43,7 +46,4 @@ public class ShopKeeperHomeController implements Initializable {
     private void handleEditConsoles(ActionEvent event) throws IOException {
         router.changeRoute(RouteNames.EDIT_CONSOLES, event);
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {}
 }

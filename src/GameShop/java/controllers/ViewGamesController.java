@@ -30,26 +30,30 @@ public class ViewGamesController implements Initializable, MultiServiceDependenc
     private IConsoleService consoleService;
 
     @FXML private HBox consoleChoiceWrapper;
-
     @FXML private CheckBox specificConsole;
     @FXML private ChoiceBox consoleChoiceBox;
-
     @FXML private TableView gameTableView;
-
     @FXML private CheckBox showAll;
-
     @FXML private TableColumn nameColumn, consoleColumn, costColumn, availableColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private void setupTable() {
-        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        GameTableAdaptor.setNameValues(nameColumn);
-        GameTableAdaptor.setConsoleValues(consoleColumn);
-        GameTableAdaptor.setAvailableValues(availableColumn);
-        GameTableAdaptor.setCostValues(costColumn);
+    @Override
+    public void assignServices(IService[] services) {
+        for (var service : services) {
+            if (service instanceof IGameService) {
+                this.gameService = (IGameService) service;
+            }
+            if (service instanceof IConsoleService) {
+                this.consoleService = (IConsoleService) service;
+            }
+        }
+
+        setupTable();
+        showGames();
+        getConsoles();
     }
 
     @FXML
@@ -60,30 +64,6 @@ public class ViewGamesController implements Initializable, MultiServiceDependenc
     @FXML
     private void updateList() {
         showGames();
-    }
-
-    private void showGames() {
-        // if specific console is selected
-        // call method that handles games to view when a console is selected
-        if (specificConsole.isSelected()) {
-            handleConsoleChange();
-            // return to cancel overriding items
-            return;
-        }
-
-        ObservableList items;
-        if (showAll.isSelected()) {
-            items = FXCollections.observableArrayList(gameService.getAllGames());
-        } else {
-            items = FXCollections.observableArrayList(gameService.getAvailableGames());
-        }
-
-        gameTableView.getItems().setAll(items);
-    }
-
-    private void getConsoles() {
-        ObservableList items = FXCollections.observableArrayList(consoleService.getAllConsoles());
-        consoleChoiceBox.getItems().setAll(items);
     }
 
     @FXML
@@ -112,19 +92,35 @@ public class ViewGamesController implements Initializable, MultiServiceDependenc
         }
     }
 
-    @Override
-    public void assignServices(IService[] services) {
-        for (var service : services) {
-            if (service instanceof IGameService) {
-                this.gameService = (IGameService) service;
-            }
-            if (service instanceof IConsoleService) {
-                this.consoleService = (IConsoleService) service;
-            }
+    private void showGames() {
+        // if specific console is selected
+        // call method that handles games to view when a console is selected
+        if (specificConsole.isSelected()) {
+            handleConsoleChange();
+            // return to cancel overriding items
+            return;
         }
 
-        setupTable();
-        showGames();
-        getConsoles();
+        ObservableList items;
+        if (showAll.isSelected()) {
+            items = FXCollections.observableArrayList(gameService.getAllGames());
+        } else {
+            items = FXCollections.observableArrayList(gameService.getAvailableGames());
+        }
+
+        gameTableView.getItems().setAll(items);
+    }
+
+    private void setupTable() {
+        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        GameTableAdaptor.setNameValues(nameColumn);
+        GameTableAdaptor.setConsoleValues(consoleColumn);
+        GameTableAdaptor.setAvailableValues(availableColumn);
+        GameTableAdaptor.setCostValues(costColumn);
+    }
+
+    private void getConsoles() {
+        ObservableList items = FXCollections.observableArrayList(consoleService.getAllConsoles());
+        consoleChoiceBox.getItems().setAll(items);
     }
 }

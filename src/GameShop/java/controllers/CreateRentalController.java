@@ -38,51 +38,37 @@ public class CreateRentalController implements Initializable, MultiServiceDepend
     @FXML private CheckBox consoleRequired;
     @FXML private DatePicker datePicker;
     @FXML private Text costText;
-
     @FXML private TableColumn nameColumn, costColumn, buttonColumn;
-
-
-    @FXML
-    private void handleGoBack(ActionEvent event) throws IOException {
-        basketService.clearBasket();
-        router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private void setupTable() {
-        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        addButtonToTable();
-        GameTableAdaptor.setNameValues(nameColumn);
-        GameTableAdaptor.setCostValues(costColumn);
+
+    @Override
+    public void assignServices(IService[] services) {
+        for (var service : services) {
+            if (service instanceof IBasketService) {
+                this.basketService = (IBasketService) service;
+            }
+            if (service instanceof IConsoleService) {
+                this.consoleService = (IConsoleService) service;
+            }
+            if (service instanceof ICustomerService) {
+                this.customerService = (ICustomerService) service;
+            }
+        }
+
+        setupTable();
+        getCustomers();
+        getConsoles();
+        if (basketService.isBasketPopulated()) { fillDefaults(); }
     }
 
-    private void fillDefaults() {
-        customerChoiceBox.getSelectionModel().select(basketService.getCustomer());
-        consoleChoiceBox.getSelectionModel().select(basketService.getConsole());
-        consoleRequired.setSelected(basketService.isConsoleRequired());
-        datePicker.setValue(basketService.getDate());
-        costText.setText(FXMLTableFormat.formatCost(basketService.calculateCost()));
-    }
-
-    private void getCustomers() {
-        ObservableList items = FXCollections.observableArrayList(customerService.getAllCustomers());
-        customerChoiceBox.getItems().setAll(items);
-    }
-
-    private void getConsoles() {
-        ObservableList consoles = FXCollections.observableArrayList(consoleService.getAllConsoles());
-        consoleChoiceBox.getItems().setAll(consoles);
-    }
-
-    private void getGames() {
-        ObservableList items = FXCollections.observableArrayList();
-        CreateRentalAdaptor.getGamesForConsole(items, CreateRentalAdaptor.getConsoleId(consoleChoiceBox));
-        gameTableView.getItems().setAll(items);
-        // fixes button displaying remove if item not in basket anyway
-        addButtonToTable();
+    @FXML
+    private void handleGoBack(ActionEvent event) throws IOException {
+        basketService.clearBasket();
+        router.changeRoute(RouteNames.SHOP_KEEPER_HOME, event);
     }
 
     @FXML
@@ -139,6 +125,10 @@ public class CreateRentalController implements Initializable, MultiServiceDepend
         }
     }
 
+    public void updateCost() {
+        costText.setText(FXMLTableFormat.formatCost(basketService.calculateCost()));
+    }
+
     private void addButtonToTable() {
         CreateRentalAdaptor.addAddButtonToGameTable(buttonColumn, this);
     }
@@ -153,27 +143,36 @@ public class CreateRentalController implements Initializable, MultiServiceDepend
         }
     }
 
-    public void updateCost() {
+    private void setupTable() {
+        gameTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        addButtonToTable();
+        GameTableAdaptor.setNameValues(nameColumn);
+        GameTableAdaptor.setCostValues(costColumn);
+    }
+
+    private void fillDefaults() {
+        customerChoiceBox.getSelectionModel().select(basketService.getCustomer());
+        consoleChoiceBox.getSelectionModel().select(basketService.getConsole());
+        consoleRequired.setSelected(basketService.isConsoleRequired());
+        datePicker.setValue(basketService.getDate());
         costText.setText(FXMLTableFormat.formatCost(basketService.calculateCost()));
     }
 
-    @Override
-    public void assignServices(IService[] services) {
-        for (var service : services) {
-            if (service instanceof IBasketService) {
-                this.basketService = (IBasketService) service;
-            }
-            if (service instanceof IConsoleService) {
-                this.consoleService = (IConsoleService) service;
-            }
-            if (service instanceof ICustomerService) {
-                this.customerService = (ICustomerService) service;
-            }
-        }
+    private void getCustomers() {
+        ObservableList items = FXCollections.observableArrayList(customerService.getAllCustomers());
+        customerChoiceBox.getItems().setAll(items);
+    }
 
-        setupTable();
-        getCustomers();
-        getConsoles();
-        if (basketService.isBasketPopulated()) { fillDefaults(); }
+    private void getConsoles() {
+        ObservableList consoles = FXCollections.observableArrayList(consoleService.getAllConsoles());
+        consoleChoiceBox.getItems().setAll(consoles);
+    }
+
+    private void getGames() {
+        ObservableList items = FXCollections.observableArrayList();
+        CreateRentalAdaptor.getGamesForConsole(items, CreateRentalAdaptor.getConsoleId(consoleChoiceBox));
+        gameTableView.getItems().setAll(items);
+        // fixes button displaying remove if item not in basket anyway
+        addButtonToTable();
     }
 }

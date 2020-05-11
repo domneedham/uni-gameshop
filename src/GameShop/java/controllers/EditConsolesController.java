@@ -30,14 +30,12 @@ public class EditConsolesController implements Initializable, ServiceDependency 
     public void initialize(URL url, ResourceBundle rb) {
     }
 
-    private void setupTable() {
-        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ConsoleTableAdaptor.setNameValues(nameColumn);
-        ConsoleTableAdaptor.setFormValues(formColumn);
-        ConsoleTableAdaptor.setBitValues(bitColumn);
-        ConsoleTableAdaptor.setAvailableValues(availableColumn);
-        ConsoleTableAdaptor.setCostValues(costColumn);
-        addButtonsToTable();
+    @Override
+    public void assignService(IService service) {
+        this.consoleService = (IConsoleService) service;
+
+        setupTable();
+        showConsoles();
     }
 
     @FXML
@@ -54,11 +52,13 @@ public class EditConsolesController implements Initializable, ServiceDependency 
         EditConsolesAdaptor.addButtonToTable(editConsoleColumn, router);
     }
 
-    @Override
-    public void assignService(IService service) {
-        this.consoleService = (IConsoleService) service;
-
-        setupTable();
-        showConsoles();
+    private void setupTable() {
+        consoleTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        ConsoleTableAdaptor.setNameValues(nameColumn);
+        ConsoleTableAdaptor.setFormValues(formColumn);
+        ConsoleTableAdaptor.setBitValues(bitColumn);
+        ConsoleTableAdaptor.setAvailableValues(availableColumn);
+        ConsoleTableAdaptor.setCostValues(costColumn);
+        addButtonsToTable();
     }
 }
