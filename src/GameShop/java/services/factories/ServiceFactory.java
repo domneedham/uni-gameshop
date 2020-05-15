@@ -9,6 +9,9 @@ import GameShop.java.services.interfaces.IService;
 
 public abstract class ServiceFactory {
     public static IService getService(RouteNames route) {
+        if (route == null) {
+            return null;
+        }
         switch (route) {
             case EDIT_GAME:
             case EDIT_GAMES:

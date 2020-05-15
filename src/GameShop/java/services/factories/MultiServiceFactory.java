@@ -6,6 +6,9 @@ import GameShop.java.services.interfaces.IService;
 
 public abstract class MultiServiceFactory {
     public static IService[] getServices(RouteNames route) {
+        if (route == null) {
+            return null;
+        }
         switch (route) {
             case CREATE_RENTAL:
                 return new IService[] { new GameService(), new ConsoleService(), new BasketService(), new CustomerService() };
